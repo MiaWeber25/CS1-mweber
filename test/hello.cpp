@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+//using namespace std; *Will include all std
 int main()
 {
    std::cout << "Hello World \n";

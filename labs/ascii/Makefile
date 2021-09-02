@@ -1,0 +1,2 @@
+compile:
+	g++ ASCIIArt.cpp

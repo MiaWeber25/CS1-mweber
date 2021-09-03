@@ -31,5 +31,5 @@
 | **Status**         | Done                                    | 
 | **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/ascii/ASCIIArt.cpp                                 |
 | **Self Grade**     | 100/100                                    |
-| **Notes**          | fixed all #FIXME. code compiles and runs. 
+| **Notes**          | fixed all #FIXME Code compiles and runs. 
 

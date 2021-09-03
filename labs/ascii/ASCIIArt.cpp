@@ -18,37 +18,46 @@
 using namespace std; //resolve cout, cin, and endl names
 
 //main entry point of the program
+
 int main()
 {
+    //FIXME3: declare a variable to store name 
+    //FIXME4: prompt user to enter their name and store the value in variable 
+    //FIXME5: greet the name using the variable as the following output: must output: Nice meeting you, <name>! 
     string userName;
     cout << "enter your name: ";
     cin >> userName; //getline(cin, userName);
-    cout << "Nice to meet you, " << userName + "!\n";
-    //FIXME3: declare a variable to store name FIXED 09/02
-    //FIXME4: prompt user to enter their name and store the value in variable FIXED 09/02
-
-    //FIXME5: greet the name using the variable as the following output
-    //must output: Nice meeting you, <name>! 
+    cout << "\nNice to meet you, " << userName + "!\n";
 
     cout << "\nHope you like my Tom & Jerry ASCII art...\n\n";
 
-    string line1 = " |\\_/|   *****************************    (\\_/)\n";
+    string line1 = "        |\\_/|    ******************************    (\\_/)\n";
     cout << line1;
 
-    //FIXME6: use variable to print the second line of the graphic
-    string line2 = "/ @ @ /  *       ASCII Lab           *   (='.'=)";
+    //FIXME6: use variable to print the second line of the graphic #FIXED#
+    string line2 = "       / @ @ \\   *          ASCII Lab         *   (='.'=)\n";
     cout << line2;
-    //FIXME7: print the third line of the graphics
-    //string line3 = "( > 0 < )  *     By: Mia Weber      *   (")_(")";
-    //cout << line3;
-    //FIXME8: use variable to print the fourth line
-    string line4 = "";
-    //FIXME9: use variable to print the fifth line
-    string line5 = "";
+    //FIXME7: print the third line of the graphics #FIXED#
+    
+    string line3 = "      ( > 0 < )  *         By: Mia Weber      *   (\")_(\")\n";
+    cout << line3;
+   
+    //FIXME8: use variable to print the fourth line #FIXED#
+    string line4 = "        >>x<<    *          CSCI 111          *\n";
+    cout << line4;
+    
+    //FIXME9: use variable to print the fifth line #FIXED#
+    string line5 = "        / O \\    ******************************\n";
+    cout << line5;
     //NOTE: You can add more lines or print more ASCII arts of your choice if you'd like...
-
-    cout <<"\nGoodbye... hit enter to exit the program: " << '\n';
-    //FIXME10: make the console wait for user input
-
-    return 0; //exit program by returning 0 status to the system
+    
+    //FIXME10: make the console wait for user input #FIXED#    
+    
+    string wait;
+    cout << "Goodbye... hit enter to exit the program: \n";
+    cin.ignore();
+    getline(cin, wait);
+    
+    //exit program by returning 0 status to the system
+    return 0; 
 }

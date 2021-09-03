@@ -25,7 +25,7 @@
 **Lab #1**
 | Name           | Value                                   |
 |----------------|:---------------------------------------:|
-| **Name**           | 1 - StdIO Lab                             |
+| **Name**           | 1 - Std IO Lab                             |
 | **Description**    | Lab covering standard input and output               |
 | **Due Date**       | 03-Sept-2021                             |
 | **Status**         | Done                                    | 

@@ -5,7 +5,7 @@
     Updated By: Mia Weber #FIXME1
     Date: 09/01/2021
 
-    This program produces an ASCII art on the colsole.
+    This program produces ASCII art on the colsole.
 
     Algorithm steps:
     1. Use variables to store data/values
@@ -21,12 +21,12 @@ using namespace std; //resolve cout, cin, and endl names
 
 int main()
 {
-    //FIXME3: declare a variable to store name 
-    //FIXME4: prompt user to enter their name and store the value in variable 
-    //FIXME5: greet the name using the variable as the following output: must output: Nice meeting you, <name>! 
+    //FIXME3: declare a variable to store name of user = userName #FIXED#
     string userName;
+    //FIXME4: prompt user to enter their name and store the value in variable #FIXED#
     cout << "enter your name: ";
-    cin >> userName; //getline(cin, userName);
+    cin >> userName;
+    //FIXME5: greet the name using the variable as the following output: must output: Nice meeting you, <name>! #FIXED# 
     cout << "\nNice to meet you, " << userName + "!\n";
 
     cout << "\nHope you like my Tom & Jerry ASCII art...\n\n";
@@ -56,7 +56,7 @@ int main()
     string wait;
     cout << "Goodbye... hit enter to exit the program: \n";
     cin.ignore();
-    getline(cin, wait);
+    getline(cin, wait); //remember it's getline() not cin.getline
     
     //exit program by returning 0 status to the system
     return 0; 

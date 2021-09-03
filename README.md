@@ -19,4 +19,17 @@
 | **Status**         | Done                                    | 
 | **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/test/hello.cpp                                 |
 | **Self Grade**     | -/-                                     |
-| **Notes**          | completed all the requirments and screenshot of code in image.jpg |
+| **Notes**          | completed all the requirments and screenshot of code in image.jpg 
+
+# **Labs**
+**Lab #1**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           | 1 - StdIO Lab                             |
+| **Description**    | Lab covering standard input and output               |
+| **Due Date**       | 03-Sept-2021                             |
+| **Status**         | Done                                    | 
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/ascii/ASCIIArt.cpp                                 |
+| **Self Grade**     | 100/100                                    |
+| **Notes**          | fixed all #FIXME. code compiles and runs. 
+

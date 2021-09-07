@@ -21,6 +21,19 @@
 | **Self Grade**     | -/-                                     |
 | **Notes**          | completed all the requirments and screenshot of code in image.jpg 
 
+**Assignment #2**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           | HW 1 - Std I/O Hangman                             |
+| **Description**    | Prints basic 7 stages of hangman game               |
+| **Due Date**       | 13-Sept-2021                             |
+| **Status**         | Done                                    | 
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/test/hello.cpp                                 |
+| **Self Grade**     | 100/100                                     |
+| **Notes**          | completed all the requirments and added screenshot of working code. 
+
+
+
 # **Labs**
 **Lab #1**
 | Name           | Value                                   |

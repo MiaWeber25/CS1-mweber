@@ -28,7 +28,7 @@
 | **Description**    | Prints basic 7 stages of hangman game               |
 | **Due Date**       | 13-Sept-2021                             |
 | **Status**         | Done                                    | 
-| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/test/hello.cpp                                 |
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/assignments/stdio/hw1.cppcpp                                 |
 | **Self Grade**     | 100/100                                     |
 | **Notes**          | completed all the requirments and added screenshot of working code. 
 

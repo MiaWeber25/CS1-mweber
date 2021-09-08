@@ -8,7 +8,6 @@
     Algorithm steps:
     1. create a variable to store user's name (greet the player)
     2. use variables and std output to print 7 game stages
-    3. use string variables to store each level's gallows
 */
 #include <iostream> //input output library
 #include <string> //string library
@@ -18,17 +17,18 @@ using namespace std;
 
 //main function
 int main () {
-    //prompt user to enter their name
+    //prompt user to enter their name & store in var - 10 POINTS
     string userName;
     cout << "Hi! What is your name?\n";
     cin >> userName; 
 
-    //greet the player
+    //greet the player - 10 POINTS
     cout << "Hi " << userName + "!\n";
     cout << "This hangman game is not finished yet. Here is what it will look like:\n";
     
+    //print first stage, second stage, third stage, etc. - 60 POINTS 
     string levelOne =
-        "Stage One\n"
+        "\nStage One\n"
         "|-----------\n"
          "|     |\n"
          "|\n"
@@ -38,7 +38,7 @@ int main () {
     cout << levelOne;
 
     string levelTwo =
-     "Stage Two\n"
+     "\nStage Two\n"
      "|-----------\n"
          "|     |\n"
          "|     O\n"
@@ -49,7 +49,7 @@ int main () {
     cout << levelTwo;
 
     string levelThree = 
-    "Stage Three\n"
+    "\nStage Three\n"
      "|-----------\n"
          "|     |\n"
          "|     O\n"
@@ -60,7 +60,7 @@ int main () {
     cout << levelThree; 
 
     string levelFour = 
-    "Stage Four\n"
+    "\nStage Four\n"
      "|-----------\n"
          "|     |\n"
          "|    \\O\n"
@@ -71,7 +71,7 @@ int main () {
     cout << levelFour;
 
     string levelFive = 
-    "Stage Five\n"
+    "\nStage Five\n"
      "|-----------\n"
          "|     |\n"
          "|    \\O/\n"
@@ -82,7 +82,7 @@ int main () {
     cout << levelFive;
 
     string levelSix = 
-    "Stage Six\n"
+    "\nStage Six\n"
      "|-----------\n"
          "|     |\n"
          "|    \\O/\n"
@@ -93,7 +93,7 @@ int main () {
     cout << levelSix;
     
     string levelSeven = 
-    "Stage Seven\n"
+    "\nStage Seven\n"
      "|-----------\n"
          "|     |\n"
          "|    \\O/\n"

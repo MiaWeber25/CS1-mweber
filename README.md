@@ -46,3 +46,13 @@
 | **Self Grade**     | 100/100                                    |
 | **Notes**          | fixed all #FIXME Code compiles and runs. 
 
+**Lab #2**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           | Circle - Maths and Std IO Lab                             |
+| **Description**    | Lab calculates area & circumference of circle with given radius               |
+| **Due Date**       | 13-Sept-2021                             |
+| **Status**         | Done                                    | 
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/ascii/ASCIIArt.cpp                                 |
+| **Self Grade**     | 100/100                                    |
+| **Notes**          | fixed all #FIXME Code compiles and runs. 

@@ -10,7 +10,7 @@
     Algorthim Steps: 
     1. Prompt the user to enter radius of circle and store in a var.
     2. calculate area using area formula and store in a var.
-    3. calculate circumference using formula and store value in a var.
+    3. calculate circumference using formula and store value in a var..
     4. output the calculated values for area and circumference
 */
 

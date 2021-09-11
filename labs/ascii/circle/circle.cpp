@@ -28,8 +28,8 @@ int main() {
 
     string name; //var for user's name
     cout << "Hello! What is your full name?\n";
-    //getline(name);
-    //FIXME3: USE GETLINE TO READ USER'S FULLNAME AND STORE INTO VAR
+    getline(cin, name);
+    //FIXME3: USE GETLINE TO READ USER'S FULLNAME AND STORE INTO VAR #FIXED#
 
     cout << "Nice to meet you, " << name << "!" << endl;
 

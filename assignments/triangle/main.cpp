@@ -53,11 +53,13 @@ int main() {
     //SIDE LENGTH ONE
     cout << "Please enter the lenth of side 1 of your triangle: \n";
     cin >> length1;
+    cin.ignore(256,'\n');
 
     //SIDE LENGTH TWO 
     cout << "Please enter the length of side 2 of your triangle: \n";
     cin >> length2;
-
+    cin.ignore(256,'\n');
+    
     //SIDE LENGTH THREE
     cout << "Please enter the length of side 3 of your triangle: \n";
     cin >> length3;

@@ -32,6 +32,17 @@
 | **Self Grade**     | 100/100                                     |
 | **Notes**          | completed all the requirments and added screenshot of working code. 
 
+**Assignment #3**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           | HW 2 - Area & Perimeter of Triangle                             |
+| **Description**    | Calculate area & perimeter of triangle and verifies if correct triangle               |
+| **Due Date**       | 17-Sept-2021                             |
+| **Status**         | Done                                    | 
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/assignments/triangle/main.cpp                                 |
+| **Self Grade**     | 100/100                                     |
+| **Notes**          | completed all the requirments & BONUS and added screenshot of working code. 
+
 
 
 # **Labs**

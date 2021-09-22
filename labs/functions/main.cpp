@@ -54,9 +54,9 @@ int main() {
 
     //FIXME-bonus - add loop until user wants to quit
     //the loop will execute the following block of code
+    while (repeat == true) {
     {
         clearScreen();
-
         cout << "Program calculates distance between 2 points on a 2D coordinate." <<endl;
         cout << "Enter a point in the form (x,y): ";
         
@@ -83,32 +83,40 @@ int main() {
     cin.get();
     cout << "Goodbye..." << endl;
     return 0;
-} 
-
-double findDistance(int x1, int y1, int x2, int y2) {
-    //FIXME7 - find the distance between (x1, y1) and (x2, y2) #FIXED#
-    double distance = sqrt(pow(x2-x1,2) + pow(y2-y1,2)); 
-    return distance;
+ 
+    double findDistance(int x1, int y1, int x2, int y2) {
+        //FIXME7 - find the distance between (x1, y1) and (x2, y2) #FIXED#
+        double distance = sqrt(pow(x2-x1,2) + pow(y2-y1,2)); 
+        return distance;
 }
 
 //test function that tests findDistance function with 3 test cases
 //use a loop to loop through an array of test case data? 
-void test() {
-    float result = findDistance(4,3,5,1);
-    float expected = 2.236067f;
-    assert(fabs(result-expected) <= epsilon); //accept the result if it's less than the error of margin
-    //FIXME8 - add at least two mores test cases
-    result = findDistance(-4,3,5,1);
-    expected = 9.219544;
-    assert(fabs(result-expected) <= epsilon);
+    void test() {
+        float result = findDistance(4,3,5,1);
+        float expected = 2.236067f;
+        assert(fabs(result-expected) <= epsilon); //accept the result if it's less than the error of margin
+        //FIXME8 - add at least two mores test cases
+        result = findDistance(-4,3,5,1);
+        expected = 9.219544;
+        assert(fabs(result-expected) <= epsilon);
    
-    result = findDistance(4,-3,5,1);
-    expected = 4.123106;
-    assert(fabs(result-expected) <= epsilon);
+        result = findDistance(4,-3,5,1);
+        expected = 4.123106;
+        assert(fabs(result-expected) <= epsilon);
 
-    result = findDistance(-4,-3,-5,-1);
-    expected = 2.236068;
-    assert(fabs(result-expected) <= epsilon);
+        result = findDistance(-4,-3,-5,-1);
+        expected = 2.236068;
+        assert(fabs(result-expected) <= epsilon);
 
-    cerr << "all tests passed..." <<endl;
+        cerr << "all tests passed..." <<endl;
+    }
+//contine?
+bool repeat = continue(repeat);
+cout << endl;
+if (repeat == false){
+    break;
+}
+}
+    
 }

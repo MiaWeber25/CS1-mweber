@@ -71,7 +71,7 @@ int main() {
         printf("(x2,y2) = (%d, %d)\n",x2,y2);
         
         //FIXME 4 - call test function #ATTEMPTED FIX#
-        //////test(); 
+        test(); 
         //FIXME5 - call findDistance() passing proper arguments #ATTEMPTED FIX#
         double calculated_distance = findDistance(x1,y1,x2,y2);
         //FIXME6 - using printf function display the returned distance with proper description #ATTEMPTED FIX, but add variables in# 
@@ -99,15 +99,15 @@ void test() {
     assert(fabs(result-expected) <= epsilon); //accept the result if it's less than the error of margin
     //FIXME8 - add at least two mores test cases
     result = findDistance(-4,3,5,1);
-    expected = 0;
+    expected = 9.219544;
     assert(fabs(result-expected) <= epsilon);
    
     result = findDistance(4,-3,5,1);
-    expected = 0;
+    expected = 4.123106;
     assert(fabs(result-expected) <= epsilon);
 
     result = findDistance(-4,-3,-5,-1);
-    expected = 0;
+    expected = 2.236068;
     assert(fabs(result-expected) <= epsilon);
 
     cerr << "all tests passed..." <<endl;

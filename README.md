@@ -67,3 +67,14 @@
 | **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/ascii/circle/circle.cpp                                 |
 | **Self Grade**     | 100/100                                    |
 | **Notes**          | fixed all #FIXME Code compiles and runs. 
+
+**Lab #3**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           | Built-in and User Defined Functions & Automated Testing Lab                             |
+| **Description**    | Lab calculates the distance between two points on a 2D geometry              |
+| **Due Date**       | 22-Sept-2021                             |
+| **Status**         | Done                                    | 
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/functions/main2.cpp                                 |
+| **Self Grade**     | 110/100                                    |
+| **Notes**          | fixed all #FIXME Code compiles and runs. There is a compiler warning, but this way it avoids infinite loop. 

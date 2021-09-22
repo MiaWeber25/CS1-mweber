@@ -27,17 +27,15 @@ using namespace std;
 //constant to ensure answer is within margin or error
 const float epsilon = 1e-5; //0.00001 accurary up to 5 decimal points; margin of error
 
-//function prototypes
-
+//FUNCTION PROTOTYPES
 //function that calculates the distance between two points (x1,y1) & (x2,y2)
 double findDistance(int, int, int, int); //WHY DO I NEED THIS UP HERE??????? 
-
-//test function that runs automated testing
+//function that runs automated testing
 void test();
-
+//function that clears console
 void clearScreen();
+bool want_continue(bool);
 
-//function to clear the screen
 //NOTE: system call is not a security best practice!
 void clearScreen() {
     //use "cls" in windows and "clear" command in Mac and Linux
@@ -48,75 +46,94 @@ void clearScreen() {
     #endif
 }
 
-int main() {
-    int x1, y1, x2, y2; //vars to store two poitns (x1,y1) and (x2,y2)
-    char ch; //WHY THE FUCK IS THIS HERE??? 
+bool want_continue() {
+    char response;
+    bool repeat = false;
+    //bool repeat1 = 0;
+    cout << "Would you like to enter more points? Y/N";
+    cin >> response;
+    cin.ignore(1000, '\n');
 
-    //FIXME-bonus - add loop until user wants to quit
-    //the loop will execute the following block of code
+    if (response == 'Y') {
+        repeat = true;
+        return repeat;
+        //repeat1 = true;
+    } 
+    else if (response == 'N') {
+        repeat = false;
+        //repeat1 = false;
+        return repeat;
+    }
+    //return repeat1; 
+    //return repeat; THIS ALLOWS THE FUNCTION TO RETURN SOMETHING ALWAYS??????
+}
+double findDistance(int x1, int y1, int x2, int y2) {
+    //FIXME7 - find the distance between (x1, y1) and (x2, y2) #FIXED#
+    double distance = sqrt(pow(x2-x1,2) + pow(y2-y1,2)); 
+    return distance;
+    }
+        //test function that tests findDistance function with 3 test cases
+        //use a loop to loop through an array of test case data? 
+void test() {
+    float result = findDistance(4,3,5,1);
+    float expected = 2.236067f;
+    assert(fabs(result-expected) <= epsilon); //accept the result if it's less than the error of margin
+    //FIXME8 - add at least two mores test cases
+    result = findDistance(-4,3,5,1);
+    expected = 9.219544;
+    assert(fabs(result-expected) <= epsilon);
+   
+    result = findDistance(4,-3,5,1);
+    expected = 4.123106;
+    assert(fabs(result-expected) <= epsilon);
+
+    result = findDistance(-4,-3,-5,-1);
+    expected = 2.236068;
+    assert(fabs(result-expected) <= epsilon);
+
+    cerr << "all tests passed..." <<endl;
+    }
+
+int main() {
+   bool repeat = true;
+    int x1, y1, x2, y2; //vars to store two points (x1,y1) and (x2,y2)
+    char ch; 
+
+    //FIXME bonus - add loop until user wants to quit
     while (repeat == true) {
-    {
         clearScreen();
         cout << "Program calculates distance between 2 points on a 2D coordinate." <<endl;
         cout << "Enter a point in the form (x,y): ";
-        
+
         //parse the input stream
         cin >> ch >> x1 >> ch >> y1 >> ch; //CHANGED SO THAT THERE'S JUST ONE CHAR IGNORED (,)
         printf("(x1,y1) = (%d, %d)\n",x1,y1);
 
         cout << "Enter a second point in the form (x,y): ";
-        
+
         //FIXME 3 - read/parse the second point and store data into variablesl x2 and y2 #FIXED#
         cin >> ch >> x2 >> ch >> y2 >> ch;
         printf("(x2,y2) = (%d, %d)\n",x2,y2);
-        
-        //FIXME 4 - call test function #ATTEMPTED FIX#
+
+        //FIXME 4 - call test function #FIXED#
         test(); 
-        //FIXME5 - call findDistance() passing proper arguments #ATTEMPTED FIX#
+       
+        //FIXME5 - call findDistance() passing proper arguments #FIXED#
         double calculated_distance = findDistance(x1,y1,x2,y2);
-        //FIXME6 - using printf function display the returned distance with proper description #ATTEMPTED FIX, but add variables in# 
+        
+        //FIXME6 - using printf function display the returned distance with proper description #FIXED# 
         printf("The distance between those points is: %lf\n",calculated_distance);
-    }
 
-    cin.ignore(1000, '\n');
-    cout << "Enter to quit the program: ";
-    cin.get();
-    cout << "Goodbye..." << endl;
-    return 0;
- 
-    double findDistance(int x1, int y1, int x2, int y2) {
-        //FIXME7 - find the distance between (x1, y1) and (x2, y2) #FIXED#
-        double distance = sqrt(pow(x2-x1,2) + pow(y2-y1,2)); 
-        return distance;
-}
+    //FIX THE ORDER TO EXIT THE PROGRAM AND ASK TO ENTER MORE POINTS????
+        cin.ignore(1000, '\n');
+        cout << "Enter to quit the program: ";
+        cin.get();
+        cout << "Goodbye..." << endl;
 
-//test function that tests findDistance function with 3 test cases
-//use a loop to loop through an array of test case data? 
-    void test() {
-        float result = findDistance(4,3,5,1);
-        float expected = 2.236067f;
-        assert(fabs(result-expected) <= epsilon); //accept the result if it's less than the error of margin
-        //FIXME8 - add at least two mores test cases
-        result = findDistance(-4,3,5,1);
-        expected = 9.219544;
-        assert(fabs(result-expected) <= epsilon);
-   
-        result = findDistance(4,-3,5,1);
-        expected = 4.123106;
-        assert(fabs(result-expected) <= epsilon);
-
-        result = findDistance(-4,-3,-5,-1);
-        expected = 2.236068;
-        assert(fabs(result-expected) <= epsilon);
-
-        cerr << "all tests passed..." <<endl;
-    }
-//contine?
-bool repeat = continue(repeat);
-cout << endl;
-if (repeat == false){
-    break;
-}
-}
-    
-}
+        //contine?
+        //want_continue();
+        repeat = want_continue();
+    } 
+    assert(repeat == false);
+    return 0; 
+} 

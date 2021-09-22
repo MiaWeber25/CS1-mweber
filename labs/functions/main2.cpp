@@ -50,7 +50,7 @@ bool want_continue() {
     char response;
     bool repeat = false;
     //bool repeat1 = 0;
-    cout << "Would you like to enter more points? Y/N";
+    cout << "Would you like to enter more points? Y/N\n";
     cin >> response;
     cin.ignore(1000, '\n');
 
@@ -61,7 +61,9 @@ bool want_continue() {
     } 
     else if (response == 'N') {
         repeat = false;
-        //repeat1 = false;
+        cout << "Enter to quit the program: ";
+        cin.get();
+        cout << "Goodbye..." << endl;
         return repeat;
     }
     //return repeat1; 
@@ -123,16 +125,17 @@ int main() {
         
         //FIXME6 - using printf function display the returned distance with proper description #FIXED# 
         printf("The distance between those points is: %lf\n",calculated_distance);
-
+        
     //FIX THE ORDER TO EXIT THE PROGRAM AND ASK TO ENTER MORE POINTS????
         cin.ignore(1000, '\n');
-        cout << "Enter to quit the program: ";
-        cin.get();
-        cout << "Goodbye..." << endl;
+        repeat = want_continue();
+        //cout << "Enter to quit the program: ";
+        //cin.get();
+        //cout << "Goodbye..." << endl;
 
         //contine?
         //want_continue();
-        repeat = want_continue();
+        //repeat = want_continue();
     } 
     assert(repeat == false);
     return 0; 

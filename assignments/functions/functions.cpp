@@ -5,7 +5,8 @@
 
     This program performs some arithmetic operations on two given numbers (entered by user)
     Useful resources:
-
+    https://stackoverflow.com/questions/11720656/modulo-operation-with-negative-numbers 
+    
     Algorithm steps:
     1. 
 */
@@ -52,8 +53,8 @@ float difference(float num1, float num2) {
     return 0;
 }
 
-float remain(int num1, int num2) { //HOW DO I DO MOD WITH FLOATING POINTS? 
-    cout << '\n' << num1 << " % " << num2 << " = " << num1%num2 << endl;
+float remain(float num1, float num2) { //HOW DO I DO MOD WITH FLOATING POINTS? 
+    cout << '\n' << num1 << " % " << num2 << " = " << fmod(num1,num2) << endl;
 
     return 0;
 }

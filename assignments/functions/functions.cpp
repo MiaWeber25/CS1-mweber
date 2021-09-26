@@ -29,54 +29,56 @@ void test(); //test function for automated testing
 
 
 float sum(float num1, float num2) {
-    cout << '\n' << num1 << "+" << num2 << "=" << num1+num2 << endl;
+    cout << '\n' << num1 << " + " << num2 << " = " << num1+num2 << endl;
 
     return 0;
 }
 
 float product(float num1, float num2) {
-    cout << '\n' << num1 << "*" << num2 << "=" << num1*num2 << endl;
+    cout << '\n' << num1 << " * " << num2 << " = " << num1*num2 << endl;
 
     return 0;
 }
 
 float quotient(float num1, float num2) {
-    cout << '\n' << num1 << "/" << num2 << "=" << num1/num2 << endl;
+    cout << '\n' << num1 << " / " << num2 << " = " << num1/num2 << endl;
 
     return 0;
 }
 
 float difference(float num1, float num2) {
-    cout << '\n' << num1 << "-" << num2 << "=" << num1-num2 << endl;
+    cout << '\n' << num1 << " - " << num2 << " = " << num1-num2 << endl;
     
     return 0;
 }
 
 float remain(int num1, int num2) { //HOW DO I DO MOD WITH FLOATING POINTS? 
-    cout << '\n' << num1 << "%" << num2 << "=" << num1%num2 << endl;
+    cout << '\n' << num1 << " % " << num2 << " = " << num1%num2 << endl;
 
     return 0;
 }
 float power(float num1, float num2) {
-    cout << '\n' << num1 << "^" << num2 << "=" << pow(num1,num2) <<endl;
+    cout << '\n' << num1 << " ^ " << num2 << " = " << pow(num1,num2) <<endl;
 
     return 0;
 }
-float root(float num1) { //how to print a square root sign? && HOW TO DETERMINE WHICH NUMBER TO SQRT?
-    cout << '\n' << "√" << num1 << "=" << sqrt(num1) << endl;
+float root(float num1) { //HOW TO DETERMINE WHICH NUMBER TO SQRT? --> used the first one...
+    cout << '\n' << "√ " << num1 << " = " << sqrt(num1) << endl;
 
     return 0;
 }
 float largest(float num1, float num2) {
     if (num1>num2) {
-        cout << '\n' << num1 << ">" << num2 << endl;
+        cout << '\n' << num1 << " > " << num2 << endl;
     } else {
-        cout << '\n' <<num2 << ">" << num1 << endl;
+        cout << '\n' <<num2 << " > " << num1 << endl;
     }
     return 0;
 }
 void test() {
-
+    //neg numbers
+    //decimal numbers
+    //neg decimal numbers
 }
 
 

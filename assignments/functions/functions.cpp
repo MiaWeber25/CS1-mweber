@@ -5,7 +5,8 @@
 
     This program performs some arithmetic operations on two given numbers (entered by user)
     Useful resources:
-    https://stackoverflow.com/questions/11720656/modulo-operation-with-negative-numbers 
+    ## modulous for negative numbers https://stackoverflow.com/questions/11720656/modulo-operation-with-negative-numbers 
+    ## pointers for arrays https://www.tutorialspoint.com/cplusplus/cpp_return_arrays_from_functions.htm 
     
     Algorithm steps:
     1. define functiosn to add(+), multiply(*), divide(/), sumbtract(-), find the remainer(fmod), perform exponentiation(powf), find a square root(sqrt), and find the larger of two numbers(>)
@@ -23,10 +24,9 @@ float sum(float,float);
 float product(float, float); 
 float quotient(float, float); 
 float difference(float, float); 
-//float remain(float, float); // doesn't compile with this... 
 float power(float, float);
 float root(float, float);
-float * largest(float, float); 
+float * largest(float, float); //use a pointer to the array --> can't define float[] in C++
 void test(); //test function for automated testing
 
 //find the sum of two numbers
@@ -66,8 +66,8 @@ float power(float num1, float num2) {
     return result;
 }
 
-//find the square root of two numbers
-float root1(float num1) { //HOW TO DETERMINE WHICH NUMBER TO SQRT? --> used the first one...
+//find the square root of two numbers 
+float root1(float num1) { 
     float result = sqrt(num1);    
     return result;
 }
@@ -76,7 +76,7 @@ float root2(float num2) {
     return result;
 }
 
-//find the largest of two numbers
+//find the largest of two numbers --> This won't work because you can only print the larger number, not the smaller number...
 /*float largest(float num1, float num2) {
     float result;
     float small;
@@ -89,7 +89,8 @@ float root2(float num2) {
     return result;
 }
 */
-float * largest(float num1, float num2) {
+//find the largest of two numbers using an array. (pointer so that I can return the array for reference in main)
+float * largest(float num1, float num2) { //need sort the array
     float arr[2];
     if (num1 > num2) {
         arr[0] = num1;
@@ -114,7 +115,7 @@ void test() {
     expected = 10.57;
     assert(abs(result-expected) <= margin_error);
 
-    //PRODUCT() ###TEST THIS IS FAILING WHYYYYYYYY
+    //PRODUCT()
     result = product(-4,12); //negative int
     expected = -48.0;
     assert(abs(result-expected) <= margin_error);

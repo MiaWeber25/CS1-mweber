@@ -43,6 +43,17 @@
 | **Self Grade**     | 100/100                                     |
 | **Notes**          | completed all the requirments & BONUS and added screenshot of working code. 
 
+**Assignment #4**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           | HW 2 - Basic Calculator using Functions and Automated Testing                             |
+| **Description**    | Perform some arithmetic operations on two given numbers (entered by user)               |
+| **Due Date**       | 27-Sept-2021                             |
+| **Status**         | Done                                    | 
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/assignments/functions/functions.cpp                                 |
+| **Self Grade**     | 110/100                                     |
+| **Notes**          | completed all the requirments & BONUS and added screenshot of working code. 
+
 
 
 # **Labs**

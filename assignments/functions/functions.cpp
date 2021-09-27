@@ -26,7 +26,7 @@ float difference(float, float);
 //float remain(float, float); // doesn't compile with this... 
 float power(float, float);
 float root(float, float);
-float largest(float, float); 
+float * largest(float, float); 
 void test(); //test function for automated testing
 
 //find the sum of two numbers
@@ -62,6 +62,7 @@ float remain(float num1, float num2) { //negative numbers = takes sign of numera
 //find one number to the power of another number
 float power(float num1, float num2) {
     float result = powf(num1,num2);
+    //printf("result: %f %f %f \n", num1, num2, result);
     return result;
 }
 
@@ -88,7 +89,8 @@ float root2(float num2) {
     return result;
 }
 */
-void largest(float num1, float num2, float arr[]) {
+float * largest(float num1, float num2) {
+    float arr[2];
     if (num1 > num2) {
         arr[0] = num1;
         arr[1] = num2;
@@ -96,6 +98,7 @@ void largest(float num1, float num2, float arr[]) {
         arr[0] = num2;
         arr[1] = num1;
     }
+    return arr;
 }
 
 //automated testing function
@@ -105,75 +108,83 @@ void test() {
     //SUM() TEST
     float result = sum(-4,12); //negative int
     float expected = 8.0;
-    assert(result == expected <= margin_error); 
+    assert(abs(result-expected) <= margin_error); 
    
     result = sum(3.23, 7.34); //floating points
     expected = 10.57;
-    assert(result == expected <= margin_error);
+    assert(abs(result-expected) <= margin_error);
 
     //PRODUCT() ###TEST THIS IS FAILING WHYYYYYYYY
     result = product(-4,12); //negative int
     expected = -48.0;
-    assert(result == expected <= margin_error);
+    assert(abs(result-expected) <= margin_error);
 
     result = product(3.23, 7.34); //floating points
     expected = 23.7082;
-    assert(result == expected <= margin_error);
+    assert(abs(result-expected) <= margin_error);
 
     //QUOTIENT() TEST
     result = quotient(-4,12); //negative int
-    expected = -0.3333;
-    assert(result == expected <= margin_error);
+    expected = -0.3333333;
+    assert(abs(result-expected) <= margin_error);
 
     result = quotient(3.23, 7.34); //floating points
-    expected = 0.4400;
-    assert(result == expected <= margin_error);
+    expected = 0.44005449;
+    assert(abs(result-expected) <= margin_error);
 
     //DIFFERENCE() TEST
     result = difference(-4,12); //negative int
     expected = -16.0;
-    assert(result == expected <= margin_error);
+    assert(abs(result-expected) <= margin_error);
 
     result = difference(3.23, 7.34); //floating points
     expected = -4.11;
-    assert(result == expected <= margin_error);
+    assert(abs(result-expected) <= margin_error);
 
     //REIMAIN() TEST
     result = remain(-4,12); //negative int --> THIS WILL FAIL NOW. I WANT 4, but will get -4
     expected = 4.0;
-    assert(result == expected <= margin_error);
+    assert(abs(result-expected) <= margin_error);
 
     result = remain(3.23, 7.34); //floating points
     expected = 3.23;
-    assert(result == expected <= margin_error);
+    assert(abs(result-expected) <= margin_error);
 
     //POWER() TEST
     result = power(-4,12); //negative int
     expected = 16777216.0;
-    assert(result == expected <= margin_error);
+    assert(abs(result-expected) <= margin_error);
 
     result = power(3.23, 7.34); // floating points
-    expected = 5464.4507;
-    assert(result == expected <= margin_error);
+    expected = 5464.452148;
+    assert(abs(result-expected) <= margin_error);
 
-    //ROOT() TEST --> HOW TO MAKE THIS TEST FOR BOTH... CALLED ONLY ONCE, BUT COMPUTING TWO DIFFERENT THINGS...
-    //float neg_root = isnan(num1);
-    //result = root(-4,12); //negative int
-    //expected = nan;
-    //assert(result == expected <= margin_error);
+    //ROOT1() TEST 
+    result = root1(12); //negative int should return NaN
+    expected = 3.46410161514;
+    assert(abs(result-expected) <= margin_error); 
 
-    //result = root(3.23, 7.34); //floating points 
-    //expected = 
+    //ROOT2() TEST
+    result = root2(3.23); // floating points
+    expected = 1.79722007556;
+    assert(abs(result-expected) <= margin_error);
 
     //LARGEST() TEST --> HOW TO TEST FOR THIS... 
-    
+    float *result_array = largest(-4,12);
+    expected = 12;
+    assert(abs(result_array[0]-expected) <= margin_error);
+
+    result_array = largest(3.23, 7.34);
+    expected = 7.34;
+    assert(abs(result_array[0]-expected) <= margin_error);
+  
 }
 
 
 //MAIN FUNCTION
 int main() {
+    
     //these must be passed (by reference?) to the functions above.
-    float arr[2];
     float n1; float n2; char ch;
     cout << "Please enter two numbers seperated by a comma: \n";
     cin >> n1 >> ch >> n2;
@@ -192,8 +203,8 @@ int main() {
 
     cout << '\n' << "SQUARE ROOT: " << "√ " << n1 << " = " << root1(n1) << " √ " << n2 << " = " << root2(n2) << endl;
 
-    largest(n1,n2,arr);
-    printf("\n %f > %f \n", arr[0], arr[1]);
+    float *result = largest(n1,n2);
+    printf("\nLARGEST:  %f > %f \n", result[0], result[1]);
     //cout << '\n' << arr[0] << " > " << arr[1] << endl;
     
     test();

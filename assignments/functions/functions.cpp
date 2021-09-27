@@ -31,63 +31,71 @@ void test(); //test function for automated testing
 
 //find the sum of two numbers
 float sum(float num1, float num2) {
-    cout << '\n' << num1 << " + " << num2 << " = " << num1+num2 << endl;
-
-    return 0;
+    float result = num1 + num2; 
+    return result;
 }
 
 //find the product of two numbers
 float product(float num1, float num2) {
-    cout << '\n' << num1 << " * " << num2 << " = " << num1*num2 << endl;
-
-    return 0;
+    float result = num1 * num2;
+    return result;
 }
 
 //find the quotient of two numbers
 float quotient(float num1, float num2) {
-    cout << '\n' << num1 << " / " << num2 << " = " << num1/num2 << endl;
-
-    return 0;
+    float result = num1 / num2;
+    return result;
 }
 
 //find the difference of two numbers
 float difference(float num1, float num2) {
-    cout << '\n' << num1 << " - " << num2 << " = " << num1-num2 << endl;
-    
-    return 0;
+    float result = num1 - num2;
+    return result;
 }
 
 //find the remainder of two numbers
 float remain(float num1, float num2) { //negative numbers = takes sign of numerator when in reality a remainder is always positive 
-    cout << '\n' << num1 << " % " << num2 << " = " << abs(fmod(num1,num2)) << endl;  //solution = use abolute value
-
-    return 0;
+    float result = abs(fmod(num1,num2));  //solution = use abolute value
+    return result;
 }
 
 //find one number to the power of another number
 float power(float num1, float num2) {
-    cout << '\n' << num1 << " ^ " << num2 << " = " << powf(num1,num2) <<endl;
-
-    return 0;
+    float result = powf(num1,num2);
+    return result;
 }
 
 //find the square root of two numbers
-float root(float num1, float num2) { //HOW TO DETERMINE WHICH NUMBER TO SQRT? --> used the first one...
-    cout << '\n' << "√ " << num1 << " = " << sqrt(num1) << endl;
-
-    cout << '\n' << "√ " << num2 << " = " << sqrt(num2) << endl;
-   
-    return 0;
+float root1(float num1) { //HOW TO DETERMINE WHICH NUMBER TO SQRT? --> used the first one...
+    float result = sqrt(num1);    
+    return result;
+}
+float root2(float num2) {
+    float result = sqrt(num2);
+    return result;
 }
 
 //find the largest of two numbers
-float largest(float num1, float num2) {
+/*float largest(float num1, float num2) {
+    float result;
+    float small;
     if (num1>num2) {
-        cout << '\n' << num1 << " > " << num2 << endl;
+        result = num1;
+        
     } else {
-        cout << '\n' <<num2 << " > " << num1 << endl;
+        result = num2;
+    } 
+    return result;
+}
+*/
+void largest(float num1, float num2, float arr[]) {
+    if (num1 > num2) {
+        arr[0] = num1;
+        arr[1] = num2;
+    } else {
+        arr[0] = num2;
+        arr[1] = num1;
     }
-    return 0;
 }
 
 //automated testing function
@@ -149,7 +157,7 @@ void test() {
     assert(result == expected <= margin_error);
 
     //ROOT() TEST --> HOW TO MAKE THIS TEST FOR BOTH... CALLED ONLY ONCE, BUT COMPUTING TWO DIFFERENT THINGS...
-    float neg_root = isnan(num1);
+    //float neg_root = isnan(num1);
     //result = root(-4,12); //negative int
     //expected = nan;
     //assert(result == expected <= margin_error);
@@ -165,18 +173,28 @@ void test() {
 //MAIN FUNCTION
 int main() {
     //these must be passed (by reference?) to the functions above.
+    float arr[2];
     float n1; float n2; char ch;
     cout << "Please enter two numbers seperated by a comma: \n";
     cin >> n1 >> ch >> n2;
     //call functions here
-    cout << "SUM: " << sum(n1,n2) << endl; 
-    cout << "PRODUCT: " << product(n1,n2) << endl;
-    cout << "QUOTIENT: " << quotient(n1,n2) << endl;
-    cout << "DIFFERENCE: " << difference(n1,n2) << endl; 
-    cout << "REMAINDER: " << remain(n1,n2) << endl; 
-    cout << "EXPONENTIATION: " << power(n1,n2) << endl;
-    cout << "SQUARE ROOT: " << root(n1,n2) << endl;
-    cout << "LARGEST: " << largest(n1,n2) << endl;
+    cout << '\n' << "SUM: " << n1 << " + " << n2 << " = " << sum(n1,n2) << endl;
+
+    cout << '\n' << "PRODUCT: " << n1 << " * " << n2 << " = " << product(n1,n2) << endl;
+
+    cout << '\n' << "QUOTIENT: " << n1 << " / " << n2 << " = " << quotient(n1,n2) << endl;
+
+    cout << '\n' << "DIFFERENCE: " << n1 << " - " << n2 << " = " << difference(n1,n2) << endl;
+
+    cout << '\n' << "REMAINDER: " << n1 << " % " << n2 << " = " << remain(n1,n2) << endl; 
+
+    cout << '\n' << "EXPONENTIATION: " << n1 << " ^ " << n2 << " = " << power(n1,n2) <<endl;
+
+    cout << '\n' << "SQUARE ROOT: " << "√ " << n1 << " = " << root1(n1) << " √ " << n2 << " = " << root2(n2) << endl;
+
+    largest(n1,n2,arr);
+    printf("\n %f > %f \n", arr[0], arr[1]);
+    //cout << '\n' << arr[0] << " > " << arr[1] << endl;
     
     test();
 

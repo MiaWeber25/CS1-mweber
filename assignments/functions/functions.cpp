@@ -149,6 +149,7 @@ void test() {
     assert(result == expected <= margin_error);
 
     //ROOT() TEST --> HOW TO MAKE THIS TEST FOR BOTH... CALLED ONLY ONCE, BUT COMPUTING TWO DIFFERENT THINGS...
+    float neg_root = isnan(num1);
     //result = root(-4,12); //negative int
     //expected = nan;
     //assert(result == expected <= margin_error);

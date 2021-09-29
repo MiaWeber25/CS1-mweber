@@ -15,7 +15,6 @@ string answer();
 void solve();
 
 int main(int argc, char* argv[]) {
-    cout << argc << argv[1] << endl;
     if (argc > 1 && string(argv[1]) == "test")
         test();
     else 

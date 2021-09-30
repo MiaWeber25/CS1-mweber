@@ -13,7 +13,9 @@ unit_tests:
 	./$(PROGRAM_NAME) test
 
 kattis_tests:
-	
+	cat sample001.in | ./$(PROGRAM_NAME) | diff sample001.ans;
+	cat sample002.in | ./$(PROGRAM_NAME) | diff sample002.ans;
+	cat sample003.in | ./$(PROGRAM_NAME) | diff sample003.ans;
 	echo "all Kattis sample tests cases passed..."
 
 clean:

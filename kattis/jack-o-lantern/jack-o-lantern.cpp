@@ -9,7 +9,7 @@
 #include <cassert>
 #include <math.h> 
 
-using namespace std;
+using namespace std; 
 
 void test();
 int answer();

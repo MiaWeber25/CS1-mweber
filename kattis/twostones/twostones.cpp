@@ -12,7 +12,7 @@
 using namespace std;
 
 void test();
-int answer(int r1, int s);
+string answer(int stone);
 void solve();
 
 int main(int argc, char* argv[]) {
@@ -23,21 +23,25 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-int answer(int r1, int s) {
-//s*2-R1
-return ((s*2)-r1); 
+string answer(int stone) {
+    int evenOdd = stone % 2;
+    if (evenOdd %2 == 0) {
+        return("Bob");
+    } else {
+        return("Alice");
+    } 
 }
 
-void test() {
-    assert(answer(11,15) == 19);
-    assert(answer(4,3) == 2);
-    assert(answer(25,4) == -17);
+void test() { 
+    
+    assert(answer(1000000) == "Bob");
+    assert(answer(6) == "Bob");
+    assert(answer(25) == "Alice");
     cerr << "All test cases passed...\n";
 }
 
 void solve() {
-    int r1;
     int s;
-    cin >> r1 >> s;
-    cout << answer(r1, s) << endl;
+    cin >> s ;
+    cout << answer(s) << endl;
 }

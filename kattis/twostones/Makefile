@@ -1,6 +1,6 @@
 COMPILER = g++
 COMPILER_FLAGS = -Wall -std=c++17
-PROGRAM_NAME = twostones.exe
+PROGRAM_NAME = twostones
 CPP_FILES = twostones.cpp 
 
 build:
@@ -13,8 +13,9 @@ unit_tests:
 	./$(PROGRAM_NAME) test
 
 kattis_tests:
-	cat 1.in | ./$(PROGRAM_NAME) | diff -1.ans;
-	cat 2.in | ./$(PROGRAM_NAME) | diff -2.ans;
+	cat 1.in | ./$(PROGRAM_NAME) | diff - 1.ans;
+	cat 2.in | ./$(PROGRAM_NAME) | diff - 2.ans;
+	cat 3.in | ./$(PROGRAM_NAME) | diff - 3.ans;
 	echo "all Kattis sample tests cases passed..."
 
 clean:

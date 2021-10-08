@@ -89,3 +89,14 @@
 | **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/functions/main2.cpp                                 |
 | **Self Grade**     | 110/100                                    |
 | **Notes**          | fixed all #FIXME Code compiles and runs. There is a compiler warning, but this way it avoids infinite loop. 
+
+**Lab #4**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           | Conditionals and More User Defined Functions Lab                             |
+| **Description**    |  C++ menu driven program that finds various statistical values of any two given numbers.               |
+| **Due Date**       | 08-Oct-2021                             |
+| **Status**         | Done                                    | 
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/conditionals/main.cpp                                 |
+| **Self Grade**     | 100/100                                    |
+| **Notes**          | fixed all #FIXME Code compiles and runs.  

@@ -33,7 +33,7 @@ bool run();
 //sum function
 double findSum(double &, double &, double &, double &, double &);
 //product function //NEED TO TEMPLATE THIS FUNCTION SO THAT IT CAN TAKE MULTIPLE TYPES
-double findProduct(double &, double &, double &, double &, double &);
+//double findProduct(double &, double &, double &, double &, double &);
 //average function
 double findAverage(double &, double &, double &, double &, double &);
 //largest function
@@ -69,94 +69,88 @@ bool run() {
     cin >> menu_option;
 
 //menu_option can use switch because it is taking an integer (integral-expression)
-    switch (menu_option) {
-        case 1: {
-            numbers(num1, num2, num3, num4, num5);
-            double sum = findSum(num1, num2, num3, num4, num5);
-            printf("%.2f + %.2f + %.2f + %.2f + %.2f = %.2f\n", num1, num2, num3, num4, num5, sum);
-            break;
-        } case 2: {
-            numbers(num1, num2, num3, num4, num5);
-            double product = findProduct(num1, num2, num3, num4, num5);
-            printf("%.2f * %.2f * %.2f * %.2f * %.2f = %.2f\n", num1, num2, num3,num4, num5, product);
-            break;
-        } case 3: {
-            numbers(num1, num2, num3, num4, num5);
-            double average = findAverage(num1, num2, num3, num4, num5);
-            printf("The average of %.2f, %.2f, %.2f, %.2f, and %.2f is %.2f\n", num1, num2, num3, num4, num5, average);
-            break;
-        } case 4: {
-            numbers(num1, num2, num3, num4, num5);
-            double large = findLargest(num1, num2, num3, num4, num5);
-            printf("The largest in %.2f, %.2f, %.2f, %.2f, and %.2f is %.2f\n", num1, num2, num3, num4, num5, large);
-            break;
-        } case 5: {
-            numbers(num1, num2, num3, num4, num5);
-            double small = findSmallest(num1, num2, num3, num4, num5);
-            printf("The smallest in %.2f, %.2f, %.2f, %.2f, and %.2f is %.2f\n", num1, num2, num3, num4, num5, small);
-            break;
-        } case 6: {
-            numbers(num1, num2, num3, num4, num5);
-            double the_floor = findFloor(num1, num2, num3, num4, num5);
-            printf("the floor of %.2f, %.2f, %.2f, %.2f, and %.2f is %.2f\n", num1, num2, num3, num4, num5, the_floor);
-            break;
-        } case 7: {
-            return false;
+    bool want_continue = true;
+    //while (want_continue == true) {
+        //cout << "enter to continue: ";    } 
+        switch (menu_option) {
+            case 1: {
+                numbers(num1, num2, num3, num4, num5);
+                double sum = findSum(num1, num2, num3, num4, num5);
+                printf("%.2f + %.2f + %.2f + %.2f + %.2f = %.2f\n", num1, num2, num3, num4, num5, sum);
+                break;
+            } case 2: {
+                numbers(num1, num2, num3, num4, num5);
+                //double product = findProduct(num1, num2, num3, num4, num5);
+                //printf("%.2f * %.2f * %.2f * %.2f * %.2f = %.2f\n", num1, num2, num3,num4, num5, product);
+                break;
+            } case 3: {
+                numbers(num1, num2, num3, num4, num5);
+                double average = findAverage(num1, num2, num3, num4, num5);
+                printf("The average of %.2f, %.2f, %.2f, %.2f, and %.2f is %.2f\n", num1, num2, num3, num4, num5, average);
+                break;
+            } case 4: {
+                numbers(num1, num2, num3, num4, num5);
+                double large = findLargest(num1, num2, num3, num4, num5);
+                printf("The largest in %.2f, %.2f, %.2f, %.2f, and %.2f is %.2f\n", num1, num2, num3, num4, num5, large);
+                break;
+            } case 5: {
+                numbers(num1, num2, num3, num4, num5);
+                double small = findSmallest(num1, num2, num3, num4, num5);
+                printf("The smallest in %.2f, %.2f, %.2f, %.2f, and %.2f is %.2f\n", num1, num2, num3, num4, num5, small);
+                break;
+            }case 6: {
+                numbers(num1, num2, num3, num4, num5);
+                double the_floor = findFloor(num1, num2, num3, num4, num5);
+                printf("the floor of %.2f, %.2f, %.2f, %.2f, and %.2f is %.2f\n", num1, num2, num3, num4, num5, the_floor);
+                break;
+            } case 7: {
+                //want_continue = false;
+                return false;
         } 
     }
     return true;
 }
 
 
-
 double findSum(double &n1, double &n2, double &n3, double &n4, double &n5) {
     return n1 + n2 + n3 + n4 + n5;
 }
-
-double findProduct(double &n1, double &n2, double &n3, double &n4, double &n5) {
+/*
+template<class T>
+T findProduct(T &n1, T &n2, T &n3, T &n4, T &n5) {
     return n1 * n2 * n3 * n4 * n5;
 }
-
+*/
 double findAverage(double &n1, double &n2, double &n3, double &n4, double &n5) {
     return (findSum(n1, n2, n3, n4, n5)/5);
 }
 
 double findLargest(double &n1, double &n2, double &n3, double &n4, double &n5) {
     double largest = n1;
-    if (n1 > n2) {
-        if (n1 > n3) {
-            if (n1 > n4) {
-                if (n1 > n5) {
-                    largest = n1;
-                }
-            }
-        }
-    } else if (n2 > n1) {
-        if (n2 > n3) {
-            if (n2 > n4) {
-                if (n2 > n5) {
-                    largest = n2;
-                }
-            }
-        }
+    if (n2 > largest) {
+        largest = n2;
+    } if (n3 > largest) {
+        largest = n3;
+    } if (n4 > largest) {
+        largest = n4;
+    } if (n5 > largest) {
+        largest = n5;
     }
-    cout << largest;
-    return 0;
+    return largest;
 }
 
 double findSmallest(double &n1, double &n2, double &n3, double &n4, double &n5) {
-    double smallest;
-    if (n1 < n2) {
-        if (n1 < n3) {
-            if (n1 < n4) {
-                if (n1 < n5) {
-                    smallest = n1;
-                }
-            }
-        }
+    double smallest = n1;
+    if (n2 < smallest) {
+        smallest = n2;
+    } if (n3 < smallest) {
+        smallest = n3;
+    } if (n4 < smallest) {
+        smallest = n4;
+    } if (n5 < smallest) {
+        smallest = n5;
     }
-    cout << smallest;
-    return 0;
+    return smallest;
 }
 
 double findFloor(double &n1, double &n2, double &n3, double &n4, double &n5) {
@@ -169,11 +163,6 @@ int main() {
     string name;
     cin >> name;
     cout << "Hello, " << name << "!" << endl;    
-    
-    //bool want_continue = true;
-    //while (want_continue == true) {
-        //run();
-        //cout << "enter to continue: ";    }
     run();
     return 0;
 }

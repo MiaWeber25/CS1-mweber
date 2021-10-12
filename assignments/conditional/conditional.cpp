@@ -68,6 +68,7 @@ bool run() {
     menu();
     cin >> menu_option;
 
+//menu_option can use switch because it is taking an integer (integral-expression)
     switch (menu_option) {
         case 1: {
             numbers(num1, num2, num3, num4, num5);
@@ -84,7 +85,24 @@ bool run() {
             double average = findAverage(num1, num2, num3, num4, num5);
             printf("The average of %.2f, %.2f, %.2f, %.2f, and %.2f is %.2f\n", num1, num2, num3, num4, num5, average);
             break;
-        }
+        } case 4: {
+            numbers(num1, num2, num3, num4, num5);
+            double large = findLargest(num1, num2, num3, num4, num5);
+            printf("The largest in %.2f, %.2f, %.2f, %.2f, and %.2f is %.2f\n", num1, num2, num3, num4, num5, large);
+            break;
+        } case 5: {
+            numbers(num1, num2, num3, num4, num5);
+            double small = findSmallest(num1, num2, num3, num4, num5);
+            printf("The smallest in %.2f, %.2f, %.2f, %.2f, and %.2f is %.2f\n", num1, num2, num3, num4, num5, small);
+            break;
+        } case 6: {
+            numbers(num1, num2, num3, num4, num5);
+            double the_floor = findFloor(num1, num2, num3, num4, num5);
+            printf("the floor of %.2f, %.2f, %.2f, %.2f, and %.2f is %.2f\n", num1, num2, num3, num4, num5, the_floor);
+            break;
+        } case 7: {
+            return false;
+        } 
     }
     return true;
 }
@@ -104,7 +122,7 @@ double findAverage(double &n1, double &n2, double &n3, double &n4, double &n5) {
 }
 
 double findLargest(double &n1, double &n2, double &n3, double &n4, double &n5) {
-    double largest;
+    double largest = n1;
     if (n1 > n2) {
         if (n1 > n3) {
             if (n1 > n4) {
@@ -138,6 +156,11 @@ double findSmallest(double &n1, double &n2, double &n3, double &n4, double &n5) 
         }
     }
     cout << smallest;
+    return 0;
+}
+
+double findFloor(double &n1, double &n2, double &n3, double &n4, double &n5) {
+
     return 0;
 }
 

@@ -36,6 +36,7 @@ void test();
 double findSum(const double &, const double &, const double &, const double &, const double &);
 //product function //NEED TO TEMPLATE THIS FUNCTION SO THAT IT CAN TAKE MULTIPLE TYPES
 //double findProduct(double &, double &, double &, double &, double &);
+template<class T> T findProduct(const T &, const T &, const T &, const T &, const T &);
 //average function
 double findAverage(const double &, const double &, const double &, const double &, const double &);
 //largest function
@@ -71,7 +72,7 @@ int main(int argc, char* argv[]) {
     cin.get();
     return 0;
 }
-
+//MENU FUNCTION
 void menu() {
     cout << "\nPlease choose an opperation to perform:\n";
     cout << "[1] Find Sum\n";
@@ -83,25 +84,25 @@ void menu() {
     cout << "[7] Exit Program\n";
     cout << "Please choose an opperation now: \n";
 }
-
+//GET USER INPUT FUNCTION
 void numbers(double & n1, double & n2, double & n3, double & n4, double & n5) {
     cout << "please enter 5 numbers seperated by spaces: \n";
     cin >> n1 >> n2 >> n3 >> n4 >> n5;
 }
-
+//FIND THE SUM FUNCTION
 double findSum(const double &n1, const double &n2, const double & n3, const double & n4, const double & n5) {
     return (n1 + n2 + n3 + n4 + n5);
 }
-
+//FIND THE PRODUCT TEMPLATED FUNCTION
 template<class T>
 T findProduct(const T &n1, const T &n2, const T &n3, const T &n4, const T &n5) {
     return n1 * n2 * n3 * n4 * n5;
 }
-
+//FIND THE AVERAGE FUNCTION
 double findAverage(const double &n1, const double &n2, const double &n3, const double &n4, const double &n5) {
     return (findSum(n1, n2, n3, n4, n5)/5);
 }
-
+//FIND THE LARGEST FUNCTION
 double findLargest(const double &n1, const double &n2, const double &n3, const double &n4, const double &n5) {
     double largest = n1;
     if (n2 > largest) {
@@ -115,7 +116,7 @@ double findLargest(const double &n1, const double &n2, const double &n3, const d
     }
     return largest;
 }
-
+//FIND THE SMALLEST FUNCTION
 double findSmallest(const double &n1, const double &n2, const double &n3, const double &n4, const double &n5) {
     double smallest = n1;
     if (n2 < smallest) {
@@ -129,27 +130,28 @@ double findSmallest(const double &n1, const double &n2, const double &n3, const 
     }
     return smallest;
 }
-
+//FIND IF THE FLOOR IS EVEN, ODD, or 0 FUNCTION
 int findFloor(const double &n1, const double &n2, const double &n3, const double &n4, const double &n5) {
     int the_floor = int(floor(findSum(n1, n2, n3, n4, n5)));
+    //cout << the_floor;
     if (int(floor(findSum(n1, n2, n3, n4, n5))) == 0) {
-      cout << the_floor;
+      //cout << the_floor;
       return 2;
     }
     if (the_floor % 2 == 1.00) {
-      cout << the_floor;
+      //cout << the_floor;
       return 1;
     } else if (the_floor % 2 == 0.00) {
-      cout << the_floor;
+      //cout << the_floor;
       return 0;
     }
 }
-
+//TEST FUNCTION
 void test() {
     double margin_of_error = 0.0021;
     assert(findSum(-20, -30, -2, -3, -54) == -109);
     assert(findSum(10.34, 23.5, 3.34, 63.2, 2.567) == 102.947);
-    //assert(findSum(2.3, 5.6, 23.4, 78.887, 34.2) ==144.387);
+    assert(findSum(2.3, 5.6, 23.4, 78.887, 34.2) ==144.387);
 
     assert(findProduct(-20, -30, -2, -3, -54) + 194400 < margin_of_error); //add because expected result is negative (-- = +)
     assert(findProduct(10.34, 23.5, 3.34, 63.2, 2.567) - 131667.265 < margin_of_error);
@@ -173,7 +175,7 @@ void test() {
 
     cout << "all test cases passed.\n";
 }
-
+//RUN PROGRAM FUNCTION
 bool run() {
     int menu_option;
     double num1 =0, num2=0, num3=0, num4=0, num5=0;

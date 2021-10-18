@@ -110,3 +110,14 @@
 | **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/conditionals/main.cpp                                 |
 | **Self Grade**     | 100/100                                    |
 | **Notes**          | fixed all #FIXME Code compiles and runs.  
+
+**Lab #5**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           |    Loops Lab                         |
+| **Description**    |  deomonstrates the use of loop structures in C++ by drawing various geometric shapes with ASCII characters.               |
+| **Due Date**       | 18-Oct-2021                             |
+| **Status**         | Done                                    |
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/loops/main.cpp                                |
+| **Self Grade**     | 100/100                                    |
+| **Notes**          | fixed all #FIXME Code compiles and runs.  

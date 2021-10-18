@@ -36,7 +36,7 @@ void printTriangle(int height) {
 
 //implement the function that takes height as an argument and prints a triangle with * of given height
 void printFlippedTriangle(int height) {
-    //FIXME3... FIXED
+    //FIXME3... #FIXED#
     //row
     for(int row = 1; row <= height; row++) {
         //column
@@ -49,7 +49,7 @@ void printFlippedTriangle(int height) {
 
 }
 
-//FIXME4... FIXED
+//FIXME4... #FIXED#
 //design and implement a function that takes an integer as height and prints a square of the given height wiht *
 void printSquare(int height) {
     int row = 1;
@@ -70,32 +70,40 @@ void clearScreen() {
     //use "clear" command in Mac
     #ifdef _WIN32
         system("clS");
-    #else 
+    #else
         system("clear");
     #endif
 }
 
 int main(int argc, char* argv[]) {
-    //fIXME5... add a loop to make the program continue to run until the user wants to quit
-    
-    //FIXME6... call clearScreen function to clear screen for each round of the loop
-    clearScreen();
-
-    int height;
-    cout << "Program prints geometric shapes of given height with *\n";
-    cout << "Please enter the height of the shape: ";
-    cin >> height;
-    //call printTriangle function passing user entered height
-    printTriangle(height);
-
-    //fIXME7... call printFlippedTriangle passing proper argument & manually test the function
-    printFlippedTriangle(height);
-
-    //FIXME8... call the function defined in FIXME4 passing proper argument & manually test the function
-    printSquare(height);
-    //FIXME9... prompt user to enter y/Y to continue anything else to quit
-
-    //FIXME10...use conditional statements to break the loop or continue the loop
-
+//fIXME5... add a loop to make the program continue to run until the user wants to quit
+    bool keepRunning = true;
+    while (true) {
+      int height;
+      cout << "Program prints geometric shapes of given height with *\n";
+      cout << "Please enter the height of the shape: ";
+      cin >> height;
+//FIXME6... call clearScreen function to clear screen for each round of the loop #FIXED#
+      clearScreen();
+//call printTriangle function passing user entered height
+      printTriangle(height);
+//fIXME7... call printFlippedTriangle passing proper argument & manually test the function #FIXED#
+      printFlippedTriangle(height);
+//FIXME8... call the function defined in FIXME4 passing proper argument & manually test the function #FIXED#
+      printSquare(height);
+//FIXME9... prompt user to enter y/Y to continue anything else to quit
+      char user_input;
+      cout << "please enter [y|Y] to continue or any other key to quit...\n";
+      cin >> user_input;
+//FIXME10...use conditional statements to break the loop or continue the loop
+      if (user_input != 'y' | user_input != 'Y')
+        break;
+      else
+        keepRunning = true;
+        continue;
+      //cin.ignore(100,'\n');
+      //cin.get();
+      //clearScreen();
+    }
     return 0;
 }

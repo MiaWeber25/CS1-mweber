@@ -31,16 +31,25 @@ void printTriangle(int height) {
         row += 1;
         cout << endl;
     }
+    cout << endl;
 }
 
 //implement the function that takes height as an argument and prints a triangle with * of given height
 void printFlippedTriangle(int height) {
-    //FIXME3...
-    
+    //FIXME3... FIXED
+    //row
+    for(int row = 1; row <= height; row++) {
+        //column
+        for (int col = height; col >= row; col--) {
+            cout << "* ";
+        }
+        cout << endl;
+    }
+    cout << endl;
 
 }
 
-//FIXME4...
+//FIXME4... FIXED
 //design and implement a function that takes an integer as height and prints a square of the given height wiht *
 void printSquare(int height) {
     int row = 1;
@@ -53,6 +62,7 @@ void printSquare(int height) {
         row +=1;
         cout << endl;
     }
+    cout << endl;
 }
 //function clears the screen system call
 //NOTE: system call is not a security best practice!

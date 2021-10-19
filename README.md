@@ -65,6 +65,17 @@
 | **Self Grade**     | 110/100                                     |
 | **Notes**          | completed all the requirements & BONUS and added screenshots of working code for all 7 options as well as test cases.
 
+**Assignment #6**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           | HW 5 - Loops                             |
+| **Description**    | Design and implement the "Guess the Number" game with requirements.                |
+| **Due Date**       | 19-Oct-2021                             |
+| **Status**         | Done                                    |
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/assignments/guessNumber/main2.cpp                                 |
+| **Self Grade**     | 100/100                                     |
+| **Notes**          | completed all the requirements and added screenshots of working code. Did not have time to complete the BONUS.
+
 
 # **Labs**
 **Lab #1**

@@ -1,3 +1,22 @@
+/*
+    Guess The Number
+    By: Mia Weber
+    Date: 18/Oct/2021
+    CSCI 111
+
+    Design and implement the "guess the number game"
+    Algorithm Steps:
+    1. greet the user and explain the game/
+    2. generate a random Number
+    3. ask the user for a guessed Number
+    4. compare the random number with the guessed Number
+      4a. if the same, they win
+      4b. if not, they get to guess again (up until 6 guesses)
+      4c. if they didn't guess it in 6 tries then they loose
+    5. tell the user if they won or lost and tell them the actual random Number (also tell them how many guesses it took)
+    6. let the user repeat the game as many times as they want
+*/
+
 #include <iostream>
 #include <string>
 #include <math.h>
@@ -12,7 +31,7 @@ using namespace std;
 int randomNumber() {
   srand(time(NULL));
   int randnum = rand() % 20 + 1;
-  cout << randnum << endl; //delete later
+  //cout << randnum << endl; //delete later
   return randnum;
 }
 
@@ -23,9 +42,10 @@ int readNumber() {
   cin >> guessednum;
 //validate that the guessed number is between 1 and 20.
   if (guessednum <= 20 && guessednum >= 1) {
-    cout << guessednum << endl; //delete later
+    //cout << guessednum << endl; //delete later
     return guessednum;
   } else {
+    cout << "oops. That number wasn't between 1 and 20! Try again\n";
     readNumber();
   }
   return guessednum;
@@ -46,9 +66,19 @@ int checkGuess(int & randnum, int & guessednum) {
   }
 }
 
+//function to clear the clearScreen
+void clearScreen() {
+  #ifdef _WIN32
+        system("clS");
+    #else
+        system("clear");
+    #endif
+}
+
 //function that implements the logic of the guess the number game
 void game() {
 //greet the user using their name and print the game rules.
+  clearScreen();
   string name;
   cout << "Welcome to the Guess the Number game! What is your name?\n";
   cin >> name;
@@ -67,38 +97,46 @@ void game() {
       cout << "game over. You win!!" <<endl;
       cout << "you guessed the number in " << i + 1 << " attempts. Good job!" << endl;
       break;
+//if they are out of guesses and didn't get it right then they loose and the game is over.
+    } else if (i == 5 && correctNumber != guessedNumber){
+      cout << "oops! Out of guesses. You loose." << endl;
+      cout << "the number was " << correctNumber << endl;
+//if they are not out of guesses, then continue the game.
     } else {
       continue;
     }
-    cout << "oops! You loose." << endl;
   }
-
 }
 
+//function to test checkGuess function.
 void test() {
   int testnum1 = 3;
   int testnum2 = 4;
   assert(checkGuess(testnum1, testnum2) == -1);
   assert(checkGuess(testnum2, testnum2) == 0);
   assert(checkGuess(testnum2, testnum1) == 2);
-  cerr << "all test cases passed...";
+  cerr << "all test cases passed...\n";
 }
 
 //main function
-int main() {
-  //test();
-  while (true) {
-    //clearScreen()
-    game();
-    string user_input;
-    cout << "Do you want to play again? [y/n]\n";
-    cin >> user_input;
+int main(int argc, char*argv[]) {
+//call test function if needed.
+  if (argc == 2 && string(argv[1]) == "test") {
+    test();
+//otherwise, continue doing the game logic.
+  } else {
+    while (true) {
+      game();
+      string user_input;
+      cout << "Do you want to play again? [y/n]\n";
+      cin >> user_input;
 
-    if (user_input == "y") {
-      continue;
-    } else {
-      break;
+      if (user_input == "y") {
+        continue;
+      } else {
+        break;
+      }
     }
+    return 0;
   }
-  return 0;
 }

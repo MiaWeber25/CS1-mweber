@@ -23,6 +23,7 @@ enum OPERATION { ADD, MULTIPLY, SUBTRACT, LARGER, QUIT };
 //C++ way of defining type alias
 using big_int = long long int;
 
+
 //C way of defining type alias
 typedef long long int large_int;
 //both large_int and big_int are alias to long long int type
@@ -80,7 +81,7 @@ do {
       printf("%lld * %lld = %lld\n", *num1, *num2, *prod);
       break;
     case LARGER:
-      cout << "Enter two numbers seperated by space: ";
+      cout << "Enter two whole numbers seperated by space: ";
       cin >> *num1 >> *num2;
       *larger = MyFunctions::findLarger(num1, num2);
       if (*larger == *num1)
@@ -89,7 +90,7 @@ do {
         printf("%lld > %lld\n", *larger, *num1);
       break;
     case SUBTRACT:
-      cout << "Enter two numbers seperated by space: ";
+      cout << "Enter two whole numbers seperated by space: ";
       cin >> *num1 >> *num2;
       *diff = MyFunctions::findDifference(*num1, *num2);
       printf("%lld - %lld = %lld\n", *num1, *num2, *diff);

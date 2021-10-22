@@ -132,3 +132,14 @@
 | **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/loops/main.cpp                                |
 | **Self Grade**     | 100/100                                    |
 | **Notes**          | fixed all #FIXME Code compiles and runs.  
+
+**Lab #6**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           |    Pointers Lab                         |
+| **Description**    |  The following lab demonstrates the usage of pointers, enum type and use-defined namespace.               |
+| **Due Date**       | 22-Oct-2021                             |
+| **Status**         | Done                                    |
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/pointers/main.cpp                                |
+| **Self Grade**     | 100/100                                    |
+| **Notes**          | fixed all #FIXME Code compiles and runs.

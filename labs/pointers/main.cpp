@@ -50,12 +50,13 @@ int main(int argc, char* argv[]) {
   large_int *diff = new large_int;
   big_int *larger = new big_int;
   //Must use these variables to store the returned values from MyFunctions
-
+bool cont;
+do {
   OPERATION oper;
 
-  //FIXME4: ADD Do WHILE LOOP TO CONTINUE THE PROGRAM UNTIL THE USER WANTS TO QUIT
-  //FIXME5: CALL CLEAR FUNCTION DEFINED ABOVE TO CLEAR THE SCREEN
-
+  //FIXME4: ADD DO WHILE LOOP TO CONTINUE THE PROGRAM UNTIL THE USER WANTS TO QUIT ##FIXED##
+  //FIXME5: CALL CLEAR FUNCTION DEFINED ABOVE TO CLEAR THE SCREEN ##FIXED##
+  clear();
   showMenu();
   cin >> input;
   oper = getOperation(input);
@@ -97,14 +98,29 @@ int main(int argc, char* argv[]) {
       break;
   }
 
-  delete num1;
-  delete num2;
-  delete sum;
-  delete prod;
+
   cin.ignore(1000, '\n');
-  cout << "Good bye! Enter to exit the program...";
-  cin.get();
-  return 0;
+  string input;
+  cout << "want to continue? [y|n]\n";
+  cin >> input;
+  if (input == "y") {
+    cont = true;
+  }
+  else {
+    cont = false;
+    cout << "Good bye!\n";
+    cin.get();
+  }
+
+
+} while (cont == true);
+
+delete num1;
+delete num2;
+delete sum;
+delete prod;
+delete larger;
+return 0;
 }
 
 void showMenu(void) {

@@ -4,7 +4,7 @@
   Updated By: Mia Weber
   Date: 25/Oct/2021
 
-  Hissing Microphone Problem Statement:
+  Hissing Microphone Problem Statement: https://open.kattis.com/problems/hissingmicrophone
   Algorithm steps:
   1. Read string
   2. find "ss" substring in the string

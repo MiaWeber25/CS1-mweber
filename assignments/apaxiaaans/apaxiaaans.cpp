@@ -1,15 +1,10 @@
 /*
-  Kattis- Hissing Microphone Problem
-
-  Updated By: Mia Weber
+  Apaxiaaaaaaaaaaaaaans Kattis Problem
+  By: Mia Weber
   Date: 25/Oct/2021
 
-  Hissing Microphone Problem Statement: https://open.kattis.com/problems/hissingmicrophone
-  Algorithm steps:
-  1. Read string
-  2. find "ss" substring in the string
-      - if found, print "hiss"
-      - otherwise, print "no hiss"
+  Algorithm Steps:
+
 */
 
 #include <iostream>
@@ -35,7 +30,6 @@ string answer(const string &line) {
     //implement algorithm step 2
     //return "hiss" if "ss" is found in line
     //otherwise, return "no hiss"
-
     return "hiss";
 }
 
@@ -52,5 +46,5 @@ void solve() {
   //string consists of only lowercase letters (no spaces) up to 30 chars
   //FIXME5
   //read string into line
-  cout << answer(line) << endl;
+  cour << answer(line) << endl;
 }

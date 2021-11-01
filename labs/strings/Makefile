@@ -8,7 +8,7 @@ CXX = g++
 CXXFLAGS = -c -g -Wall -std=c++17
 
 # the build target executable file; .exe is not required
-PROGRAM = hissing.exe
+PROGRAM = hissing
 
 # list .cpp files separated by space
 CPPFILES = hissing.cpp

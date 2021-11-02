@@ -76,6 +76,17 @@
 | **Self Grade**     | 100/100                                     |
 | **Notes**          | completed all the requirements and added screenshots of working code. Did not have time to complete the BONUS.
 
+**Assignment #7**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           | HW 6 - String                             |
+| **Description**    | Solve Kattis Problem Apaxiaaaaaaaans located here:  https://open.kattis.com/                |
+| **Due Date**       | 29-Oct-2021                             |
+| **Status**         | *incomplete due to health complications                                    |
+| **Location**       | N/A                                 |
+| **Self Grade**     | 0/100                                     |
+| **Notes**          | GO BACK AND DO THIS!
+
 
 # **Labs**
 **Lab #1**
@@ -136,10 +147,32 @@
 **Lab #6**
 | Name           | Value                                   |
 |----------------|:---------------------------------------:|
-| **Name**           |    Pointers Lab                         |
+| **Name**           |    Pointers and Namespace Lab                         |
 | **Description**    |  The following lab demonstrates the usage of pointers, enum type and use-defined namespace.               |
 | **Due Date**       | 22-Oct-2021                             |
 | **Status**         | Done                                    |
 | **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/pointers/main.cpp                                |
 | **Self Grade**     | 100/100                                    |
 | **Notes**          | fixed all #FIXME Code compiles and runs.
+
+**Lab #7**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           |    String                         |
+| **Description**    |  Read and solve the Kattis problem Hissing Microphone located here: https://open.kattis.com/problems/hissingmicrophone                |
+| **Due Date**       | 29-Oct-2021                             |
+| **Status**         | *incomplete due to health complications                                    |
+| **Location**       | N/A                                |
+| **Self Grade**     | 0/100                                    |
+| **Notes**          | GO BACK AND DO THIS! 
+
+**Lab #8**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           |    Array                         |
+| **Description**    | The following lab demonstrates the usage of an array data structure and some operations on arrays.                |
+| **Due Date**       | 03-Nov-2021                             |
+| **Status**         | Done                                    |
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/array/main.cpp                                 |
+| **Self Grade**     | 100/100                                    |
+| **Notes**          | fixed all #FIXME and code compiles and runs. 

@@ -11,6 +11,7 @@
 #include <fstream>
 #include <cstdlib>
 #include <cstdio>
+#include <algorithm>
 
 using namespace std;
 
@@ -34,7 +35,7 @@ int main(int argc, char* argv[]) {
     do {
         program();
         cin.ignore(1000, '\n');
-        cout << "Would you like to run the program again?[y/n]: ";
+        cout << "\nWould you like to run the program again?[y/n]: ";
         cin >> ans;
     } while (ans == 'y');
 
@@ -57,15 +58,13 @@ void program() {
     printArray(nums, size); //print the array to check if the values are there
     findMaxAndMin(nums, size, max, min);
     printf("Max = %u\n", max);
-    //fixme2: print Min value ##ADDRESSED##
+    //fixme2: print Min value ##FIXED##
     printf("Min = %u\n", min);
     printf("Sum = %lld\n", findSum(nums, size));
     cout << "Sorted list in ascending order:\n";
-    //bubbleSort(nums, size);
-    //fixme3: print sorted array
-    
-    //printf("sorted array: %i\n",);
-    
+    bubbleSort(nums, size);
+    //fixme3: print sorted array ##FIXED##
+    printArray(nums, size);
     delete [] nums;
 }
 
@@ -93,7 +92,7 @@ void findMaxAndMin(int nums[], int len, int &max, int &min) {
         if (max < nums[i]) {//compare max with every element and update max if needed
             max = nums[i];
         }
-        //fixme4: compare min with each element and update min ##ADDRESSED##
+        //fixme4: compare min with each element and update min ##FIXED##
         if (min > nums[i]) {
             min = nums[i];
         }
@@ -109,7 +108,7 @@ void bubbleSort(int nums[], int len) {
         for (j = 0; j < len-i-1; j++) {
             //if two adjacent numbers are not in order, switch them
             if (nums[j] > nums[j+1]) {
-                //fixme5: swap the values of nums[j] and nums[j+1]
+                //fixme5: swap the values of nums[j] and nums[j+1] ##FIXED##
                 //can use built-in swap or implement your own swap
                 swap(nums[j], nums[j+1]); 
                 sorted = false;
@@ -121,7 +120,7 @@ void bubbleSort(int nums[], int len) {
 
 big_int findSum(int nums[], int len) {
     big_int sum = 0;
-    //fixme6: iterate through nums array and add each element to sum ##ADDRESSED##
+    //fixme6: iterate through nums array and add each element to sum ##FIXED##
     for (int k = 0; k < len; k++) {
         sum += nums[k];
     }

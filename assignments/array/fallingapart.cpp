@@ -41,24 +41,10 @@ int main(int argc, char* argv[]) {
 }
 
 
-int answer(int size, int pile[]) {
-    //alternate for players turns (variable and flag)
-        //store element in correct player_sum variable and then change element to 0
-    //stop iterating when all elements in the array are = 0
-    //find and return the larger player_sum variable
-    //**this just prints array for testing purposes** 
-    //for (int j=0; j<size; j++) {
-      //  cout << "first pile" << pile[j] << endl;
-   // }
+void answer(int size, int pile[], int & aliceSum, int & bobSum) {
     //sort the array pile
     sort(pile, pile + size, greater<int>());
-    //print the array for checking purposes 
-    for (int j=0; j<size; j++) {
-        cout << "second pile: " << pile[j] << endl;
-    }
-    //ALTERNATE FOR PLAYERS TURNS
-    int aliceSum = 0;
-    int bobSum = 0;
+   
     //iterate over the array pile
     for (int j = 0; j < size; j++) { 
         //check to see if index is even or odd. Even index = Alice's pick & Odd index = Bob's pick.
@@ -68,21 +54,40 @@ int answer(int size, int pile[]) {
             bobSum += pile[j];
         }
     }
-    cout << "alice Sum: " << aliceSum << endl;
-    cout << "bob Sum: " << bobSum << endl;
-
 }
 
 void test() {
-    //I NEED THREE TESTS + KATTIS TESTS
-    //assert(answer(___, ___) == _____);
-    //assert(answer(___, ___) == _____);
-    //assert(answer(___, ___) == _____);
+    //I could have a problem with aliceSum an bobSum not resetting for each test but we'll see...
+    int aliceSum = 0;
+    int bobSum = 0;
+
+ //TEST CASE #1
+    int size = 4;
+    int pile1[] = {5, 7, 8, 2};
+    answer(size, pile1, aliceSum, bobSum);
+    assert(aliceSum == 13 && bobSum == 9);
+//TEST CASE #2
+    size = 8;
+    aliceSum = 0;
+    bobSum = 0;
+    int pile2[] = {8, 2, 3, 1, 7, 3, 7, 1};
+    answer(size, pile2, aliceSum, bobSum);
+    assert(aliceSum == 19 && bobSum == 13);
+//TEST CASE #3
+    size = 3;
+    aliceSum = 0;
+    bobSum = 0;
+    int pile3[] = {2, 9, 14};
+    answer(size, pile3, aliceSum, bobSum);
+    assert(aliceSum == 16 && bobSum == 9);
+
     cerr << "All test cases passed...\n";
 }
 
 void solve() {
     int size;
+    int aliceSum = 0;
+    int bobSum = 0;
     //create a new dynamic array to store the values of the integers
     int * pile = new int[size]; //REMEMBER TO DELETE THIS STACK MEMORY!!!
     cin >> size;
@@ -90,10 +95,6 @@ void solve() {
     for (int i=0; i< size; i++) {
         cin >> pile[i];
     }
-    //**this just prints array for testing purposes** 
-    //for (int j=0; j<size; j++) {
-     //   cout << pile[j] << endl;
-    //}
-    answer(size, pile);
-    //cout << answer(size, & pile) << endl;
+    answer(size, pile, aliceSum, bobSum);
+    cout << aliceSum << " " << bobSum << endl;
 }

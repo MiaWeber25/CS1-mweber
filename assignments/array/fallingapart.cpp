@@ -40,16 +40,37 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
+
 int answer(int size, int pile[]) {
-    //sort the array
     //alternate for players turns (variable and flag)
         //store element in correct player_sum variable and then change element to 0
     //stop iterating when all elements in the array are = 0
     //find and return the larger player_sum variable
     //**this just prints array for testing purposes** 
+    //for (int j=0; j<size; j++) {
+      //  cout << "first pile" << pile[j] << endl;
+   // }
+    //sort the array pile
+    sort(pile, pile + size, greater<int>());
+    //print the array for checking purposes 
     for (int j=0; j<size; j++) {
-        cout << pile[j];
+        cout << "second pile: " << pile[j] << endl;
     }
+    //ALTERNATE FOR PLAYERS TURNS
+    int aliceSum = 0;
+    int bobSum = 0;
+    //iterate over the array pile
+    for (int j = 0; j < size; j++) { 
+        //check to see if index is even or odd. Even index = Alice's pick & Odd index = Bob's pick.
+        if (j % 2 == 0) {
+            aliceSum += pile[j];
+        } else if (j % 2 == 1) {
+            bobSum += pile[j];
+        }
+    }
+    cout << "alice Sum: " << aliceSum << endl;
+    cout << "bob Sum: " << bobSum << endl;
+
 }
 
 void test() {

@@ -87,6 +87,18 @@
 | **Self Grade**     | 0/100                                     |
 | **Notes**          | GO BACK AND DO THIS!
 
+**Assignment #8**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           | HW 7 - Array                             |
+| **Description**    | Solve Kattis Problem Falling Apart located here:  https://open.kattis.com/problems/fallingapart                |
+| **Due Date**       | 05-Nov-2021                             |
+| **Status**         | DONE                                    |
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/assignments/array/fallingapart.cpp                                 |
+| **Self Grade**     | 100/100                                     |
+| **Notes**          | Completed all requirements and created a Kattis accepted solution. 
+
+
 
 # **Labs**
 **Lab #1**

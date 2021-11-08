@@ -188,3 +188,14 @@
 | **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/array/main.cpp                                 |
 | **Self Grade**     | 100/100                                    |
 | **Notes**          | fixed all #FIXME and code compiles and runs. 
+
+**Lab #9**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           |    Vector Lab                         |
+| **Description**    | The following lab demonstrates the usage of vector data structure and some operations on vectors.                |
+| **Due Date**       | 09-Nov-2021                             |
+| **Status**         | Done                                    |
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/vector/main.cpp                                 |
+| **Self Grade**     | 100/100                                    |
+| **Notes**          | fixed all #FIXME and code compiles and runs. 

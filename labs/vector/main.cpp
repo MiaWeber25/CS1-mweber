@@ -52,12 +52,19 @@ int main() {
         choice = menuOption();
         switch(choice) {
             case 1:
-                //FIXME3
-                cout << "FIXME\n";
+                //FIXME3 #ADDRESSED# 
+                cout << "Enter a positive decimal number: \n";
+                cin >> decimalNum;
+                binary = decToBin(decimalNum);
+                printf("(%llu) base 10 = (%s) base 2\n", decimalNum, binary.c_str());
+
                 break;
             case 2:
-                //FIXME4
-                cout << "FIXME\n";
+                //FIXME4 #ADDRESSED#
+                cout << "Enter a positive binary number: \n";
+                cin >> binary;
+                decimalNum = binToDec(binary);
+                printf("(%s) base 2 = (%llu) base 10\n", binary.c_str(), decimalNum);
                 break;
             case 3:
                 cout << "Enter a positive decimal number: ";
@@ -87,13 +94,45 @@ int main() {
 }
 
 string decToBin(llu num) {
-    //FIXME5 - use algorithm step in CH03 - StdInputOutput chapter or use hint from decToOct function
-    return to_string(num);
+    //FIXME5 - use algorithm step in CH03 - StdInputOutput chapter or use hint from decToOct function #ADDRESSED#
+    vector<int> bin;
+    int divisor = 2; //base 2
+    llu quotient = num;
+    int remainder;
+    //step 1 and 2
+    cout << "quotient = " << quotient << endl;
+    while (quotient != 0) {
+        remainder = quotient%divisor;
+        quotient = quotient/divisor;
+        bin.push_back(remainder);
+       //cout << "quotient = " << quotient << " " << remainder << endl;
+   }
+   //step 3. convert to octal vector into string for easy printing the result
+   //collect remainders in reverse order
+   string ans = "";
+   while (!bin.empty()) {
+       //collect from the last element
+       ans += to_string(bin.back());
+       //remove the last element
+       bin.pop_back();
+   }
+   return ans;
+    //return to_string(num);
 }
 
 llu binToDec(string binaryNumber) {
-    //FIXME6 - use algorithm described in CH03-StdInputOutput chapter or use hints from binToOct function
-    return 0;
+    //FIXME6 - use algorithm described in CH03-StdInputOutput chapter or use hints from binToOct function #ADDRESSED#
+    llu ans = 0;
+    int exp;
+    //go from last digit to the first digit of octal number
+    for(int i = binaryNumber.size()-1; i>=0; i--) {
+        exp = binaryNumber.size()-1 -i;
+        int digit = int(binaryNumber[i]) - int('0');
+        //step 1 and 2
+        ans += digit*pow(2, exp);
+    }
+    return ans;
+    //return 0;
 }
 
 string decToOct(llu num) {
@@ -138,7 +177,7 @@ llu octToDec(string octalNumber) {
     llu ans = 0;
     int exp;
     //go from last digit to the first digit of octal number
-    for(int i = octalNumber.size()-1; i<=0; i--) {
+    for(int i = octalNumber.size()-1; i>=0; i--) {
         exp = octalNumber.size()-1 -i;
         int digit = int(octalNumber[i]) - int('0');
         //step 1 and 2

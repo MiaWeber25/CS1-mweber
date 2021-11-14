@@ -36,7 +36,7 @@ void test();
 
 int main(int argc, char* argv[]) {
     if (argc == 2 && string(argv[1]) == "test") {
-        test();
+        //test();
         return 0;
     }
     vector<int> numbers;
@@ -51,46 +51,101 @@ int main(int argc, char* argv[]) {
 }
 
 void readData(vector<int> & numbers, const string inputFileName) {
-    //FIXME3: Open inputFile Name for reading data
+    //FIXME3: Open inputFile Name for reading data ##ADDRESSED##
+    cout << inputFileName << endl;
+    ifstream fin;
+    fin.open(inputFileName, ios::in); 
     //read the data until eof marker and store each num into numbers vector
-    int num;
+    int line;
+    //prime the input stream: 
+    fin >> line; 
+    //while loop to add each value to numbers vector
+    while (fin) { //same thing as while(fin.good())
+        numbers.push_back(line);  
+        fin >> line;
+        //cout << "while loop line" << line << endl;
+    } 
+    //FOR LOOP FOR TESTING PUROSES
+    for (int i=0; i<7; i++) {
+        cout << numbers[i] <<endl;
+    }
+    int num; //NOT USING THIS - GIVEN IN CODE SNIPPET
 }
 
 void writeData(const vector<int> & numbers) {
     //FIXME4
-    /*Algorithm Steps:
-    1. Prompt user to enter output file name
-    2. Store and use the file name to open the file in write mode
-    3. Write output as shown in output.txt file wiht proper formatting using iomanip
-    */
+    //Algorithm Steps:
+    //1. Prompt user to enter output file name #ADDRESSED#
+    string outfile;
+    cout << "Enter output file name: ";
+    //2. Store and use the file name to open the file in write mode #ADDRESSED# 
+    cin >> outfile;
+    ofstream fout;
+    fout.open(outfile); //open in write mode
+    //3. Write output as shown in output.txt file wiht proper formatting using iomanip ***STILL NEED TO DO***
+    fout << "List of Numbers: ";
+    for (int i=0;i<numbers.size(); i++) {
+        fout << numbers[i] << " ";
+    }
+    fout << " " << setfill(' ') << endl;
+    /*
+    fout << endl << endl << setw(40) << setfill('=') << endl;
+    fout << "Statistical Results";
+    fout << setw(40) << setfill('=') << endl;
+    fout << endl << "Max" << endl;
+    fout << endl << findMax(numbers) << endl;
+    fout << findMean(numbers);
+    fout << findMedian(numbers); //this isn't working. why?? 
+    fout <<findMin(numbers);
+    cout << "Min: " << findMin(numbers) << endl;
+    cout << "Max: " << findMax(numbers) << endl;
+    cout << "Range: " << findRange(numbers) << endl;
+    cout << "Mode: " << findMode(numbers) << endl;
+*/
+fout << endl << setw(50) << setfill('=') << " " << setfill(' ') << endl;
+fout << fixed << setprecision(2); 
+fout << setw(25) << setfill(' ') << setfill(' ') << "Statistical Results" << setw(25)  << endl;
+fout << setw(50) << setfill('=') << " " << setfill(' ') << endl;
+fout << setw(25) << left << "Apple" << setw(25) << right << 5.99 << endl;
+fout << setw(25) << left << "Carrots" << setw(25) << right << 2.55 << endl;
+fout << setw(50) << setfill('*') << " " << setfill(' ') << endl;
+
 }
 
 int findMax(const vector<int> & nums) {
     int max = nums[0];
-    for (int n: nums) {
-        max = (n>max) ? n: max;
-    }
-    return max;
+    //for(int n: nums) 
+        //max = (n>max) ? n : max;
+    //for(int n = 0; n < nums.size(); n++) {
+    //    max = (n>max) ? n : max;
+   // }
+    return *max_element(nums.begin(), nums.end());
 }
+
+//<< *min_element(a.begin(), a.end());
 
 int findMin(const vector<int> & nums) {
     //FIXME5: implement function to find and return min value from nums vector
-    return 0;
+    //int min = nums[0];
+    //for (int i = 0; i<nums.size(); i++) {
+       // min = (i<min) ? i : min;
+    //}
+    return *min_element(nums.begin(), nums.end());
 }
 
 float findMean(const vector<int> & nums) {
     //same as average
     long long int sum = 0;
-    //GETTING ERRORS FOR THESE TWO LINES: 
-    for(int n: nums) 
-        sum += n;
+    for (int n = 0; n < nums.size(); n++) {
+        sum += nums[n];
+    }
     return sum/float(nums.size());
 }
 
 int findRange(const vector<int> & nums) {
     //FIXME6: implement function that finds and returns the range value
     //range = max - min
-    return 0;
+    return findMax(nums) - findMin(nums);;
 }
 
 float findMedian(vector<int> nums) {
@@ -104,6 +159,35 @@ float findMedian(vector<int> nums) {
     return median;
 }
 
+int findMode(const vector<int> & nums) {
+    int mode = 0;
+    int count;
+    for (int i = 0; i< nums.size(); i++) {
+        int tempCount = 0;
+        for (int j = 0; j<nums.size(); j++) {
+            if (nums[i] == nums[j]) {
+                ++tempCount;
+            }
+        }
+        if (tempCount > count) {
+            count = tempCount;
+            mode = nums[i];
+        } else {
+            mode = 8;
+        }
+
+    }
+    /*if (count > 1) {
+        return mode;
+    } else {
+        return 0;
+    }
+    */
+   return mode;
+}
+
+
+/*
 void test() {
     vector<int> numbers = {100, 10, 5, 0, -99, 10, 99};
     //cout findMedian(numbers) << " " << findMean(numbers)-17.857142 << endl;
@@ -118,3 +202,4 @@ void test() {
 
     cerr << "all test cases passed!\n";
 }
+*/

@@ -199,3 +199,14 @@
 | **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/vector/main.cpp                                 |
 | **Self Grade**     | 100/100                                    |
 | **Notes**          | fixed all #FIXME and code compiles and runs. 
+
+**Lab #10**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           |    File IO Lab                         |
+| **Description**    | The following lab demonstrates the usage of file input and output.                |
+| **Due Date**       | 15-Nov-2021                             |
+| **Status**         | Done                                    |
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/fileio/main.cpp                                 |
+| **Self Grade**     | 100/100                                    |
+| **Notes**          | fixed all #FIXME and code compiles and runs. Implemented Bonus for certain cases.

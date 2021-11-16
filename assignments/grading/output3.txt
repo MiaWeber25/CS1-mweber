@@ -1,0 +1,9 @@
+input from input file: 
+Johnny
+Lang
+100
+100
+100
+98
+average: 99.5
+letter grade: A

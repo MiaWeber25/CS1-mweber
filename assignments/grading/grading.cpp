@@ -28,8 +28,8 @@ using namespace std;
 struct studentData;
 void readData(vector<studentData> &, string); //function to read data from input file
 void writeData(vector<studentData> &); //function to write data to output file
-float findAvg(vector<studentData> &); //WILL THIS TAKE A VECTOR OR A STRUCT?
-char findLetterGrade(vector<studentData> &); //WILL THIS TAKE A VECTOR OR A STRUCT?
+void findAvg(vector<studentData> &); //WILL THIS TAKE A VECTOR OR A STRUCT?
+void findLetterGrade(vector<studentData> &); //WILL THIS TAKE A VECTOR OR A STRUCT?
 int sortArray(vector<studentData> &); //function to sort the array in decending order
 //BONUS FUNCTION?? 
 
@@ -38,6 +38,8 @@ struct studentData {
     string firstName;
     string lastName;
     float tests[4];
+    float avg;
+    char letterGrade;
 };
 
 //main function to call readData and writeData 
@@ -58,13 +60,22 @@ void readData(vector<studentData> & gradebook, string inFile){
     ifstream fin;
     fin.open(inFile, ios::in);
     studentData line;
-    fin >> line.firstName >> line.lastName >> line.tests[0] >> line.tests[1] >> line.tests[2] >> line.tests[3];
+    //char space = ' ';
+    //fin >> line.firstName >> line.lastName >> line.tests[0] >> line.tests[1] >> line.tests[2] >> line.tests[3];
     while(fin) {
-        for(int i=0; i<4;i++) { 
-            fin >> line.firstName >> line.lastName >> line.tests[i]; 
-        }
+         fin >> line.firstName >> line.lastName;
+         for (int i=0; i<4; i++) {
+            fin >> line.tests[i]; 
+         }
         gradebook.push_back(line);
     }
+    //for (int i=0; i<gradebook.size(); i++) {
+        //cout << gradebook[0].firstName << " ";
+        //cout << gradebook[0].lastName[0] << " ";
+        //for (int j=0; j<4; j++) {
+         //   cout << gradebook[i].tests[j] << " ";
+       //}
+   // }
 }
 
 //function to write data to output file
@@ -74,44 +85,61 @@ void writeData(vector<studentData> & gradebook) {
     getline(cin, outFile);
     ofstream fout;
     fout.open(outFile);
-    //FOR TESTING: fout << "input from input file: " << endl;
-    //=== line
-    fout << setw(60) << setfill('=');
-    fout << endl << "fname" << setw(5) << " " << "lname" << setw(5) << " " << endl;
-    for (int i=0; i<gradebook.size(); i++) {
-        fout << gradebook[i].firstName << endl;
-        fout << gradebook[i].lastName <<endl;
-        for (int j=0; j<4; j++) {
-            fout << gradebook[i].tests[j] << endl;
-        }
+    //formated output:
+    fout << setw(101) << setfill('=') << " " << setfill(' ') << endl;
+    fout << setw(20) << left << "fname" 
+        << setw(20) << left << "lname";
+    for(int i=0; i<4; i++) {
+        string testHeader = "test" + to_string(i+1);
+        fout << setw(10) << right << testHeader;
     }
-    fout << "average: " << findAvg(gradebook) << endl;
-    fout << "letter grade: " << findLetterGrade(gradebook) << endl;
+    fout << setw(10) << right << "avg.";
+    fout << setw(10) << right << "grade" << endl;
+    fout << setw(101) << setfill('=') << " " << endl;
+
+    //maipulated formated output: 
+    //for loop for first and last name
+    for (int i=0; i<gradebook.size(); i++) {
+        fout << setw(20) << setfill(' ') <<  left << gradebook[i].firstName;
+        fout << setw(20) << left << gradebook[i].lastName;
+        //for loop for test scores
+        for (int j=0; j<4; j++) {
+            fout << setw(10) << right << gradebook[i].tests[j];
+        }
+        findAvg(gradebook);
+        findLetterGrade(gradebook);
+        fout << setw(10) << right << gradebook[i].avg;
+        fout << setw(10) << right << gradebook[i].letterGrade << endl;
+    }
+    fout << setw(101) << setfill('*') << " " << endl;
+
+    
 }
 
 //function to find the average of the test scores
-float findAvg(vector<studentData> & gradebook) {
-    float sum;
+void findAvg(vector<studentData> & gradebook) {
+    float sum = 0;
     for (int i=0; i<gradebook.size(); i++) {
-        for (int j=0; j<4; j++) {
-            sum += gradebook[i].tests[j];
-        }
-    }
-    return sum/4;
+        sum = gradebook[i].tests[0] + gradebook[i].tests[1] + gradebook[i].tests[2] + gradebook[i].tests[3];
+        float average = sum/4;
+        gradebook[i].avg = average;
+    }    
 }
 
 //function to find the letter grade that corresponds to the average test grade
-char findLetterGrade(vector<studentData> & gradebook) {
-    if (findAvg(gradebook) >= 90)
-        return 'A';
-    else if (findAvg(gradebook) >= 80)
-        return 'B';
-    else if (findAvg(gradebook) >= 70)
-        return 'C';
-    else if (findAvg(gradebook) >= 60)
-        return 'D';
+void findLetterGrade(vector<studentData> & gradebook) {
+    for (int i=0; i<gradebook.size(); i++) {
+        if (gradebook[i].avg >= 90) 
+            gradebook[i].letterGrade = 'A';
+        else if (gradebook[i].avg >= 80)
+            gradebook[i].letterGrade = 'B';
+        else if (gradebook[i].avg >= 70)
+            gradebook[i].letterGrade = 'C';
+        else if (gradebook[i].avg >= 60)
+            gradebook[i].letterGrade = 'D';
     else 
-        return 'F';
+        gradebook[i].letterGrade = 'F';
+    }
 }
 
 //function to sort the array in descending order based off average test scores
@@ -126,6 +154,6 @@ int sortArray(vector<studentData> & gradebook) {
 
 
 //TO DO: 
-//  1. format output
+//  1. format output ***DONE!!***
 //  2. sort array - and print in sorted order
 //  3. find bonus info - class avg, class max, class min, total a,b,c,d,f

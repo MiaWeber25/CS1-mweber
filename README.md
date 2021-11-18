@@ -98,6 +98,18 @@
 | **Self Grade**     | 100/100                                     |
 | **Notes**          | Completed all requirements and created a Kattis accepted solution. 
 
+**Assignment #9**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           | HW 8 - File IO & Struct                             |
+| **Description**    | Program utilizes file io and the struct data type to calculate statistics on student data                |
+| **Due Date**       | 19-Nov-2021                             |
+| **Status**         | DONE                                    |
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/assignments/struct/grading.cpp                                  |
+| **Self Grade**     | 100/100                                     |
+| **Notes**          | Completed all requirements. 
+
+
 
 
 # **Labs**

@@ -1,17 +1,16 @@
 /*
     HW 8 - File IO and Struct
     By: Mia Weber
-    Date: 16/Nov/2021
+    Date: 15/Nov/2021
 
     Program utilizes file io and the struct data type to calculate statistics on student data
 
     Algorithm Steps:
     1. Prompt the user to enter an input file name to read data from ***DONE!!***
-    2. Read n number of student records from input file into an array ***DONE!!***
+    2. Read n number of student records from input file into an array/vector ***DONE!!***
     3. Prompt the user to enter an outfile name to write the data to ***DONE!!***
     4. Write functions to find student's average test scores and the letter grade using a standard grading scale ***DONE!!***
-    5. Write a function to sort the array of student records in descending order based on avg test scores
-    **BONUS
+    5. Write a function to sort the array of student records in descending order based on avg test scores ***DONE!!***
 */
 #include <iostream>
 #include <iomanip>
@@ -25,13 +24,13 @@
 using namespace std;
 
 //FUNCTION PROTOTYPES
-struct studentData;
+struct studentData; //struct to store n student data (first name, last name, 4 test grades, average grade, and letter grade)
 void readData(vector<studentData> &, string); //function to read data from input file
 void writeData(vector<studentData> &); //function to write data to output file
-void findAvg(vector<studentData> &); //WILL THIS TAKE A VECTOR OR A STRUCT?
-void findLetterGrade(vector<studentData> &); //WILL THIS TAKE A VECTOR OR A STRUCT?
+bool findLarger(studentData &, studentData &); //function to define conditional for sorting function (sortArray below)
+void findAvg(vector<studentData> &); //function to find the average grade 
+void findLetterGrade(vector<studentData> &); //function to use the average grade to find corresponding letter grade 
 void sortArray(vector<studentData> &); //function to sort the array in decending order
-//BONUS FUNCTION?? 
 
 //create struct to store student data
 struct studentData {
@@ -60,9 +59,7 @@ void readData(vector<studentData> & gradebook, string inFile){
     ifstream fin;
     fin.open(inFile, ios::in);
     studentData line;
-    //char space = ' ';
-    //fin >> line.firstName >> line.lastName >> line.tests[0] >> line.tests[1] >> line.tests[2] >> line.tests[3];
-    while(!fin.eof()) {
+    while(!fin.eof()) { //use .eof rather than while(fin) in order to not read last value in twice! 
          fin >> line.firstName >> line.lastName;
          for (int i=0; i<4; i++) {
             fin >> line.tests[i]; 
@@ -78,7 +75,7 @@ void writeData(vector<studentData> & gradebook) {
     getline(cin, outFile);
     ofstream fout;
     fout.open(outFile);
-    //formated output:
+    //generic formated output:
     fout << setw(101) << setfill('=') << " " << setfill(' ') << endl;
     fout << setw(20) << left << "fname" 
         << setw(20) << left << "lname";
@@ -106,12 +103,13 @@ void writeData(vector<studentData> & gradebook) {
         fout << setw(10) << right << gradebook[i].letterGrade << endl;
     }
     fout << setw(101) << setfill('*') << " " << endl;
-
-    
 }
+
+//function to define conditional for sortArray function later 
 bool findLarger(studentData & l1, studentData & l2) {
     return (l1.avg > l2.avg);
 }
+
 //function to find the average of the test scores
 void findAvg(vector<studentData> & gradebook) {
     float sum = 0;
@@ -143,9 +141,7 @@ void sortArray(vector<studentData> & gradebook) {
     sort(gradebook.begin(), gradebook.end(), & findLarger);
 
 }
-//TO DO: 
-//  1. format output ***DONE!!*** **KEEP GOING FOR BONUS INFO!**
-//  2. sort array - and print in sorted order
+//TO DO: **IF TIME**
 //  3. find bonus info - class avg, class max, class min, total a,b,c,d,f
         // class max: first index of sorted gradebook --> gradebook[0].avg
         // class min: last index of sorted gradebook --> gradebook.back().avg (this might be funky syntax wise...)

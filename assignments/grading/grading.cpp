@@ -30,7 +30,7 @@ void readData(vector<studentData> &, string); //function to read data from input
 void writeData(vector<studentData> &); //function to write data to output file
 void findAvg(vector<studentData> &); //WILL THIS TAKE A VECTOR OR A STRUCT?
 void findLetterGrade(vector<studentData> &); //WILL THIS TAKE A VECTOR OR A STRUCT?
-int sortArray(vector<studentData> &); //function to sort the array in decending order
+void sortArray(vector<studentData> &); //function to sort the array in decending order
 //BONUS FUNCTION?? 
 
 //create struct to store student data
@@ -62,20 +62,13 @@ void readData(vector<studentData> & gradebook, string inFile){
     studentData line;
     //char space = ' ';
     //fin >> line.firstName >> line.lastName >> line.tests[0] >> line.tests[1] >> line.tests[2] >> line.tests[3];
-    while(fin) {
+    while(!fin.eof()) {
          fin >> line.firstName >> line.lastName;
          for (int i=0; i<4; i++) {
             fin >> line.tests[i]; 
          }
         gradebook.push_back(line);
     }
-    //for (int i=0; i<gradebook.size(); i++) {
-        //cout << gradebook[0].firstName << " ";
-        //cout << gradebook[0].lastName[0] << " ";
-        //for (int j=0; j<4; j++) {
-         //   cout << gradebook[i].tests[j] << " ";
-       //}
-   // }
 }
 
 //function to write data to output file
@@ -108,6 +101,7 @@ void writeData(vector<studentData> & gradebook) {
         }
         findAvg(gradebook);
         findLetterGrade(gradebook);
+        sortArray(gradebook);
         fout << setw(10) << right << gradebook[i].avg;
         fout << setw(10) << right << gradebook[i].letterGrade << endl;
     }
@@ -115,7 +109,9 @@ void writeData(vector<studentData> & gradebook) {
 
     
 }
-
+bool findLarger(studentData & l1, studentData & l2) {
+    return (l1.avg > l2.avg);
+}
 //function to find the average of the test scores
 void findAvg(vector<studentData> & gradebook) {
     float sum = 0;
@@ -143,17 +139,15 @@ void findLetterGrade(vector<studentData> & gradebook) {
 }
 
 //function to sort the array in descending order based off average test scores
-int sortArray(vector<studentData> & gradebook) {
-   for (int i=0; i<gradebook.size(); i++) {
-       for (int j=0; j<4; j++) {
-           //sort(gradebook.begin(), gradebook.end(), gradebook.tests[j]);
-       }
-   }
-    return 0;
+void sortArray(vector<studentData> & gradebook) {
+    sort(gradebook.begin(), gradebook.end(), & findLarger);
+
 }
-
-
 //TO DO: 
-//  1. format output ***DONE!!***
+//  1. format output ***DONE!!*** **KEEP GOING FOR BONUS INFO!**
 //  2. sort array - and print in sorted order
 //  3. find bonus info - class avg, class max, class min, total a,b,c,d,f
+        // class max: first index of sorted gradebook --> gradebook[0].avg
+        // class min: last index of sorted gradebook --> gradebook.back().avg (this might be funky syntax wise...)
+        //class average: find average of all the averages
+        // percentage of as - need to know total number of students. Iterate through and count a's, b's, c's etc. then add and divide by total num of students for each letter grade

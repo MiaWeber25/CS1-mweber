@@ -20,8 +20,16 @@ all:
 	$(CXX) $(CXXFLAGS) $(CPPFILES)
 	$(CXX) -o $(PROGRAM) *.o
 
+kattis_tests:
+	cat 1.in | ./$(PROGRAM) | diff - 1.ans;
+	cat 2.in | ./$(PROGRAM) | diff - 2.ans;
+	cat 3.in | ./$(PROGRAM) | diff - 3.ans;
+
+	echo "all Kattis sample tests cases passed..."
 # make clean rule
 # delete object and binary files
 clean:
 	rm -f $(PROGRAM) *.o
+
+
 	

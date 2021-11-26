@@ -222,3 +222,14 @@
 | **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/fileio/main.cpp                                 |
 | **Self Grade**     | 100/100                                    |
 | **Notes**          | fixed all #FIXME and code compiles and runs. Implemented Bonus for certain cases.
+
+**Lab #11**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           |    Map Lab - Seven Wonders                        |
+| **Description**    | Read and solve the Kattis problem Seven Wonders: https://open.kattis.com/problems/sevenwonders               |
+| **Due Date**       | 28-Nov-2021                             |
+| **Status**         | Done                                    |
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/maps/main.cpp                                  |
+| **Self Grade**     | 100/100                                    |
+| **Notes**          | fixed all #FIXME and code compiles and runs. Kattis accepted my solution. 

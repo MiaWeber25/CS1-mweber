@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
 void solve() {
     string cards;
     // string consists of only uppercase letters (no spaces) upto 50 chars
-    // FIXME3 ##ADDRESSED##
+    // FIXME3 ##FIXED##
     // read string into cards
     cin >> cards;
     //getline(cin, cards); //THIS IS ADDING A 0 TO THE END OF CARDS --> SEE IF THIS BECOMES A PROBLEM LATER.
@@ -61,28 +61,35 @@ pos_int answer(const string& cards) {
         // add it to the wonders map
         wonders[card] = 1;
       }
-      else {// FIXME4: update value of card ##ADDRESSED##
+      else {// FIXME4: update value of card ##FIXED##
         wonders[card]+= 1; //DO YOU JUST WANT TO INCREMENT IT BY ONE OR BY NUMBER OF OCCURANCES IN THE INPUT STRING? 
       }
     //cout << card << " " << wonders[card] << endl; //I THINK THIS IS WORKING, BUT I NEED TO BE SURE THAT MAPS ONLY CONCSITS OF THE LAST ELEMENTS AND NOT THE ENTIRE THING THAT GETS PRINTED HERE (SINCE IT'S INSIDE THE FOR LOOP).
     }
+    /*
+    for (auto test: wonders) {
+      cout << "fist element: " << test.first << " " << "second element: " << test.second << endl;
+    }
+    */
     // algorithm step 3 - calculate points
     pos_int points = 0, min_card = 999999;
     for (auto pair: wonders) { // for is pair of <card, count>
-      // FIXME5 - Update the points by adding count^2 ##ADDRESSED## //PROBLEM IS THAT I HAVE NO REAL WAY TO TEST IF THIS IS WORKING CORRECTLY THE WAY THAT I WANT IT TO BE...
-      points = pair.second^2;
+      // FIXME5 - Update the points by adding count^2 ##FIXED## 
+      points += pow(pair.second, 2);
       min_card = (pair.second < min_card)?pair.second:min_card;
     }
     // step 4 - add bonus points if any
     if (wonders.size() == 3) // if there are 3 unique cards
       points += min_card*7;
-
     return points;
 }
 
 // unit testing answer()
 void testAnswer() {
-    // FIXME6
+    // FIXME6 ##FIXED##
     // write at least two test cases to test answer()
+    assert(answer("TCGTTC") == 21);
+    assert(answer("CCC") == 9);
+    assert(answer("TTCCGG") == 26);
     cerr << "All test cases passed!\n";
 }

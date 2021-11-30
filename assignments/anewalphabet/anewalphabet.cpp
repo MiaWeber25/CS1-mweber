@@ -57,12 +57,44 @@ void solve() {
     cypher['y'] = "`//";
     cypher['z'] = "2";
 
-    for (int i=0; i<27; i++) {
-        cout << cypher[i] << endl; 
+    string input;
+    //cin.ignore(' ');
+    getline(cin, input);
+    cout << "This is the input: " << input << endl; //FOR TESTING PURPOSES - DELETE LATER
+
+    vector<char> plainText(input.begin(), input.end());
+    vector<string> cypherText;
+    //FOR LOOP FOR TESTING VECTOR METHOD - DELETE LATER
+   // for(int i = 0; i<30; i++) {
+       // cout << plainText[i] << endl;
+        //determine if the plain text char is in cypher map 
+       // if (cypher.count(plainText[i])==1) { //if it is present, add that value to cypherText vector
+            //found! 
+            //cypherText.push_back(cypher.second); 
+
+      //  }
+  //  }
+    
+    for (char i: plainText) { //iterate over the plainText 
+        cout << i << " "; //i is the individual char in plainText
+        tolower(plainText[i]);
+        for (auto e: cypher) { //iterate over the cypher map
+            if(e.first == i) //it the char in plainText matches the first element in map
+                cypherText.push_back(e.second); //add the value to final vector
+                //cout << e.second;
+            else {
+                //cout << "NO";
+                //string(plainText[i]);
+                //cypherText.push_back(plainText[i]); //otherwise, add the origional value to the final vector
+                cypherText.push_back("*");
+            }
+        }
+    } 
+    for (auto m: cypherText) {
+        cout << m << " ";
     }
-
-
 }
+
 
 void answer() {
 

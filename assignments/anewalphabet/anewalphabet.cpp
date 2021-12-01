@@ -88,9 +88,7 @@ void solve() {
         }
        // i++; DO I NEED THIS? I DON'T THINK THAT I DO...
     } 
-    for (auto m: cypherText) {
-        cout << m << " ";
-    }
+    cout << cypherText;
     cout << endl;
 }
 

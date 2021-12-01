@@ -21,9 +21,9 @@ all:
 	$(CXX) -o $(PROGRAM) *.o
 
 kattis_tests:
-	cat 1.in | ./$(PROGRAM) | diff - 1.ans;
-	cat 2.in | ./$(PROGRAM) | diff - 2.ans;
-	cat 3.in | ./$(PROGRAM) | diff - 3.ans;
+	cat new.in | ./$(PROGRAM) | diff - new.ans;
+	cat base.in | ./$(PROGRAM) | diff - base.ans;
+	cat frequency.in | ./$(PROGRAM) | diff - frequency.ans;
 
 	echo "all Kattis sample tests cases passed..."
 # make clean rule

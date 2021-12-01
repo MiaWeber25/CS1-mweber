@@ -109,7 +109,16 @@
 | **Self Grade**     | 100/100                                     |
 | **Notes**          | Completed all requirements. 
 
-
+**Assignment #10**
+| Name           | Value                                   |
+|----------------|:---------------------------------------:|
+| **Name**           | HW 9 - Maps                            |
+| **Description**    | Solve Kattis Problem A New Alphabet located here: https://open.kattis.com/problems/anewalphabet               |
+| **Due Date**       | 06-Dec-2021                             |
+| **Status**         | DONE                                    |
+| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/assignments/anewalphabet/anewalphabet.cpp                                   |
+| **Self Grade**     | 100/100                                     |
+| **Notes**          | Completed all requirements and created a Kattis accepted solution. 
 
 
 # **Labs**

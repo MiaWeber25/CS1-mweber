@@ -1,3 +1,22 @@
+#include <cassert>
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+void test() {
+    cout << "called the test function!";
+}
+
+int main(int argc, char* argv[]) {
+    if(argc ==2 and string(argv[1]) == "test") {
+        test();
+    }
+    else {
+        cout << "call the answer function";
+    }
+}
+
 /*
     Mia Weber
     30/Nov/2021

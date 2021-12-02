@@ -13,10 +13,12 @@
 #include <cassert>
 #include <fstream>
 #include <iomanip>
+//my header files
+#include "functions.hpp"
 
 using namespace std;
 
-//FUNCTION PROTOTYPES
+//FUNCTION PROTOTYPES **I should template some of my functions too!
 bool printBoard(); //function to print the game board. called every time a new game is started
 void clearBoard(); //function to clear the board & screen. called before printBoard every time a new game is started (will I need this?) 
 void recordWin(); //updates stats data on the win and displays message to the player informing them of a PLAYER WIN
@@ -94,6 +96,8 @@ bool printBoard() {
 }
 
 void gamePlay() { //do I want to set this up so that the user can determine the size of the board?
+   //just set up for now as a general outline - I will want to reference each space as a corresponding element in the vector. 
+   //vector <int> board;
    cout << setfill('-') << setw(17) << " " << endl;
    for(int i=0; i<3; i++) {
        cout << "|  ";

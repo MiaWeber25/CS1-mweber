@@ -112,47 +112,46 @@ void gamePlay() {
 
 }
 /*
-void checkResult() {
-    //iterate over the 2D array gameBoard
-    int xCount;
-    int oCount;
-    for (int r; r<3; r++) { //row
-        for (int c; c <3; c++) { //col
-            if(gameBoard[r][c] == 'X') 
-                xCount+=1;
-            else if (gameBoard[r][c] == 'O')
-                oCount+=1;
-            else 
-                continue;
-        }
-    }
-    if(xCount == 3) 
-        recordPlayerWin();
-    else if (oCount == 3)
-        recordPlayerLoss();
-    else
-        recordTie();
+bool checkResult() {
+    return (checkRow() || checkCol() || checkDiag());
 }
 */
+//bool computerTurn;
+bool playerTurn;
 
-void checkResult() {
-    //iterate over gameBoard 
-    for(int r =0; r <3; r++) { //row
-        for(int c = 0; c <3; c++) { //col
-            if(gameBoard[r][c] == 'X' || gameBoard[r][c] == 'O')
-                checkSurroundings(r, c, gameBoard[r][c]);
+
+bool checkRow() { //pass this function the array (and size of the array)
+    for (int i=0; i<9; i++) {
+        //check to see if first space = second space = third space and make sure a character is placed there --> win by row
+        if(gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][1] == gameBoard[i][2] && gameBoard[i][0] != ' ') {
+            return true;
+        } else {
+            return false;
         }
     }
-
 }
 
-
-void checkSurroundings(int& r, int& c, char& token) {
-    //check to see if there is a matching token the surrounding spaces
-    
+bool checkCol() {
+    for (int i=0; i<9; i++) {
+        //check to see if first space = second space = third space and make sure character is placed there --> win by column
+        if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i] && gameBoard[0][i] != ' '){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
-
+bool checkDiag() {
+    for (int i=0; i<9; i++) {
+        //check to see if first space = second space = third space and make sure character is placed there --> win by diagonal
+        if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i] && gameBoard[0][i] != ' ') {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
 
 
 

@@ -17,7 +17,7 @@ void printMenu(); //step 1
 int main(); //call printMenu & prompt user for a menu selection until the user wants to quit
 void gamePlay(); //called through switch statements in main --> step 2
 void checkSurroundings(int& r, int& c, char& token);
-void checkResult(); 
+//bool checkResult(); 
 
 
 

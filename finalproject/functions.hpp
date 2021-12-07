@@ -1,6 +1,6 @@
 #pragma once
 
-bool printBoard(); //function to print the game board. called every time a new game is started
+void printBoard(); //function to print the game board. called every time a new game is started
 void clearBoard(); //function to clear the board & screen. called before printBoard every time a new game is started (will I need this?) 
 void recordPlayerWin(); //updates stats data on the win and displays message to the player informing them of a PLAYER WIN
 void recordPlayerLoss(); //updates stats data on the loss and displays message to the player informing them of a PLAYER LOSS 
@@ -18,8 +18,17 @@ int main(); //call printMenu & prompt user for a menu selection until the user w
 void gamePlay(); //called through switch statements in main --> step 2
 void checkSurroundings(int& r, int& c, char& token);
 //bool checkResult(); 
+char checkVictory();
+void tryToWin();
+char gameBoard[3][3] = {
+    {' ', ' ', ' '},
+    {' ', ' ', ' '},
+    {' ', ' ', ' '}
+};
+void playGame(char);
 
-
+//rectangle object with methods for area, perimeter, and print. struct then acts as a namespace and you use ::
+//rect.print();
 
 
 

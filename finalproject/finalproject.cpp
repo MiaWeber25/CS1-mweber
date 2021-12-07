@@ -19,7 +19,7 @@
 using namespace std;
 
 //FUNCTION PROTOTYPES **I should template some of my functions too!
-bool printBoard(); //function to print the game board. called every time a new game is started
+void printBoard(); //function to print the game board. called every time a new game is started
 void clearBoard(); //function to clear the board & screen. called before printBoard every time a new game is started (will I need this?) 
 void recordWin(); //updates stats data on the win and displays message to the player informing them of a PLAYER WIN
 void recordLoss(); //updates stats data on the loss and displays message to the player informing them of a PLAYER LOSS 
@@ -41,7 +41,7 @@ int main() {
 /* printBoard
 -->use switch statements to print a menu to allow the user to choose between E, M, and H
 */
-bool printBoard() {
+void printBoard() {
     int option = 0;
     cout << "Welcome to TicTacToe!\n";
     cout << "Below are the menu options:\n";
@@ -90,11 +90,11 @@ bool printBoard() {
         }
         case 4:
         default:
-            return false; //exit the program
+            //return false; //exit the program
     }
-    return true;
+    //return true;
 }
-
+/*
 void gamePlay() { //do I want to set this up so that the user can determine the size of the board?
    //just set up for now as a general outline - I will want to reference each space as a corresponding element in the vector. 
    //vector <int> board;
@@ -107,7 +107,7 @@ void gamePlay() { //do I want to set this up so that the user can determine the 
        cout << endl << setfill('-') << setw(17) << " " << endl;
    }
 }
-
+*/
 void gameLogicE() {
     gamePlay();
 }

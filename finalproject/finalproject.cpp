@@ -6,7 +6,7 @@
 
     Algorithm Steps:
     1. 
-*/
+
 #include <iostream>
 #include <string>
 #include <cstdio>
@@ -40,7 +40,7 @@ int main() {
 }
 /* printBoard
 -->use switch statements to print a menu to allow the user to choose between E, M, and H
-*/
+
 void printBoard() {
     int option = 0;
     cout << "Welcome to TicTacToe!\n";
@@ -107,7 +107,7 @@ void gamePlay() { //do I want to set this up so that the user can determine the 
        cout << endl << setfill('-') << setw(17) << " " << endl;
    }
 }
-*/
+
 void gameLogicE() {
     gamePlay();
 }
@@ -119,6 +119,7 @@ void gameLogicM() {
 void gameLogicH() {
     gamePlay();
 }
+
 
 string outputStats() {
     string outfile;
@@ -132,3 +133,5 @@ void printPlayerStats(string& outfile) { //When to call this one is a little tri
     fout.open(outfile);
     fout << "test!" << endl;
 }
+
+*/

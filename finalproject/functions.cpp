@@ -20,7 +20,6 @@ struct placement {
 
 int main() {
     printMenu();
-    //gamePlay();
     return 0;
 }
 
@@ -125,6 +124,8 @@ void userTurn() {
             gameBoard[userSelection.row][userSelection.col] = 'X';
             //gameLogicH();
             boardPrint();
+            turns +=1;
+            checkVictory(turns);
             break;
         } else {
             cin.clear();
@@ -170,26 +171,67 @@ char checkVictory(int turns) { //pass this function the array (and size of the a
 
 
 void playGame(char difficulty) {
-    //flag
-    int turns = 0;
+    //flag = turns (declared in functios.hpp)
+    //int turns = 0;
     bool playerTurn = true;
     //while () {
         if (playerTurn == true) { //it's the player's turn
             userTurn();
+        } else { //it's the computer's turn
+            computerTurn(difficulty);
         }
    //  }
 
 }
 
+void computerTurn(char difficulty) {
+    if (difficulty == 'E') { //call gameLogicE
+        gameLogicE();
+    } else if (difficulty == 'M') { //call gameLogicM
+        gameLogicM();
+    } else { //call gameLogicH
+        gameLogicH();
+    }
+}
 
+void gameLogicE() {
+    turns +=1;
+    if (checkVictory(turns) == 'X') {
+        recordWin();
+    } else if (checkVictory(turns) == 'O') {
+        recordLoss();
+    } else if (checkVictory(turns) == 'T') {
+        recordTie();
+    } else {
+        //continue with game
+    }
+}
+
+void gameLogicM() {
+    turns +=1;
+    checkVictory(turns);
+}
 
 void gameLogicH() { //THIS NEEDS TO CALL CHECKVICTORY!
     //see if you can win!
     //placement computerSelection;
-    //*insert while loop to repeat until game is over
-    userTurn();
-    tryToWin();
+    turns +=1;
+    checkVictory(turns);
+    //userTurn();
+    //tryToWin();
     
+}
+
+void recordWin() {
+
+}
+
+void recordLoss() {
+
+}
+
+void recordTie() {
+
 }
 
 void tryToWin() {

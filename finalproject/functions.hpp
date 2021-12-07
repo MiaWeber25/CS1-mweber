@@ -2,8 +2,8 @@
 
 void printBoard(); //function to print the game board. called every time a new game is started
 void clearBoard(); //function to clear the board & screen. called before printBoard every time a new game is started (will I need this?) 
-void recordPlayerWin(); //updates stats data on the win and displays message to the player informing them of a PLAYER WIN
-void recordPlayerLoss(); //updates stats data on the loss and displays message to the player informing them of a PLAYER LOSS 
+void recordLoss(); //updates stats data on the win and displays message to the player informing them of a PLAYER WIN
+void recordWin(); //updates stats data on the loss and displays message to the player informing them of a PLAYER LOSS 
 void recordTie(); //updates stats data on the tie and displays messgage to the player informing them of a PLAYER AND COMPUTER TIE
 void gamePlay(); //prompts user to enter either 'X' or 'O' as well as the square in which they would like to make a move. Implements alternating logic between computer and player. Determines if recordWin, recordLoss, or recordTie need to be called after every move
 void gameLogicE(); //implements the level easy game logic for the computer player
@@ -18,14 +18,16 @@ int main(); //call printMenu & prompt user for a menu selection until the user w
 void gamePlay(); //called through switch statements in main --> step 2
 void checkSurroundings(int& r, int& c, char& token);
 //bool checkResult(); 
-char checkVictory();
+char checkVictory(int);
 void tryToWin();
 char gameBoard[3][3] = {
     {' ', ' ', ' '},
     {' ', ' ', ' '},
     {' ', ' ', ' '}
 };
+int turns = 0;
 void playGame(char);
+void computerTurn(char);
 
 //rectangle object with methods for area, perimeter, and print. struct then acts as a namespace and you use ::
 //rect.print();

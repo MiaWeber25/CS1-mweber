@@ -6,29 +6,32 @@
 #include <iomanip>
 #include <cstdlib>
 
-
-#include "functions.hpp" //this allows you to import your function prototypes in this file as well
+//include header file for main functions file
+#include "functions.hpp"
+//include header file for userTurn functions
 #include "userTurn.hpp"
 //I could also make a test.cpp file to test all the functions (will need to include assert.h and my functions.hpp in order to test my functions)
 using namespace std;
 
-//vector<vector<char>>gameBoard; //USING VECTOR VS ARRAY (fixed size so array feels easier...)
-//char gameBoard[3][3];
 
-bool gameOver = false;
-int turns = 0;
+bool gameOver = false; //DELETE LATER?
+int turns = 0; //variable to track how many turns have elapsed 
+//2D array to store values in the game board. Initialized to spaces.
 char gameBoard[3][3] = {
     {' ', ' ', ' '},
     {' ', ' ', ' '},
     {' ', ' ', ' '}
 };
-//char (*gameBoardptr)[3] = gameBoard;
+string wantContinue;
 
+
+//MAIN FUNCTION
 int main() {
-    printMenu();
+    printMenu(); //print the menu options
     return 0;
 }
 
+//CLEAR SCREEN FUNCTION
 void clearScreen() {
     // use "cls" in windows and "clear" command in Mac and Linux
     #ifdef _WIN32
@@ -37,13 +40,24 @@ void clearScreen() {
         system("clear");
     #endif
 }
-bool random2() {
+
+void clearBoard() {
+    for(int i=0; i<9; i++) {
+        for(int j=0; j<9; j++) {
+            gameBoard[i][j] = ' ';
+        }
+    }
+}
+
+bool random2() { //DELETE LATER???
 
     return false;
 }
 
+//PRINT MENU FUNCTION
 void printMenu() {
-    clearScreen();
+    clearScreen(); //clear the screen
+    
     //print the menu options:
     int option = 0;
     cout << "Welcome to TicTacToe!\n";
@@ -53,6 +67,7 @@ void printMenu() {
     cout << "[3] Hard\n";
     cout << "[4] Quit\n";
     cout << "Enter one of the menu options [1-4]: ";
+    
     //check if the selected option is in range
     do {
         if (cin >> option && option >= 1 && option <= 4) {
@@ -62,6 +77,7 @@ void printMenu() {
         else {
             cin.clear();
             cin.ignore(1000, '\n');
+            //input is invalid, prompt user to enter another value
             cout << "Invalid option, please enter a value between 1 and 4" << endl;
         }
     } while (random2() == false);
@@ -70,28 +86,22 @@ void printMenu() {
         case 1:
         {
             //call the outputStats function to prompt for output file
-            //call the gameLogicE function
-            clearScreen();
-            playGame('E');
+            clearScreen(); //clear the screen
+            playGame('E'); //start game play and pass difficulty level
             break;
         }
         case 2:
         {
             //call the outputStats function to prompt for output file
-            //outputStats();
-            //call the gameLogicM function
-            clearScreen();
-            playGame('M');
+            clearScreen(); //clear the screen
+            playGame('M'); //start game play and pass difficulty level
             break;
         }
         case 3:
         {
             //call the outputStats function to prompt for output file
-            //outputStats();
-            //call clearscreen! 
-            clearScreen();
-            //gameLogicH();
-            playGame('H');
+            clearScreen(); //clear the screen
+            playGame('H'); //start game play and pass difficulty level
             break;
         }
         case 4:
@@ -101,135 +111,144 @@ void printMenu() {
     }
 }
 
-//void boardPrint(char * gameBoard[3][3]) {
+//PRINT BOARD FUNCTION
 void boardPrint(char gameBoard[3][3]) {
-    cout << setfill('-') << setw(17) << " " << endl;
+    cout << setfill('-') << setw(20) << " " << endl; //17
    for(int i=0; i<3; i++) {
        cout << "|  ";
        for(int j=0; j<3;j++) {
            cout << gameBoard[i][j];
            cout << "  |  ";
        }
-       cout << endl << setfill('-') << setw(17) << " " << endl;
+       cout << endl << setfill('-') << setw(20) << " " << endl; //17
    }
 }
-//USERTURN FUNCTION GOES HERE
 
 
 //ISSUES WITH checkVictory IF STATEMENT LOGIC. FIGURE OUT LATER...
 
-//  ***AM I storing empty spaces as ' '? Maybe when I declare the array I will want to store a space everywhere so this actually works (might help with game logic as well...)
-char checkVictory(int turns) { //pass this function the array (and size of the array)
-    char whoWon;
-    //CHECK ROW
+//CHECK VICTORY FUNCTION
+char checkVictory(int turns) { //pass this function the array (and size of the array)????
+    //char whoWon; //DO I NEED TO USE THIS????
+    //check the row
     for (int i=0; i<9; i++) {
         //check to see if first space = second space = third space and make sure a character is placed there --> win by row
         if(gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][1] == gameBoard[i][2] && gameBoard[i][0] != ' ') {
             return gameBoard[i][0];
         } 
-        //CHECK COLUMN
+    //check the column
         //check to see if first space = second space = third space and make sure character is placed there --> win by column
         else if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i] && gameBoard[0][i] != ' '){
             return gameBoard[0][i];
         } 
-        //CHECK DIAGONAL
+    //check the diagonal
         //check to see if first space = second space = third space and make sure character is placed there --> win by diagonal
         else if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i] && gameBoard[0][i] != ' ') {
             return gameBoard[0][i];
-        } else {
-            //no one has one
+        } else { //no one has one --> tie
             if (turns == 9) {
                 return 'T';
-            } else {
-                return 'G'; //go on with turns!
+            } else { //no one has won --> go on with turns
+                return 'G';
             }
         } 
     }
 }
 
-
+//PLAY GAME FUNCTION
 void playGame(char difficulty) {
     //flag = turns (declared in functios.hpp)
-    //int turns = 0;
     bool gameOver = false;
-    bool playerTurn = true;
-    while (gameOver == false) {
+    bool playerTurn = true; //is it the player's turn?
+    while (gameOver == false) { 
         if (playerTurn == true) { //it's the player's turn
-            userTurn(turns, gameBoard);
+            userTurn(turns, gameBoard); //call userTurn function
             playerTurn = false;
         } else { //it's the computer's turn
-            computerTurn(difficulty);
+            computerTurn(difficulty); //call computerTurn function
             playerTurn = true;
         }
-        boardPrint(gameBoard);
-        //checkVictory();
+        clearScreen();
+        boardPrint(gameBoard); //print the new game board. IMPLEMENT A CLEAR FUNCTION HERE! clearBoard() then printBoard()
+        //checkVictory(turns); //WILL WANT TO CALL CHECKVICTORY HERE (WHERE TO CALL THIS?)
+        if (checkVictory(turns) == 'X') {
+            gameOver = true;
+            recordWin();
+            // break;
+        } else if (checkVictory(turns) == 'O') {
+            gameOver = true;
+            recordLoss();
+            //break;
+        } else if (checkVictory(turns) == 'T') {
+            gameOver = true;
+            recordTie();
+            // break;
+
+        } else { //it returned 'G' so continue with the game
+            //continue with game
+            //continue;
+        }
+        if(gameOver == true) {
+            cout << "Do you want to play again? [y|n]" << endl;
+            cin >> wantContinue;
+            if(wantContinue == "Y" || wantContinue == "y") {
+                clearBoard();
+                printMenu();
+            }
+        }
      }
 
 }
 
+//COMPUTER TURN FUNCTION
 void computerTurn(char difficulty) {
-    //int a, b;
-    //cin >> a >> b;
-    //gameBoard[a][b] = 'O';
-
-
     if (difficulty == 'E') { //call gameLogicE
         gameLogicE();
     } else if (difficulty == 'M') { //call gameLogicM
+        //cout << "calling gameLogicM()" << endl;
         gameLogicM();
     } else { //call gameLogicH
         gameLogicH();
     }
 }
 
+//EASY GAME LOGIC FUNCTION (random generated computer 'O' placement)
 void gameLogicE() {
-    //implement some kind of while loop to continue that way I can use break and continue below.
 //GENERATE RANDOM PLACEMENT:
     //1. generate random numbers
     //2. see if that space is taken yet 
         //yes - generate another random number
         //no - place a 'O' in that space
-    bool emptySpace = false;
+    bool emptySpace = true;
     int rand1 = 0;
     int rand2 = 0;
-    while(emptySpace == false) {
+    while(emptySpace == true) { //make sure that the space is empty
+        //generate random numbers between 0 and 3
         rand1 = rand() %4;
         rand2 = rand() %4;
-        //cout << rand1 << " " << rand2;
+        //check to see if that space is empty
         if(gameBoard[rand1][rand2] == ' ') {
-            gameBoard[rand1][rand2] = 'O';
-            //boardPrint(gameBoard);
-            emptySpace = true;
+            gameBoard[rand1][rand2] = 'O'; //place an 'O' in that space
+            emptySpace = false; //mark the space as not empty
         } else {
-            continue; 
+            continue; //space is already filled, generate 2 new random numbres
         }
     }
-
-    //gameBoard[rand() %3][rand() %3] = 'O';
-    turns +=1;
-    if (checkVictory(turns) == 'X') {
-        gameOver = true;
-        recordWin();
-       // break;
-    } else if (checkVictory(turns) == 'O') {
-        gameOver = true;
-        recordLoss();
-        //break;
-    } else if (checkVictory(turns) == 'T') {
-        gameOver = true;
-        recordTie();
-       // break;
-    } else { //it returned 'G' so continue with the game
-        //continue with game
-        //continue;
-    }
+    turns +=1; //increment turns
+    //NEED TO IMPROVE THIS BECAUSE IT ISN'T WORKING RIGHT NOW...
+    /*
+    
+    */
 }
 
+//MEDIUM GAME LOGIC FUNCTION (computer just tries to win but not to block)
 void gameLogicM() {
+    tryToWin();
     turns +=1;
-    checkVictory(turns);
+    //checkVictory(turns);
 }
 
+//HARD GAME LOGIC FUNCTION (computer tries to block and win)
 void gameLogicH() { //THIS NEEDS TO CALL CHECKVICTORY!
     //see if you can win!
     //placement computerSelection;
@@ -241,15 +260,15 @@ void gameLogicH() { //THIS NEEDS TO CALL CHECKVICTORY!
 }
 
 void recordWin() {
-
+    cout << "Win!" << endl;
 }
 
 void recordLoss() {
-
+    cout << "Loss!" << endl;
 }
 
 void recordTie() {
-
+    cout << "Tie!" << endl;
 }
 
 void tryToWin() {
@@ -270,11 +289,6 @@ void tryToWin() {
         if(gameBoard[0][i] == 'O' && gameBoard[1][i] == 'O' && gameBoard[2][i] == ' ') {
             //place an O and win by diag!
             gameBoard[2][i] = 'O';
-        }
-    }
-    for (int j=0; j<3; j++) {
-        for (int k=0; k<3; k++) {
-            cout << "gameBoard @ " << j << ", " << k << gameBoard[j][k] << endl;
         }
     }
 }

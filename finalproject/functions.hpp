@@ -21,12 +21,8 @@ void checkSurroundings(int& r, int& c, char& token);
 char checkVictory(int);
 void tryToWin();
 void boardPrint(char(*[3]));
+//char gameBoard[3][3];
 
-char gameBoard[3][3] = {
-    {' ', ' ', ' '},
-    {' ', ' ', ' '},
-    {' ', ' ', ' '}
-};
 
 void playGame(char);
 void computerTurn(char);

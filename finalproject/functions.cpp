@@ -17,7 +17,12 @@ using namespace std;
 
 bool gameOver = false;
 int turns = 0;
-char (*gameBoardptr)[3] = gameBoard;
+char gameBoard[3][3] = {
+    {' ', ' ', ' '},
+    {' ', ' ', ' '},
+    {' ', ' ', ' '}
+};
+//char (*gameBoardptr)[3] = gameBoard;
 
 int main() {
     printMenu();
@@ -97,12 +102,12 @@ void printMenu() {
 }
 
 //void boardPrint(char * gameBoard[3][3]) {
-void boardPrint(char (*ptrToGameBoard)[3]) {
+void boardPrint(char gameBoard[3][3]) {
     cout << setfill('-') << setw(17) << " " << endl;
    for(int i=0; i<3; i++) {
        cout << "|  ";
        for(int j=0; j<3;j++) {
-           cout << ptrToGameBoard[i][j];
+           cout << gameBoard[i][j];
            cout << "  |  ";
        }
        cout << endl << setfill('-') << setw(17) << " " << endl;
@@ -150,19 +155,22 @@ void playGame(char difficulty) {
     bool playerTurn = true;
     while (gameOver == false) {
         if (playerTurn == true) { //it's the player's turn
-            userTurn(turns, gameBoardptr);
+            userTurn(turns, gameBoard);
+            playerTurn = false;
         } else { //it's the computer's turn
             computerTurn(difficulty);
+            playerTurn = true;
         }
-        boardPrint(gameBoardptr);
+        boardPrint(gameBoard);
+        //checkVictory();
      }
 
 }
 
 void computerTurn(char difficulty) {
-    int a, b;
-    cin >> a >> b;
-    gameBoard[a][b] = 'O';
+    //int a, b;
+    //cin >> a >> b;
+    //gameBoard[a][b] = 'O';
 
 
     if (difficulty == 'E') { //call gameLogicE
@@ -190,7 +198,7 @@ void gameLogicE() {
         //cout << rand1 << " " << rand2;
         if(gameBoard[rand1][rand2] == ' ') {
             gameBoard[rand1][rand2] = 'O';
-            boardPrint(gameBoardptr);
+            //boardPrint(gameBoard);
             emptySpace = true;
         } else {
             continue; 

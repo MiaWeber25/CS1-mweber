@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void userTurn(int& turns, char gameBoardptr[3][3]) {
+void userTurn(int& turns, char gameBoardTest[][3]) {
     cout << "rows are numbered top to bottom as 1-3\n" << "columns are numbered left to right as 1-3\n";
     //printGrid(vector containing the player's positions);
     placement userSelection;
@@ -17,12 +17,14 @@ void userTurn(int& turns, char gameBoardptr[3][3]) {
         userSelection.col -= 1;
 
         //check if choice is in range
-        if (userSelection.row >=1 && userSelection.col >=1 and userSelection.row <= 3 && userSelection.col <= 3) {
-            gameBoardptr[userSelection.row][userSelection.col] = 'X';
-            //boardPrint(gameBoardptr);
-            turns +=1;
-            checkVictory(turns);
-            break;
+        if (userSelection.row >=0 && userSelection.col >=0 and userSelection.row <= 2 && userSelection.col <= 2) {
+            if (gameBoardTest[userSelection.row][userSelection.col] == ' '){
+                gameBoardTest[userSelection.row][userSelection.col] = 'X';
+                //boardPrint(gameBoardptr);
+                turns +=1;
+                checkVictory(turns);
+                return;
+            }
         } else {
             cin.clear();
         } 

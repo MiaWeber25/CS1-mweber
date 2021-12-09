@@ -1,3 +1,3 @@
 #pragma once
 
-void userTurn(int&, char[3][3]);
+void userTurn(int&, char[][3]);

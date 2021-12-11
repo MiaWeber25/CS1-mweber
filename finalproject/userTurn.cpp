@@ -20,6 +20,7 @@ void userTurn(int& turns, char gameBoardTest[][3]) {
         if (userSelection.row >=0 && userSelection.col >=0 and userSelection.row <= 2 && userSelection.col <= 2) {
             if (gameBoardTest[userSelection.row][userSelection.col] == ' '){
                 gameBoardTest[userSelection.row][userSelection.col] = 'X';
+                
                 //boardPrint(gameBoardptr);
                 turns +=1;
                 //checkVictory(turns); //first attempt at checkVictory

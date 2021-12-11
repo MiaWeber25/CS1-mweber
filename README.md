@@ -12,7 +12,7 @@
 # **Assignments**
 **Assignment #1**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |Hello World|
 | **Description**|Basic Hello World Program|
 | **Due Date**   |30-Aug-2021|
@@ -23,7 +23,7 @@
 
 **Assignment #2**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |HW 1 - Std I/O Hangman|
 | **Description**|Prints basic 7 stages of hangman game|
 | **Due Date**   |13-Sept-2021|
@@ -34,7 +34,7 @@
 
 **Assignment #3**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |HW 2 - Area & Perimeter of Triangle|
 | **Description**|Calculate area & perimeter of triangle and verifies if correct triangle|
 | **Due Date**   |17-Sept-2021|
@@ -45,7 +45,7 @@
 
 **Assignment #4**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |HW 3 - Basic Calculator using Functions and Automated Testing|
 | **Description**|Perform some arithmetic operations on two given numbers (entered by user)|
 | **Due Date**   |27-Sept-2021|
@@ -56,7 +56,7 @@
 
 **Assignment #5**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |HW 4 - CLI Menu, Conditionals, Functions, and Testing|
 | **Description**|Write a CLI based menu-driven program that computes certain values including sum, product, max, min, average, and oddity of any 5 numbers.|
 | **Due Date**   |13-Oct-2021|
@@ -67,7 +67,7 @@
 
 **Assignment #6**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |HW 5 - Loops|
 | **Description**|Design and implement the "Guess the Number" game with requirements.|
 | **Due Date**   |19-Oct-2021|
@@ -78,7 +78,7 @@
 
 **Assignment #7**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |HW 6 - String|
 | **Description**|Solve Kattis Problem Apaxiaaaaaaaans located here:  https://open.kattis.com/|
 | **Due Date**   |29-Oct-2021|
@@ -89,7 +89,7 @@
 
 **Assignment #8**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |HW 7 - Array|
 | **Description**|Solve Kattis Problem Falling Apart located here:  https://open.kattis.com/problems/fallingapart|
 | **Due Date**   |05-Nov-2021|
@@ -100,7 +100,7 @@
 
 **Assignment #9**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |HW 8 - File IO & Struct|
 | **Description**|Program utilizes file io and the struct data type to calculate statistics on student data|
 | **Due Date**   |19-Nov-2021|
@@ -111,7 +111,7 @@
 
 **Assignment #10**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |HW 9 - Maps|
 | **Description**|Solve Kattis Problem A New Alphabet located here: https://open.kattis.com/problems/anewalphabet|
 | **Due Date**   |06-Dec-2021|
@@ -124,7 +124,7 @@
 # **Labs**
 **Lab #1**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |1 - Std IO Lab|
 | **Description**|Lab covering standard input and output|
 | **Due Date**   |03-Sept-2021|
@@ -135,7 +135,7 @@
 
 **Lab #2**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |Circle - Maths and Std IO Lab|
 | **Description**|Lab calculates area & circumference of circle with given radius|
 | **Due Date**   |13-Sept-2021|
@@ -146,7 +146,7 @@
 
 **Lab #3**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |Built-in and User Defined Functions & Automated Testing Lab|
 | **Description**|Lab calculates the distance between two points on a 2D geometry|
 | **Due Date**   |22-Sept-2021|
@@ -157,7 +157,7 @@
 
 **Lab #4**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |Conditionals and More User Defined Functions Lab|
 | **Description**|C++ menu driven program that finds various statistical values of any two given numbers.|
 | **Due Date**   |08-Oct-2021|
@@ -168,7 +168,7 @@
 
 **Lab #5**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |Loops Lab|
 | **Description**|Deomonstrates the use of loop structures in C++ by drawing various geometric shapes with ASCII characters.|
 | **Due Date**   |18-Oct-2021|
@@ -178,19 +178,19 @@
 | **Notes**      |fixed all #FIXME Code compiles and runs.  
 
 **Lab #6**
-| Name           | Value                                   |
-|----------------|:---------------------------------------:|
-| **Name**           |    Pointers and Namespace Lab                         |
-| **Description**    |  The following lab demonstrates the usage of pointers, enum type and use-defined namespace.               |
-| **Due Date**       | 22-Oct-2021                             |
-| **Status**         | Done                                    |
-| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/pointers/main.cpp                                |
-| **Self Grade**     | 100/100                                    |
-| **Notes**          | fixed all #FIXME Code compiles and runs.
+| Name| Value|
+|----------------|:---------------------------------------|
+| **Name**       |Pointers and Namespace Lab|
+| **Description**|The following lab demonstrates the usage of pointers, enum type and use-defined namespace|
+| **Due Date**   |22-Oct-2021|
+| **Status**     |Done|
+| **Location**   |https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/pointers/main.cpp|
+| **Self Grade** |100/100|
+| **Notes**      |fixed all #FIXME Code compiles and runs.
 
 **Lab #7**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |String|
 | **Description**|Read and solve the Kattis problem Hissing Microphone located here: https://open.kattis.com/problems/hissingmicrophone|
 | **Due Date**   |29-Oct-2021|
@@ -201,7 +201,7 @@
 
 **Lab #8**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |Array|
 | **Description**|The following lab demonstrates the usage of an array data structure and some operations on arrays.|
 | **Due Date**   |03-Nov-2021|
@@ -212,7 +212,7 @@
 
 **Lab #9**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |Vector Lab|
 | **Description**|The following lab demonstrates the usage of vector data structure and some operations on vectors.|
 | **Due Date**   |09-Nov-2021|
@@ -223,7 +223,7 @@
 
 **Lab #10**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |File IO Lab|
 | **Description**|The following lab demonstrates the usage of file input and output.|
 | **Due Date**   |15-Nov-2021|
@@ -234,7 +234,7 @@
 
 **Lab #11**
 | Name| Value|
-|----------------|:---------------------------------------:|
+|----------------|:---------------------------------------|
 | **Name**       |Map Lab - Seven Wonders|
 | **Description**|Read and solve the Kattis problem Seven Wonders: https://open.kattis.com/problems/sevenwonders|
 | **Due Date**   |28-Nov-2021|

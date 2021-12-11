@@ -1,7 +1,7 @@
 # CS1-mweber
 | Name| Value|
 |----------------|:---------------------------------------:|
-| **Course**         |:--CSCI 111|
+| **Course**         :--|CSCI 111|
 | **Section**        |1|
 | **Semester**       |Fall 2021|
 | **Student**        |Mia Weber|

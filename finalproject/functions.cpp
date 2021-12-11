@@ -131,28 +131,43 @@ void boardPrint(char gameBoard[3][3]) {
 char checkVictory(int turns) { //pass this function the array (and size of the array)????
     //char whoWon; //DO I NEED TO USE THIS????
     //check the row
-    for (int i=0; i<9; i++) {
+    char returnValue;
+     for (int i=0; i<3; i++) {
         //check to see if first space = second space = third space and make sure a character is placed there --> win by row
         if(gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][1] == gameBoard[i][2] && gameBoard[i][0] != ' ') {
-            return gameBoard[i][0];
+            cout << "win by row!";
+            //return gameBoard[i][0];
+            returnValue = gameBoard[i][0];
+            break;
         } 
     //check the column
         //check to see if first space = second space = third space and make sure character is placed there --> win by column
-        else if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i] && gameBoard[0][i] != ' '){
-            return gameBoard[0][i];
+        if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i] && gameBoard[0][i] != ' '){
+            cout << "win by column!";
+            //return gameBoard[0][i];
+            returnValue = gameBoard[0][i];
+            break;
         } 
     //check the diagonal
         //check to see if first space = second space = third space and make sure character is placed there --> win by diagonal
-        else if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i] && gameBoard[0][i] != ' ') {
-            return gameBoard[0][i];
+        if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i] && gameBoard[0][i] != ' ') {
+            cout << "win by diagonal!";
+            //return gameBoard[0][i];
+            returnValue = gameBoard[0][i];
+            break;
         } else { //no one has one --> tie
             if (turns == 9) {
-                return 'T';
+                cout << "returning T for tie";
+                //return 'T';
+                returnValue = 'T';
             } else { //no one has won --> go on with turns
-                return 'G';
+                //cout << "returning G for go on";
+                returnValue = 'G';
+                //return 'G';
             }
         } 
     }
+    return returnValue;
 }
 
 //PLAY GAME FUNCTION
@@ -163,19 +178,25 @@ void playGame(char difficulty) {
     while (gameOver == false) { 
         if (playerTurn == true) { //it's the player's turn
             userTurn(turns, gameBoard); //call userTurn function
+            cout << "calling checkVictory after user turn\n";
+            checkVictory(turns); //second attempt at checkVictory
             playerTurn = false;
         } else { //it's the computer's turn
             computerTurn(difficulty); //call computerTurn function
+            cout << "calling checkVictory after computer turn\n";
+            checkVictory(turns); //new attempt at checkVictory
             playerTurn = true;
         }
-        clearScreen();
-        boardPrint(gameBoard); //print the new game board. IMPLEMENT A CLEAR FUNCTION HERE! clearBoard() then printBoard()
+        //clearScreen(); I WILL NEED TO UNCOMMENT THIS EVENTUALLY!!!!!
+        boardPrint(gameBoard); //print the new game board.
         //checkVictory(turns); //WILL WANT TO CALL CHECKVICTORY HERE (WHERE TO CALL THIS?)
         if (checkVictory(turns) == 'X') {
+            cout << "THE GAME IS OVER. WIN" << endl;
             gameOver = true;
             recordWin();
             // break;
         } else if (checkVictory(turns) == 'O') {
+            cout << "THE GAME IS OVER. LOSS" << endl;
             gameOver = true;
             recordLoss();
             //break;
@@ -205,7 +226,7 @@ void computerTurn(char difficulty) {
     if (difficulty == 'E') { //call gameLogicE
         gameLogicE();
     } else if (difficulty == 'M') { //call gameLogicM
-        //cout << "calling gameLogicM()" << endl;
+        cout << "calling gameLogicM()" << endl; //DELETE LATER
         gameLogicM();
     } else { //call gameLogicH
         gameLogicH();
@@ -243,6 +264,7 @@ void gameLogicE() {
 
 //MEDIUM GAME LOGIC FUNCTION (computer just tries to win but not to block)
 void gameLogicM() {
+    cout << "called tryToWin" << endl; //DELETE LATER 
     tryToWin();
     turns +=1;
     //checkVictory(turns);
@@ -272,23 +294,26 @@ void recordTie() {
 }
 
 void tryToWin() {
-    
+    cout << "got to tryToWin" << endl; //DELETE LATER
     for (int i=0; i<9; i++) {
         //check to see if you can win by row
         if(gameBoard[i][0] == 'O' && gameBoard[i][1] == 'O' && gameBoard[i][2] == ' ') {
             //place an O and win by row!
             gameBoard[i][2] = 'O';
+            boardPrint(gameBoard); //where should I print the board?
             //gameBoard[userSelection.row][userSelection.col] = 'X'; DO I WANT TO USE PLACEMENT COMPUTERSELECTION FOR THIS??
         }
         //check to see if you can win by col!
         if(gameBoard[0][i] == 'O' && gameBoard[1][i] == 'O' && gameBoard[2][i] == ' ') {
             //place an O and win by col!
             gameBoard[2][i] = 'O';
+            boardPrint(gameBoard);
         }
         //check to see if you can win by diag!
         if(gameBoard[0][i] == 'O' && gameBoard[1][i] == 'O' && gameBoard[2][i] == ' ') {
             //place an O and win by diag!
             gameBoard[2][i] = 'O';
+            boardPrint(gameBoard);
         }
     }
 }

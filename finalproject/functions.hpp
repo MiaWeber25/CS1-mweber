@@ -29,7 +29,35 @@ struct placement {
 
 
 
-
+/*
+    for (int i=0; i<9; i++) {
+        //check to see if first space = second space = third space and make sure a character is placed there --> win by row
+        if(gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][1] == gameBoard[i][2] && gameBoard[i][0] != ' ') {
+            cout << "win by row!";
+            return gameBoard[i][0];
+        } 
+    //check the column
+        //check to see if first space = second space = third space and make sure character is placed there --> win by column
+        else if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i] && gameBoard[0][i] != ' '){
+            cout << "win by column!";
+            return gameBoard[0][i];
+        } 
+    //check the diagonal
+        //check to see if first space = second space = third space and make sure character is placed there --> win by diagonal
+        else if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i] && gameBoard[0][i] != ' ') {
+            cout << "win by diagonal!";
+            return gameBoard[0][i];
+        } else { //no one has one --> tie
+            if (turns == 9) {
+                cout << "returning T for tie";
+                return 'T';
+            } else { //no one has won --> go on with turns
+                cout << "returning G for go on";
+                return 'G';
+            }
+        } 
+    }
+    */
 
 
 

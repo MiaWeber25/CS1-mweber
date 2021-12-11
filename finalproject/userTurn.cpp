@@ -22,7 +22,7 @@ void userTurn(int& turns, char gameBoardTest[][3]) {
                 gameBoardTest[userSelection.row][userSelection.col] = 'X';
                 //boardPrint(gameBoardptr);
                 turns +=1;
-                checkVictory(turns);
+                //checkVictory(turns); //first attempt at checkVictory
                 return;
             }
         } else {

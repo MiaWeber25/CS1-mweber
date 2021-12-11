@@ -13,13 +13,13 @@
 **Assignment #1**
 | Name           | Value                                   |
 |----------------|:---------------------------------------:|
-| **Name**           | Hello World                             |
-| **Description**    | Basic Hello World Program               |
-| **Due Date**       | 30-Aug-2021                             |
-| **Status**         | Done                                    |
-| **Location**       | https://github.com/MiaWeber25/CS1-mweber/blob/main/test/hello.cpp                                 |
-| **Self Grade**     | -/-                                     |
-| **Notes**          | completed all the requirements and screenshot of code in image.jpg
+| **Name**|Hello World|
+| **Description**|Basic Hello World Program|
+| **Due Date**|30-Aug-2021|
+| **Status**|Done|
+| **Location**|https://github.com/MiaWeber25/CS1-mweber/blob/main/test/hello.cpp                                 |
+| **Self Grade**|100/100|
+| **Notes**|completed all the requirements and screenshot of code in image.jpg
 
 **Assignment #2**
 | Name           | Value                                   |

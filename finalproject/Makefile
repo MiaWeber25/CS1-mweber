@@ -1,7 +1,7 @@
 COMPILER = g++
 COMPILER_FLAGS = -Wall -std=c++17
 PROGRAM_NAME = functions
-CPP_FILES = functions.cpp userTurn.cpp
+CPP_FILES = main.cpp userTurn.cpp
 
 build:
 	$(COMPILER) $(COMPILER_FLAGS) $(CPP_FILES) -o $(PROGRAM_NAME)

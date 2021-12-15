@@ -13,13 +13,17 @@
 #include <fstream>
 
 //header file with function prototypes 
-#include "functions.hpp"
+#include "main.hpp"
 //include header file for userTurn function prototypes 
 #include "userTurn.hpp"
 
 using namespace std;
 
 //MAIN FUNCTION
+/*
+    ~initializes gameBoard, stats, coins, asks user for name and gets output file name
+    ~calls printMenu()
+*/
 int main() {
     char gameBoard[3][3] = {
     {' ', ' ', ' '},
@@ -28,9 +32,11 @@ int main() {
     };
     playerStats stats;
     peopleCoins coins;
-    int turns = 0;
+    int turns = 0; //reset turns
+    //what is the user's name?
     cout << "Hi! Welcome to TicTacToe! What is your name?" << endl;
     cin >> stats.name;
+    //what is the output file name?
     cout << "Please enter the name of a file to output game statistics to: " << endl;
     cin >> stats.outputFile;
     printMenu(stats, turns, coins, gameBoard); //print the menu options
@@ -38,6 +44,9 @@ int main() {
 }
 
 //CLEAR SCREEN FUNCTION
+/*
+    ~clears the screen using a system call
+*/
 void clearScreen() {
     // use "cls" in windows and "clear" command in Mac and Linux
     #ifdef _WIN32
@@ -48,7 +57,9 @@ void clearScreen() {
 }
 
 //CLEAR BOARD FUNCTION
-//sets all elements in the array to spaces
+/*
+    ~sets all elements in the array gameBoard to spaces
+*/
 void clearBoard(char gameBoard[3][3]) {
     for(int i=0; i<9; i++) {
         for(int j=0; j<9; j++) {
@@ -57,12 +68,21 @@ void clearBoard(char gameBoard[3][3]) {
     }
 }
 
-bool random2() { //DELETE LATER???
-
+//CONTINUE LOOP FUNCTION
+/*
+    ~continues the loop in printMenu() until the user wants to quit
+*/
+bool continueLoop() { 
     return false;
 }
 
 //PRINT MENU FUNCTION
+/*
+    ~takes struct of statistics, number of turns, struct of coins, and the gameBoard as input
+    ~returns void
+    ~prints the menu and uses switch statement to call appropriate function
+    ~sets the userCoin and computerCoin based on player selection
+*/
 void printMenu(playerStats & stats, int &turns, peopleCoins &coins, char gameBoard[3][3]) {
     clearScreen(); //clear the screen
     
@@ -90,10 +110,8 @@ void printMenu(playerStats & stats, int &turns, peopleCoins &coins, char gameBoa
             //input is invalid, prompt user to enter another value
             cout << "Invalid option, please enter a value between 1 and 4" << endl;
         }
-    } while (random2() == false);
-    //switch statement to call appropriate functions
-        //determine which char represents the user
-        //COME BACK AND ADD A VERIFICATION THAT USER ENTERED X or O.
+    } while (continueLoop() == false);
+        //determine which char represents the user & verify user input
         bool correctSelection = false;
         while(correctSelection == false) {
             cout << "Choose X or O: ";
@@ -108,24 +126,22 @@ void printMenu(playerStats & stats, int &turns, peopleCoins &coins, char gameBoa
                     cout << "Please enter either 'X' or 'O'..." << endl;
                 }
         }
+    //switch statement to call appropriate functions
     switch(option) {
         case 1:
         {
-            //call the outputStats function to prompt for output file
             clearScreen(); //clear the screen
             playGame('E', stats, turns, coins, gameBoard); //start game play and pass difficulty level
             break;
         }
         case 2:
         {
-            //call the outputStats function to prompt for output file
             clearScreen(); //clear the screen
             playGame('M', stats, turns, coins, gameBoard); //start game play and pass difficulty level
             break;
         }
         case 3:
         {
-            //call the outputStats function to prompt for output file
             clearScreen(); //clear the screen
             playGame('H', stats, turns, coins, gameBoard); //start game play and pass difficulty level
             break;
@@ -139,6 +155,11 @@ void printMenu(playerStats & stats, int &turns, peopleCoins &coins, char gameBoa
 }
 
 //PRINT BOARD FUNCTION
+/*
+    ~takes the gameBoard as input
+    ~returns void
+    ~prints the board to the terminal
+*/
 void boardPrint(char gameBoard[3][3]) {
     cout << setfill('-') << setw(20) << " " << endl; //17
    for(int i=0; i<3; i++) {
@@ -151,47 +172,54 @@ void boardPrint(char gameBoard[3][3]) {
    }
 }
 
-
-//ISSUES WITH checkVictory IF STATEMENT LOGIC. FIGURE OUT LATER...
-
 //CHECK VICTORY FUNCTION
-char checkVictory(int &turns, char gameBoard[3][3]) { //pass this function the array (and size of the array)????
-    //char whoWon; //DO I NEED TO USE THIS????
-    //check the row
+/*
+    ~takes number of turns and the gameBoard as inputs
+    ~returns the char of who won, loss, a T indicating tie or a G indicating "go on"
+    ~determines if someone has won or if there is a tie
+*/
+char checkVictory(int &turns, char gameBoard[3][3]) { 
+    //check the row for a victory
      for (int i=0; i<3; i++) { 
         //check to see if first space = second space = third space and make sure a character is placed there --> win by row
         if(gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][1] == gameBoard[i][2] && gameBoard[i][0] != ' ') {
-            //return gameBoard[i][0];
+            //there is a victory! return which coin won
             return gameBoard[i][0];
         } 
     //check the column
         //check to see if first space = second space = third space and make sure character is placed there --> win by column
         if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i] && gameBoard[0][i] != ' '){
-            //return gameBoard[0][i];
+            //there is a victory! return which coin won
             return gameBoard[0][i];
         } 
     //check the diagonal
         //check to see if first space = second space = third space and make sure character is placed there --> win by diagonal
         if (gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2] && gameBoard[0][0] != ' ') {
-            //return gameBoard[0][i];
+            //there is a victory! return which coin won
             return gameBoard[0][0];
         }
         if (gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0] && gameBoard[0][2] != ' ') {
+            //there is a victory! return which coin won
             return gameBoard[0][2];
         }
      }
-         //no one has one --> tie
+    //check to see if there is a tie
     if (turns == 9) {
+        //there is a tie! return 'T' to indicate a tie
         return 'T';
-    }       
+    }      
+    //no one has won and there is no tie! return 'G' to indicate to continue the game 
     return 'G';
 }
     
-
 //PLAY GAME FUNCTION
+/*
+    ~takes difficulty level, struct of statistics, number of turns, struct of coins, and the gameBoard as input
+    ~returns void
+    ~calls playerTurn and conputerTurn and checks to see if there was a victory after each turn
+*/
 void playGame(char difficulty, playerStats &stats, int &turns, peopleCoins &coins, char gameBoard[3][3]) {
-    //flag = turns (declared in functios.hpp)
-    string wantContinue;
+    string wantContinue; //allows the user to play until they want to quit
     bool gameOver = false;
     bool playerTurn = true; //is it the player's turn?
     while (gameOver == false) { 
@@ -204,23 +232,19 @@ void playGame(char difficulty, playerStats &stats, int &turns, peopleCoins &coin
             checkVictory(turns, gameBoard); //new attempt at checkVictory
             playerTurn = true;
         }
-        turns+=1;
-        clearScreen(); //I WILL NEED TO UNCOMMENT THIS EVENTUALLY!!!!!
+        turns+=1; //increment turns!
+        clearScreen();
         boardPrint(gameBoard); //print the new game board.
-        //checkVictory(turns); //WILL WANT TO CALL CHECKVICTORY HERE (WHERE TO CALL THIS?)
+        //call checkVictory and determine if a result needs to be reported...
         if (checkVictory(turns, gameBoard) == coins.userCoin) {
             gameOver = true;
             recordWin(stats);
-            // break;
         } else if (checkVictory(turns, gameBoard) == coins.computerCoin) {
             gameOver = true;
             recordLoss(stats);
-            //break;
         } else if (checkVictory(turns, gameBoard) == 'T') {
             gameOver = true;
             recordTie(stats);
-            // break;
-
         } 
          //it returned 'G' so continue with the game
         if(gameOver == true) {
@@ -240,6 +264,11 @@ void playGame(char difficulty, playerStats &stats, int &turns, peopleCoins &coin
 }
 
 //COMPUTER TURN FUNCTION
+/*
+    ~takes difficulty level, number of turns, struct of coins, and the gameBoard as inputs
+    ~returns void
+    ~calls the correct gameLogic function based on user selection in printMenu()
+*/
 void computerTurn(char difficulty, int &turns, peopleCoins &coins, char gameBoard[3][3]) {
     if (difficulty == 'E') { //call gameLogicE
         gameLogicE(turns, coins, gameBoard);
@@ -250,7 +279,12 @@ void computerTurn(char difficulty, int &turns, peopleCoins &coins, char gameBoar
     }
 }
 
-//EASY GAME LOGIC FUNCTION (random generated computer 'O' placement)
+//EASY GAME LOGIC FUNCTION
+/*
+    ~takes number of turns, struct of coins, and the gameBoard as inputs
+    ~returns void
+    ~implements the easy game logic which places a computerCoin in a random empty space
+*/
 void gameLogicE(int &turns, peopleCoins &coins, char gameBoard[3][3]) {
 //GENERATE RANDOM PLACEMENT:
     //1. generate random numbers
@@ -258,57 +292,66 @@ void gameLogicE(int &turns, peopleCoins &coins, char gameBoard[3][3]) {
         //yes - generate another random number
         //no - place a 'O' in that space
     bool emptySpace = true;
-    //int rand1 = 0;
     int rand1 = 0;
-    //int rand2 = 0;
     int rand2 = 0;
-    //int nums;
-    //int nums2;
     while(emptySpace == true) { //make sure that the space is empty
         //generate random numbers between 0 and 3
-        srand((unsigned int)time(NULL)); //seed the value --> found a way around
+        srand((unsigned int)time(NULL)); //seed the value --> adds time to execution but makes it more random
         rand1 = rand() %3;
         //nums = rand1;
         rand2 = rand() %3;
-        //nums2 = rand2;
-        //cout << "rand1: " << rand1;
-        //cout << endl << "rand2: " << rand2;
         //check to see if that space is empty
         if(gameBoard[rand1][rand2] == ' ') {
-            gameBoard[rand1][rand2] = coins.computerCoin; //place an 'O' in that space
+            gameBoard[rand1][rand2] = coins.computerCoin; //place a computerCoin in that space
             emptySpace = false; //mark the space as not empty
         } else {
             continue; //space is already filled, generate 2 new random numbres
         }
     }
-    //turns +=1; //increment turns
 }
 
-//MEDIUM GAME LOGIC FUNCTION (computer just tries to win but not to block)
+//MEDIUM GAME LOGIC FUNCTION
+/*
+    ~takes number of turns, struct of coins, and the gameBoard as inputs
+    ~returns void
+    ~implements the medium game logic where the computer tries to win but DOES NOT try to block the player
+*/
 void gameLogicM(int &turns, peopleCoins &coins, char gameBoard[3][3]) {
     char userCoin;
     char computerCoin;
     userCoin = coins.userCoin;
     computerCoin = coins.computerCoin;
+    //see if you can win
     if(!completeSequence(computerCoin, computerCoin, gameBoard)) {
+        //if you can't win, then just place a computerCoin randomly
         gameLogicE(turns, coins, gameBoard);
     }
-    //turns +=1;
 }
 
-//HARD GAME LOGIC FUNCTION (computer tries to block and win)
-void gameLogicH(int &turns, peopleCoins &coins, char gameBoard[3][3]) { //THIS NEEDS TO CALL CHECKVICTORY!
-    //see if you can win and see if you can block
+//HARD GAME LOGIC FUNCTION
+/*
+    ~takes number of turns, struct of coins, and the gameBoard as inputs
+    ~returns void
+    ~implements the hard game logic where the computer BOTH tries to win and tries to block the player
+*/
+void gameLogicH(int &turns, peopleCoins &coins, char gameBoard[3][3]) { 
     char userCoin;
     char computerCoin;
     userCoin = coins.userCoin;
     computerCoin = coins.computerCoin;
+    //see if you can win & see if you can block
     if(!completeSequence(computerCoin, computerCoin, gameBoard) && !completeSequence(userCoin, computerCoin, gameBoard)) {
+        //if you can't win or block the player, then place a computerCoin randomly
         gameLogicE(turns, coins, gameBoard);
     } 
-    //turns +=1;
 }
 
+//RECORD WIN FUNCTION
+/*
+    ~takes struct of statistics as input
+    ~returns void
+    ~updates the statistics to indicate a player victory and indicates that a game is complete
+*/
 void recordWin(playerStats &stats) {
     cout << "Win!" << endl;
     //update the win count
@@ -316,6 +359,12 @@ void recordWin(playerStats &stats) {
     stats.gamesPlayed += 1;
 }
 
+//RECORD LOSS FUNCTION
+/*
+    ~takes struct of statistics as input
+    ~returns void
+    ~updates the statistics to indicate a player loss and indicates that a game is complete
+*/
 void recordLoss(playerStats &stats) {
     cout << "Loss!" << endl;
     //update the loss count
@@ -323,6 +372,12 @@ void recordLoss(playerStats &stats) {
     stats.gamesPlayed += 1;
 }
 
+//RECORD TIE FUNCTION
+/*
+    ~takes struct of statistics as input
+    ~returns void
+    ~updates the statistics to indicate a tie and indicates that a game is complete
+*/
 void recordTie(playerStats &stats) {
     cout << "Tie!" << endl;
     //update the ties count
@@ -330,9 +385,16 @@ void recordTie(playerStats &stats) {
     stats.gamesPlayed += 1;
 }
 
+//COMPLETE SEQUENCE FUNCTION
+/*
+    ~takes a coin to look for, a coin to place on the gameBoard, and the gameBoard as input
+    ~returns a boolean value that indicates if the computer was able to block or win (ie. complete three in a row)
+    ~implements both tryToWin logic and tryToBlock logic in one function. Attempts to fill out a row completely either to win or to block a player win
+*/
 bool completeSequence(char seekCoin, char placeCoin, char gameBoard[3][3]) {
     bool iWon = false;
     for (int j=0; j<3; j++) {
+        //create a string of all the chars placed in each row
         string rowSequence;
         rowSequence.push_back(gameBoard[j][0]);
         rowSequence.push_back(gameBoard[j][1]);
@@ -342,7 +404,7 @@ bool completeSequence(char seekCoin, char placeCoin, char gameBoard[3][3]) {
             gameBoard[j][rowSequence.find(' ')] = placeCoin;
             iWon = true;
         }
-
+        //create a string of all the chars placed in each column
         string colSequence;
         colSequence.push_back(gameBoard[0][j]);
         colSequence.push_back(gameBoard[1][j]);
@@ -352,6 +414,7 @@ bool completeSequence(char seekCoin, char placeCoin, char gameBoard[3][3]) {
             iWon = true;
         }
     }
+    //create a string of all the chars places in each diagonal
     string diagSequence;
     diagSequence.push_back(gameBoard[0][0]);
     diagSequence.push_back(gameBoard[1][1]);
@@ -362,7 +425,7 @@ bool completeSequence(char seekCoin, char placeCoin, char gameBoard[3][3]) {
         gameBoard[spaceLocation][spaceLocation] = placeCoin;
         iWon = true;
     }
-
+    //create a string of all the chars places in each reverse diagonal
     diagSequence = "";
     diagSequence.push_back(gameBoard[0][2]);
     diagSequence.push_back(gameBoard[1][1]);
@@ -376,10 +439,13 @@ bool completeSequence(char seekCoin, char placeCoin, char gameBoard[3][3]) {
     return iWon;
 }
 
+//OUTPUT STATS FUNCTION
+/*
+    ~takes struct of statistics as input
+    ~returns void
+    ~writes game statistics (name, number of wins, number of losses, number of ties, and number of games played) to output file of user choice
+*/
 void outputStats(playerStats &stats) {
-    //calculate stats
-    //playerStats stats; DO THIS IN MAIN INSTEAD
-
     ofstream fout;
     fout.open(stats.outputFile);
     //write statistics!
@@ -393,5 +459,10 @@ void outputStats(playerStats &stats) {
 }
 
 
-
+/*FUTURE OPTIMIZATIONS:
+1. only check for a victory after five turns have passed (there is not way to win without five turns)
+2. break into more c++ files in order to clarify code even further
+3. rather than simply placing a computerCoin in a random space if it can't win or block, 
+   it could place a computerCoin next to an existing computerCoin to build towards a win
+*/
 

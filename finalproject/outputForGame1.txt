@@ -1,4 +1,4 @@
-Player Name: mia
+Player Name: Mia
 Number of player victories: 0
 Number of player losses: 1
 Number of tie games: 0

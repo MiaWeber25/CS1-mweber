@@ -13,12 +13,15 @@ struct peopleCoins {
     char userCoin;
     char computerCoin;
 };
+struct placement {
+    int row;
+    int col;
+};
 void clearScreen();
 void clearBoard(char [3][3]);
-bool random2(); //fix this later!
+bool continueLoop(); 
 void printMenu(playerStats &, int &, peopleCoins &, char [3][3]);
 void boardPrint(char(*[3]));
-//void boardPrint(char [3][3]);
 char checkVictory(int &, char [3][3]);
 void playGame(char, playerStats &, int &, peopleCoins &, char [3][3]);
 void computerTurn(char, int &, peopleCoins &, char [3][3]);
@@ -29,9 +32,4 @@ void recordWin(playerStats &);
 void recordLoss(playerStats &);
 void recordTie(playerStats &);
 bool completeSequence(char, char, char [3][3]);
-//void calculateStats();
 void outputStats(playerStats &);
-struct placement {
-    int row;
-    int col;
-};

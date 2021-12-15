@@ -242,3 +242,15 @@
 | **Location**   |https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/maps/main.cpp|
 | **Self Grade** |100/100|
 | **Notes**      |fixed all #FIXME and code compiles and runs. Kattis accepted my solution. 
+
+# **FINAL PROJECT**
+**Final Project Fall 2021**
+| Name| Value|
+|----------------|:---------------------------------------|
+| **Name**       |Final Project - TicTacToe|
+| **Description**|Followed project specifications and implemented three difficulty levels of TicTacToe against a computer|
+| **Due Date**   |15-Dec-2021|
+| **Status**     |Done|
+| **Location**   |https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/maps/main.cpp|
+| **Self Grade** |100/100|
+| **Notes**      |Code compiles and runs. Some potential optimizations, but all requirements met. 

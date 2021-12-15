@@ -1,10 +1,16 @@
-#include "functions.hpp"
+#include "main.hpp"
 #include "userTurn.hpp"
 
 #include <iostream>
 
 using namespace std;
 
+//USER TURN FUNCTION
+/*
+    ~takes number of turns, the gameBoard, and the userCoin as inputs
+    ~returns void
+    ~prompts the user for a space where they want to place their userCoin (verifies that the selection is empty and in the range of gameBoard)
+*/
 void userTurn(int& turns, char gameBoardTest[][3], char userCoin) {
     cout << "rows are numbered top to bottom as 1-3\n" << "columns are numbered left to right as 1-3\n";
     //printGrid(vector containing the player's positions);

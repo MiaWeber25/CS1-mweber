@@ -251,6 +251,6 @@
 | **Description**|Followed project specifications and implemented three difficulty levels of TicTacToe against a computer|
 | **Due Date**   |15-Dec-2021|
 | **Status**     |Done|
-| **Location**   |https://github.com/MiaWeber25/CS1-mweber/blob/main/labs/maps/main.cpp|
+| **Location**   |https://github.com/MiaWeber25/CS1-mweber/tree/main/finalproject|
 | **Self Grade** |100/100|
 | **Notes**      |Code compiles and runs. Some potential optimizations, but all requirements met. 

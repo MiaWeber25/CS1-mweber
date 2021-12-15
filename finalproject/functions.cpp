@@ -1,29 +1,33 @@
-//this is where your function definitions can be (I can make multiple of these to classify them together)
-//my makefile will need to have 
-//CPP = finalproject.cpp functions.cpp
+/*
+    Final Project - TicTacToe
+    CSCI 111 Fall 2021
+    14/Dec/2021
+    By: Mia Weber
+*/
 //Helpful website: https://www.geeksforgeeks.org/implementation-of-tic-tac-toe-game/
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
 
-//include header file for main functions file
+//header file with function prototypes 
 #include "functions.hpp"
-//include header file for userTurn functions
+//include header file for userTurn function prototypes 
 #include "userTurn.hpp"
-//I could also make a test.cpp file to test all the functions (will need to include assert.h and my functions.hpp in order to test my functions)
+
 using namespace std;
 
 
-bool gameOver = false; //DELETE LATER?
-int turns = 0; //variable to track how many turns have elapsed 
-//2D array to store values in the game board. Initialized to spaces.
+bool gameOver = false; //boolean variable to determine if the game is still in play or not
+int turns = 0; //integer variable to track how many turns have elapsed (used for determining Tie & stats)
 char gameBoard[3][3] = {
     {' ', ' ', ' '},
     {' ', ' ', ' '},
     {' ', ' ', ' '}
-};
-string wantContinue;
-//vector <int>storedSquares;
+}; //2D char array to store values in the game board. Initialized to spaces.
+string wantContinue; //string variable to allow user to play until they want to quit
+//char variables to allow user to select either X or O
+char userCoin; 
+char computerCoin;
 
 
 //MAIN FUNCTION
@@ -42,6 +46,8 @@ void clearScreen() {
     #endif
 }
 
+//CLEAR BOARD FUNCTION
+//sets all elements in the array to spaces
 void clearBoard() {
     for(int i=0; i<9; i++) {
         for(int j=0; j<9; j++) {
@@ -83,6 +89,15 @@ void printMenu() {
         }
     } while (random2() == false);
     //switch statement to call appropriate functions
+        //determine which char represents the user
+        //COME BACK AND ADD A VERIFICATION THAT USER ENTERED X or O.
+        cout << "Choose X or O: ";
+            cin >> userCoin;
+            if (userCoin == 'X') {
+                computerCoin = 'O';
+            } else {
+                computerCoin = 'X';
+            }
     switch(option) {
         case 1:
         {
@@ -133,10 +148,9 @@ char checkVictory(int turns) { //pass this function the array (and size of the a
     //char whoWon; //DO I NEED TO USE THIS????
     //check the row
     char returnValue;
-     for (int i=0; i<3; i++) {
+     for (int i=0; i<3; i++) { 
         //check to see if first space = second space = third space and make sure a character is placed there --> win by row
         if(gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][1] == gameBoard[i][2] && gameBoard[i][0] != ' ') {
-            cout << "win by row!";
             //return gameBoard[i][0];
             returnValue = gameBoard[i][0];
             break;
@@ -144,7 +158,6 @@ char checkVictory(int turns) { //pass this function the array (and size of the a
     //check the column
         //check to see if first space = second space = third space and make sure character is placed there --> win by column
         if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i] && gameBoard[0][i] != ' '){
-            cout << "win by column!";
             //return gameBoard[0][i];
             returnValue = gameBoard[0][i];
             break;
@@ -152,19 +165,16 @@ char checkVictory(int turns) { //pass this function the array (and size of the a
     //check the diagonal
         //check to see if first space = second space = third space and make sure character is placed there --> win by diagonal
         if (gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2] && gameBoard[0][0] != ' ') {
-            cout << "win by diagonal!";
             //return gameBoard[0][i];
             returnValue = gameBoard[0][0];
             break;
         }
         if (gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0] && gameBoard[0][2] != ' ') {
-            cout << "win by diagonal!";
             returnValue = gameBoard[0][2];
             break;
         }
          else { //no one has one --> tie
             if (turns == 9) {
-                cout << "returning T for tie";
                 //return 'T';
                 returnValue = 'T';
             } else { //no one has won --> go on with turns
@@ -186,27 +196,22 @@ void playGame(char difficulty) {
     bool playerTurn = true; //is it the player's turn?
     while (gameOver == false) { 
         if (playerTurn == true) { //it's the player's turn
-            userTurn(turns, gameBoard); //call userTurn function
-            cout << "calling checkVictory after user turn\n";
+            userTurn(turns, gameBoard, userCoin); //call userTurn function
             checkVictory(turns); //second attempt at checkVictory
             playerTurn = false;
         } else { //it's the computer's turn
-            cout << "calling computer turn." << endl;
             computerTurn(difficulty); //call computerTurn function
-            cout << "calling checkVictory after computer turn\n";
             checkVictory(turns); //new attempt at checkVictory
             playerTurn = true;
         }
         clearScreen(); //I WILL NEED TO UNCOMMENT THIS EVENTUALLY!!!!!
         boardPrint(gameBoard); //print the new game board.
         //checkVictory(turns); //WILL WANT TO CALL CHECKVICTORY HERE (WHERE TO CALL THIS?)
-        if (checkVictory(turns) == 'X') {
-            cout << "THE GAME IS OVER. WIN" << endl;
+        if (checkVictory(turns) == userCoin) {
             gameOver = true;
             recordWin();
             // break;
-        } else if (checkVictory(turns) == 'O') {
-            cout << "THE GAME IS OVER. LOSS" << endl;
+        } else if (checkVictory(turns) == computerCoin) {
             gameOver = true;
             recordLoss();
             //break;
@@ -215,10 +220,8 @@ void playGame(char difficulty) {
             recordTie();
             // break;
 
-        } else { //it returned 'G' so continue with the game
-            //continue with game
-            //continue;
-        }
+        } 
+         //it returned 'G' so continue with the game
         if(gameOver == true) {
             cout << "Do you want to play again? [y|n]" << endl;
             cin >> wantContinue;
@@ -235,8 +238,7 @@ void playGame(char difficulty) {
 void computerTurn(char difficulty) {
     if (difficulty == 'E') { //call gameLogicE
         gameLogicE();
-    } else if (difficulty == 'M') { //call gameLogicM
-        cout << "calling gameLogicM()" << endl; //DELETE LATER
+    }else if (difficulty == 'M') { //call gameLogicM
         gameLogicM();
     } else { //call gameLogicH
         gameLogicH();
@@ -268,7 +270,7 @@ void gameLogicE() {
         //cout << endl << "rand2: " << rand2;
         //check to see if that space is empty
         if(gameBoard[rand1][rand2] == ' ') {
-            gameBoard[rand1][rand2] = 'O'; //place an 'O' in that space
+            gameBoard[rand1][rand2] = computerCoin; //place an 'O' in that space
             emptySpace = false; //mark the space as not empty
         } else {
             continue; //space is already filled, generate 2 new random numbres
@@ -279,21 +281,19 @@ void gameLogicE() {
 
 //MEDIUM GAME LOGIC FUNCTION (computer just tries to win but not to block)
 void gameLogicM() {
-    cout << "called tryToWin" << endl; //DELETE LATER 
-    tryToWin();
+    if(!completeSequence(computerCoin, computerCoin)) {
+        gameLogicE();
+    }
     turns +=1;
-    //checkVictory(turns);
 }
 
 //HARD GAME LOGIC FUNCTION (computer tries to block and win)
 void gameLogicH() { //THIS NEEDS TO CALL CHECKVICTORY!
-    //see if you can win!
-    //placement computerSelection;
+    //see if you can win and see if you can block
+    if(!completeSequence(computerCoin, computerCoin) && !completeSequence(userCoin, computerCoin)) {
+        gameLogicE();
+    } 
     turns +=1;
-    checkVictory(turns);
-    //userTurn();
-    //tryToWin();
-    
 }
 
 void recordWin() {
@@ -308,74 +308,51 @@ void recordTie() {
     cout << "Tie!" << endl;
 }
 
-void tryToWin() {
-    cout << "got to tryToWin" << endl; //DELETE LATER
-    for (int i=0; i<3; i++) {
-        //check to see if you can win by row
-        if(gameBoard[i][0] == 'O' && gameBoard[i][1] == 'O' && gameBoard[i][2] == ' ') {
-            //place an O and win by row!
-            gameBoard[i][2] = 'O';
-            boardPrint(gameBoard);
-            break;
-            //boardPrint(gameBoard); //where should I print the board?
-            //gameBoard[userSelection.row][userSelection.col] = 'X'; DO I WANT TO USE PLACEMENT COMPUTERSELECTION FOR THIS??
+bool completeSequence(char seekCoin, char placeCoin) {
+    bool iWon = false;
+    for (int j=0; j<3; j++) {
+        string rowSequence;
+        rowSequence.push_back(gameBoard[j][0]);
+        rowSequence.push_back(gameBoard[j][1]);
+        rowSequence.push_back(gameBoard[j][2]);
+        //if there is a space and two userCoins, then place a computerCoin in the space
+        if (count(rowSequence.begin(), rowSequence.end(), seekCoin) == 2  && count(rowSequence.begin(), rowSequence.end(), ' ') == 1) {
+            gameBoard[j][rowSequence.find(' ')] = placeCoin;
+            iWon = true;
         }
-        //check to see if you can win by col!
-        if(gameBoard[0][i] == 'O' && gameBoard[1][i] == 'O' && gameBoard[2][i] == ' ') {
-            //place an O and win by col!
-            gameBoard[2][i] = 'O';
-            boardPrint(gameBoard);
-            break;
-            //boardPrint(gameBoard);
-        }
-        /*
-       //check to see if you can win by diag! //THIS WON'T WORK AND I CAN'T HARD CODE THIS AS EASILY!
-        if(gameBoard[0][i] == 'O' && gameBoard[1][i] == 'O' && gameBoard[2][i] == ' ') {
-            //place an O and win by diag!
-            gameBoard[2][i] = 'O';
-            boardPrint(gameBoard);
-            break;
-            //boardPrint(gameBoard);
-        }
-        */
-        else {
-            gameLogicE();
-            
+
+        string colSequence;
+        colSequence.push_back(gameBoard[0][j]);
+        colSequence.push_back(gameBoard[1][j]);
+        colSequence.push_back(gameBoard[2][j]);
+        if (count(colSequence.begin(), colSequence.end(), seekCoin) == 2 && count(colSequence.begin(), colSequence.end(), ' ') == 1) {
+            gameBoard[colSequence.find(' ')][j] = placeCoin;
+            iWon = true;
         }
     }
-    cout << "GETTING HERE" << endl;
-    for (int k=0;k<3;k++) {
-        for (int j=0;j<3;j++) {
-            cout << k << " " << j << "=" << gameBoard[k][j] << endl;
-        }
+    string diagSequence;
+    diagSequence.push_back(gameBoard[0][0]);
+    diagSequence.push_back(gameBoard[1][1]);
+    diagSequence.push_back(gameBoard[2][2]);
+    if (count(diagSequence.begin(), diagSequence.end(), seekCoin) == 2 && count(diagSequence.begin(), diagSequence.end(), ' ') == 1) {
+        //find the location of the space
+        int spaceLocation = diagSequence.find(' ');
+        gameBoard[spaceLocation][spaceLocation] = placeCoin;
+        iWon = true;
     }
+
+    diagSequence = "";
+    diagSequence.push_back(gameBoard[0][2]);
+    diagSequence.push_back(gameBoard[1][1]);
+    diagSequence.push_back(gameBoard[2][0]);
+    if (count(diagSequence.begin(), diagSequence.end(), seekCoin) == 2 && count(diagSequence.begin(), diagSequence.end(), ' ') == 1) {
+        //find the location of the space
+        int spaceLocation = diagSequence.find(' ');
+        gameBoard[spaceLocation][spaceLocation-2] = placeCoin;
+        iWon = true;
+    }
+    return iWon;
 }
-
-
-/*
-cout << "got to tryToWin" << endl; //DELETE LATER
-    for (int i=0; i<9; i++) {
-        //check to see if you can win by row
-        if(gameBoard[i][0] == 'O' && gameBoard[i][1] == 'O' && gameBoard[i][2] == ' ') {
-            //place an O and win by row!
-            gameBoard[i][2] = 'O';
-            boardPrint(gameBoard); //where should I print the board?
-            //gameBoard[userSelection.row][userSelection.col] = 'X'; DO I WANT TO USE PLACEMENT COMPUTERSELECTION FOR THIS??
-        }
-        //check to see if you can win by col!
-        if(gameBoard[0][i] == 'O' && gameBoard[1][i] == 'O' && gameBoard[2][i] == ' ') {
-            //place an O and win by col!
-            gameBoard[2][i] = 'O';
-            boardPrint(gameBoard);
-        }
-        //check to see if you can win by diag!
-        if(gameBoard[0][i] == 'O' && gameBoard[1][i] == 'O' && gameBoard[2][i] == ' ') {
-            //place an O and win by diag!
-            gameBoard[2][i] = 'O';
-            boardPrint(gameBoard);
-        }
-    }
-    */
 
 
 

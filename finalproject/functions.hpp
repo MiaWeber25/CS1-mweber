@@ -14,7 +14,7 @@ void gameLogicH();
 void recordWin();
 void recordLoss();
 void recordTie();
-void tryToWin();
+bool completeSequence(char, char);
 struct placement {
     int row;
     int col;

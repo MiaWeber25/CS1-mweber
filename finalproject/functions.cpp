@@ -3,6 +3,7 @@
     CSCI 111 Fall 2021
     14/Dec/2021
     By: Mia Weber
+    Program implements TicTacToe logic on three levels: easy, medium, and hard. Game statistics are written to output file of player's choice.
 */
 //Helpful website: https://www.geeksforgeeks.org/implementation-of-tic-tac-toe-game/
 #include <iostream>
@@ -37,6 +38,8 @@ int main() {
     playerStats stats;
     cout << "Hi! Welcome to TicTacToe! What is your name?" << endl;
     cin >> stats.name;
+    cout << "Please enter the name of a file to output game statistics to: " << endl;
+    cin >> stats.outputFile;
     printMenu(stats); //print the menu options
     return 0;
 }
@@ -72,7 +75,9 @@ void printMenu(playerStats & stats) {
     
     //print the menu options:
     int option = 0;
+    //clearScreen();
     cout << "Welcome to TicTacToe " << stats.name << "!" << endl;
+    clearScreen();
     cout << "Below are the menu options:\n";
     cout << "[1] Easy\n";
     cout << "[2] Medium\n";
@@ -127,7 +132,8 @@ void printMenu(playerStats & stats) {
         }
         case 4:
         default:
-            cout << "Goodbye!\n";
+            cout << "Goodbye! Your game statistics are located in " << stats.outputFile << "!" << endl;
+            outputStats(stats);
             break; //exit the program
     }
 }
@@ -232,6 +238,9 @@ void playGame(char difficulty, playerStats &stats) {
             if(wantContinue == "Y" || wantContinue == "y") {
                 clearBoard();
                 printMenu(stats);
+            } else {
+                cout << "Goodbye! Your game statistics are located in " << stats.outputFile << "!" << endl;
+                outputStats(stats);
             }
         }
      }
@@ -304,18 +313,21 @@ void recordWin(playerStats &stats) {
     cout << "Win!" << endl;
     //update the win count
     stats.numWins += 1;
+    stats.gamesPlayed += 1;
 }
 
 void recordLoss(playerStats &stats) {
     cout << "Loss!" << endl;
     //update the loss count
     stats.numLoss += 1;
+    stats.gamesPlayed += 1;
 }
 
 void recordTie(playerStats &stats) {
     cout << "Tie!" << endl;
     //update the ties count
     stats.numTies += 1;
+    stats.gamesPlayed += 1;
 }
 
 bool completeSequence(char seekCoin, char placeCoin) {
@@ -368,12 +380,10 @@ void outputStats(playerStats &stats) {
     //calculate stats
     //playerStats stats; DO THIS IN MAIN INSTEAD
 
-    string outputFile;
-    cout << "Good Job! Please enter the name of a file to output game statistics to: " << endl;
-    cin >> outputFile;
+
         
     ofstream fout;
-    fout.open(outputFile);
+    fout.open(stats.outputFile);
     //write statistics!
     fout << "Player Name: " << stats.name << endl;
     fout << "Number of player victories: " << stats.numWins << endl;

@@ -3,6 +3,7 @@
 
 struct playerStats {
     std::string name;
+    std::string outputFile;
     int numWins;
     int numLoss;
     int numTies;

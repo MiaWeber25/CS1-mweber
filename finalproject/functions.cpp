@@ -94,13 +94,20 @@ void printMenu(playerStats & stats, int &turns, peopleCoins &coins, char gameBoa
     //switch statement to call appropriate functions
         //determine which char represents the user
         //COME BACK AND ADD A VERIFICATION THAT USER ENTERED X or O.
-        cout << "Choose X or O: ";
-            cin >> coins.userCoin;
-            if (coins.userCoin == 'X') {
-                coins.computerCoin = 'O';
-            } else {
-                coins.computerCoin = 'X';
-            }
+        bool correctSelection = false;
+        while(correctSelection == false) {
+            cout << "Choose X or O: ";
+                cin >> coins.userCoin;
+                if (coins.userCoin == 'X') {
+                    coins.computerCoin = 'O';
+                    correctSelection = true;
+                } else if (coins.userCoin == 'O') {
+                    coins.computerCoin = 'X';
+                    correctSelection = true;
+                } else {
+                    cout << "Please enter either 'X' or 'O'..." << endl;
+                }
+        }
     switch(option) {
         case 1:
         {
@@ -151,44 +158,33 @@ void boardPrint(char gameBoard[3][3]) {
 char checkVictory(int &turns, char gameBoard[3][3]) { //pass this function the array (and size of the array)????
     //char whoWon; //DO I NEED TO USE THIS????
     //check the row
-    char returnValue;
      for (int i=0; i<3; i++) { 
         //check to see if first space = second space = third space and make sure a character is placed there --> win by row
         if(gameBoard[i][0] == gameBoard[i][1] && gameBoard[i][1] == gameBoard[i][2] && gameBoard[i][0] != ' ') {
             //return gameBoard[i][0];
-            returnValue = gameBoard[i][0];
-            break;
+            return gameBoard[i][0];
         } 
     //check the column
         //check to see if first space = second space = third space and make sure character is placed there --> win by column
         if (gameBoard[0][i] == gameBoard[1][i] && gameBoard[1][i] == gameBoard[2][i] && gameBoard[0][i] != ' '){
             //return gameBoard[0][i];
-            returnValue = gameBoard[0][i];
-            break;
+            return gameBoard[0][i];
         } 
     //check the diagonal
         //check to see if first space = second space = third space and make sure character is placed there --> win by diagonal
         if (gameBoard[0][0] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][2] && gameBoard[0][0] != ' ') {
             //return gameBoard[0][i];
-            returnValue = gameBoard[0][0];
-            break;
+            return gameBoard[0][0];
         }
         if (gameBoard[0][2] == gameBoard[1][1] && gameBoard[1][1] == gameBoard[2][0] && gameBoard[0][2] != ' ') {
-            returnValue = gameBoard[0][2];
-            break;
-        }
-         else { //no one has one --> tie
-            if (turns == 9) {
-                //return 'T';
-                returnValue = 'T';
-            } else { //no one has won --> go on with turns
-                //cout << "returning G for go on";
-                returnValue = 'G';
-            }
+            return gameBoard[0][2];
         }
      }
-    return returnValue;
-
+         //no one has one --> tie
+    if (turns == 9) {
+        return 'T';
+    }       
+    return 'G';
 }
     
 
@@ -208,6 +204,7 @@ void playGame(char difficulty, playerStats &stats, int &turns, peopleCoins &coin
             checkVictory(turns, gameBoard); //new attempt at checkVictory
             playerTurn = true;
         }
+        turns+=1;
         clearScreen(); //I WILL NEED TO UNCOMMENT THIS EVENTUALLY!!!!!
         boardPrint(gameBoard); //print the new game board.
         //checkVictory(turns); //WILL WANT TO CALL CHECKVICTORY HERE (WHERE TO CALL THIS?)
@@ -231,6 +228,7 @@ void playGame(char difficulty, playerStats &stats, int &turns, peopleCoins &coin
             cin >> wantContinue;
             if(wantContinue == "Y" || wantContinue == "y") {
                 clearBoard(gameBoard);
+                turns = 0;
                 printMenu(stats, turns, coins, gameBoard);
             } else {
                 cout << "Goodbye! Your game statistics are located in " << stats.outputFile << "!" << endl;
@@ -283,7 +281,7 @@ void gameLogicE(int &turns, peopleCoins &coins, char gameBoard[3][3]) {
             continue; //space is already filled, generate 2 new random numbres
         }
     }
-    turns +=1; //increment turns
+    //turns +=1; //increment turns
 }
 
 //MEDIUM GAME LOGIC FUNCTION (computer just tries to win but not to block)
@@ -295,7 +293,7 @@ void gameLogicM(int &turns, peopleCoins &coins, char gameBoard[3][3]) {
     if(!completeSequence(computerCoin, computerCoin, gameBoard)) {
         gameLogicE(turns, coins, gameBoard);
     }
-    turns +=1;
+    //turns +=1;
 }
 
 //HARD GAME LOGIC FUNCTION (computer tries to block and win)
@@ -308,7 +306,7 @@ void gameLogicH(int &turns, peopleCoins &coins, char gameBoard[3][3]) { //THIS N
     if(!completeSequence(computerCoin, computerCoin, gameBoard) && !completeSequence(userCoin, computerCoin, gameBoard)) {
         gameLogicE(turns, coins, gameBoard);
     } 
-    turns +=1;
+    //turns +=1;
 }
 
 void recordWin(playerStats &stats) {

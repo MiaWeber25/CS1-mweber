@@ -19,28 +19,21 @@
 
 using namespace std;
 
-
-bool gameOver = false; //boolean variable to determine if the game is still in play or not
-int turns = 0; //integer variable to track how many turns have elapsed (used for determining Tie & stats)
-char gameBoard[3][3] = {
+//MAIN FUNCTION
+int main() {
+    char gameBoard[3][3] = {
     {' ', ' ', ' '},
     {' ', ' ', ' '},
     {' ', ' ', ' '}
-}; //2D char array to store values in the game board. Initialized to spaces.
-string wantContinue; //string variable to allow user to play until they want to quit
-//char variables to allow user to select either X or O
-char userCoin; 
-char computerCoin;
-
-
-//MAIN FUNCTION
-int main() {
+    };
     playerStats stats;
+    peopleCoins coins;
+    int turns = 0;
     cout << "Hi! Welcome to TicTacToe! What is your name?" << endl;
     cin >> stats.name;
     cout << "Please enter the name of a file to output game statistics to: " << endl;
     cin >> stats.outputFile;
-    printMenu(stats); //print the menu options
+    printMenu(stats, turns, coins, gameBoard); //print the menu options
     return 0;
 }
 
@@ -56,7 +49,7 @@ void clearScreen() {
 
 //CLEAR BOARD FUNCTION
 //sets all elements in the array to spaces
-void clearBoard() {
+void clearBoard(char gameBoard[3][3]) {
     for(int i=0; i<9; i++) {
         for(int j=0; j<9; j++) {
             gameBoard[i][j] = ' ';
@@ -70,7 +63,7 @@ bool random2() { //DELETE LATER???
 }
 
 //PRINT MENU FUNCTION
-void printMenu(playerStats & stats) {
+void printMenu(playerStats & stats, int &turns, peopleCoins &coins, char gameBoard[3][3]) {
     clearScreen(); //clear the screen
     
     //print the menu options:
@@ -102,32 +95,32 @@ void printMenu(playerStats & stats) {
         //determine which char represents the user
         //COME BACK AND ADD A VERIFICATION THAT USER ENTERED X or O.
         cout << "Choose X or O: ";
-            cin >> userCoin;
-            if (userCoin == 'X') {
-                computerCoin = 'O';
+            cin >> coins.userCoin;
+            if (coins.userCoin == 'X') {
+                coins.computerCoin = 'O';
             } else {
-                computerCoin = 'X';
+                coins.computerCoin = 'X';
             }
     switch(option) {
         case 1:
         {
             //call the outputStats function to prompt for output file
             clearScreen(); //clear the screen
-            playGame('E', stats); //start game play and pass difficulty level
+            playGame('E', stats, turns, coins, gameBoard); //start game play and pass difficulty level
             break;
         }
         case 2:
         {
             //call the outputStats function to prompt for output file
             clearScreen(); //clear the screen
-            playGame('M', stats); //start game play and pass difficulty level
+            playGame('M', stats, turns, coins, gameBoard); //start game play and pass difficulty level
             break;
         }
         case 3:
         {
             //call the outputStats function to prompt for output file
             clearScreen(); //clear the screen
-            playGame('H', stats); //start game play and pass difficulty level
+            playGame('H', stats, turns, coins, gameBoard); //start game play and pass difficulty level
             break;
         }
         case 4:
@@ -155,7 +148,7 @@ void boardPrint(char gameBoard[3][3]) {
 //ISSUES WITH checkVictory IF STATEMENT LOGIC. FIGURE OUT LATER...
 
 //CHECK VICTORY FUNCTION
-char checkVictory(int turns) { //pass this function the array (and size of the array)????
+char checkVictory(int &turns, char gameBoard[3][3]) { //pass this function the array (and size of the array)????
     //char whoWon; //DO I NEED TO USE THIS????
     //check the row
     char returnValue;
@@ -200,32 +193,33 @@ char checkVictory(int turns) { //pass this function the array (and size of the a
     
 
 //PLAY GAME FUNCTION
-void playGame(char difficulty, playerStats &stats) {
+void playGame(char difficulty, playerStats &stats, int &turns, peopleCoins &coins, char gameBoard[3][3]) {
     //flag = turns (declared in functios.hpp)
+    string wantContinue;
     bool gameOver = false;
     bool playerTurn = true; //is it the player's turn?
     while (gameOver == false) { 
         if (playerTurn == true) { //it's the player's turn
-            userTurn(turns, gameBoard, userCoin); //call userTurn function
-            checkVictory(turns); //second attempt at checkVictory
+            userTurn(turns, gameBoard, coins.userCoin); //call userTurn function
+            checkVictory(turns, gameBoard); //second attempt at checkVictory
             playerTurn = false;
         } else { //it's the computer's turn
-            computerTurn(difficulty); //call computerTurn function
-            checkVictory(turns); //new attempt at checkVictory
+            computerTurn(difficulty, turns, coins, gameBoard); //call computerTurn function
+            checkVictory(turns, gameBoard); //new attempt at checkVictory
             playerTurn = true;
         }
         clearScreen(); //I WILL NEED TO UNCOMMENT THIS EVENTUALLY!!!!!
         boardPrint(gameBoard); //print the new game board.
         //checkVictory(turns); //WILL WANT TO CALL CHECKVICTORY HERE (WHERE TO CALL THIS?)
-        if (checkVictory(turns) == userCoin) {
+        if (checkVictory(turns, gameBoard) == coins.userCoin) {
             gameOver = true;
             recordWin(stats);
             // break;
-        } else if (checkVictory(turns) == computerCoin) {
+        } else if (checkVictory(turns, gameBoard) == coins.computerCoin) {
             gameOver = true;
             recordLoss(stats);
             //break;
-        } else if (checkVictory(turns) == 'T') {
+        } else if (checkVictory(turns, gameBoard) == 'T') {
             gameOver = true;
             recordTie(stats);
             // break;
@@ -236,8 +230,8 @@ void playGame(char difficulty, playerStats &stats) {
             cout << "Do you want to play again? [y|n]" << endl;
             cin >> wantContinue;
             if(wantContinue == "Y" || wantContinue == "y") {
-                clearBoard();
-                printMenu(stats);
+                clearBoard(gameBoard);
+                printMenu(stats, turns, coins, gameBoard);
             } else {
                 cout << "Goodbye! Your game statistics are located in " << stats.outputFile << "!" << endl;
                 outputStats(stats);
@@ -248,18 +242,18 @@ void playGame(char difficulty, playerStats &stats) {
 }
 
 //COMPUTER TURN FUNCTION
-void computerTurn(char difficulty) {
+void computerTurn(char difficulty, int &turns, peopleCoins &coins, char gameBoard[3][3]) {
     if (difficulty == 'E') { //call gameLogicE
-        gameLogicE();
+        gameLogicE(turns, coins, gameBoard);
     } else if (difficulty == 'M') { //call gameLogicM
-        gameLogicM();
+        gameLogicM(turns, coins, gameBoard);
     } else { //call gameLogicH
-        gameLogicH();
+        gameLogicH(turns, coins, gameBoard);
     }
 }
 
 //EASY GAME LOGIC FUNCTION (random generated computer 'O' placement)
-void gameLogicE() {
+void gameLogicE(int &turns, peopleCoins &coins, char gameBoard[3][3]) {
 //GENERATE RANDOM PLACEMENT:
     //1. generate random numbers
     //2. see if that space is taken yet 
@@ -283,7 +277,7 @@ void gameLogicE() {
         //cout << endl << "rand2: " << rand2;
         //check to see if that space is empty
         if(gameBoard[rand1][rand2] == ' ') {
-            gameBoard[rand1][rand2] = computerCoin; //place an 'O' in that space
+            gameBoard[rand1][rand2] = coins.computerCoin; //place an 'O' in that space
             emptySpace = false; //mark the space as not empty
         } else {
             continue; //space is already filled, generate 2 new random numbres
@@ -293,18 +287,26 @@ void gameLogicE() {
 }
 
 //MEDIUM GAME LOGIC FUNCTION (computer just tries to win but not to block)
-void gameLogicM() {
-    if(!completeSequence(computerCoin, computerCoin)) {
-        gameLogicE();
+void gameLogicM(int &turns, peopleCoins &coins, char gameBoard[3][3]) {
+    char userCoin = ' ';
+    char computerCoin = ' ';
+    coins.userCoin = userCoin;
+    coins.computerCoin = computerCoin;
+    if(!completeSequence(computerCoin, computerCoin, gameBoard)) {
+        gameLogicE(turns, coins, gameBoard);
     }
     turns +=1;
 }
 
 //HARD GAME LOGIC FUNCTION (computer tries to block and win)
-void gameLogicH() { //THIS NEEDS TO CALL CHECKVICTORY!
+void gameLogicH(int &turns, peopleCoins &coins, char gameBoard[3][3]) { //THIS NEEDS TO CALL CHECKVICTORY!
     //see if you can win and see if you can block
-    if(!completeSequence(computerCoin, computerCoin) && !completeSequence(userCoin, computerCoin)) {
-        gameLogicE();
+    char userCoin = ' ';
+    char computerCoin = ' ';
+    coins.userCoin = userCoin;
+    coins.computerCoin = computerCoin;
+    if(!completeSequence(computerCoin, computerCoin, gameBoard) && !completeSequence(userCoin, computerCoin, gameBoard)) {
+        gameLogicE(turns, coins, gameBoard);
     } 
     turns +=1;
 }
@@ -330,7 +332,7 @@ void recordTie(playerStats &stats) {
     stats.gamesPlayed += 1;
 }
 
-bool completeSequence(char seekCoin, char placeCoin) {
+bool completeSequence(char seekCoin, char placeCoin, char gameBoard[3][3]) {
     bool iWon = false;
     for (int j=0; j<3; j++) {
         string rowSequence;

@@ -11,7 +11,7 @@ void userTurn(int& turns, char gameBoardTest[][3], char userCoin) {
     placement userSelection;
     //loop to verify that user input is in range of game board
     while (true) {
-        cout << "please enter your selection row first seperated by a space. ex: 3 2\n";
+        cout << "\nplease enter your selection [row|col] seperated by a space. ex: 3 2\n";
         cin >> userSelection.row >> userSelection.col;
         userSelection.row -= 1; 
         userSelection.col -= 1;

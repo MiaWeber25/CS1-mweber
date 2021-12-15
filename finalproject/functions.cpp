@@ -8,6 +8,8 @@
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
+#include <string>
+#include <fstream>
 
 //header file with function prototypes 
 #include "functions.hpp"
@@ -32,7 +34,10 @@ char computerCoin;
 
 //MAIN FUNCTION
 int main() {
-    printMenu(); //print the menu options
+    playerStats stats;
+    cout << "Hi! Welcome to TicTacToe! What is your name?" << endl;
+    cin >> stats.name;
+    printMenu(stats); //print the menu options
     return 0;
 }
 
@@ -62,19 +67,19 @@ bool random2() { //DELETE LATER???
 }
 
 //PRINT MENU FUNCTION
-void printMenu() {
+void printMenu(playerStats & stats) {
     clearScreen(); //clear the screen
     
     //print the menu options:
     int option = 0;
-    cout << "Welcome to TicTacToe!\n";
+    cout << "Welcome to TicTacToe " << stats.name << "!" << endl;
     cout << "Below are the menu options:\n";
     cout << "[1] Easy\n";
     cout << "[2] Medium\n";
     cout << "[3] Hard\n";
     cout << "[4] Quit\n";
     cout << "Enter one of the menu options [1-4]: ";
-    
+
     //check if the selected option is in range
     do {
         if (cin >> option && option >= 1 && option <= 4) {
@@ -103,21 +108,21 @@ void printMenu() {
         {
             //call the outputStats function to prompt for output file
             clearScreen(); //clear the screen
-            playGame('E'); //start game play and pass difficulty level
+            playGame('E', stats); //start game play and pass difficulty level
             break;
         }
         case 2:
         {
             //call the outputStats function to prompt for output file
             clearScreen(); //clear the screen
-            playGame('M'); //start game play and pass difficulty level
+            playGame('M', stats); //start game play and pass difficulty level
             break;
         }
         case 3:
         {
             //call the outputStats function to prompt for output file
             clearScreen(); //clear the screen
-            playGame('H'); //start game play and pass difficulty level
+            playGame('H', stats); //start game play and pass difficulty level
             break;
         }
         case 4:
@@ -180,7 +185,6 @@ char checkVictory(int turns) { //pass this function the array (and size of the a
             } else { //no one has won --> go on with turns
                 //cout << "returning G for go on";
                 returnValue = 'G';
-                //return 'G';
             }
         }
      }
@@ -190,7 +194,7 @@ char checkVictory(int turns) { //pass this function the array (and size of the a
     
 
 //PLAY GAME FUNCTION
-void playGame(char difficulty) {
+void playGame(char difficulty, playerStats &stats) {
     //flag = turns (declared in functios.hpp)
     bool gameOver = false;
     bool playerTurn = true; //is it the player's turn?
@@ -209,15 +213,15 @@ void playGame(char difficulty) {
         //checkVictory(turns); //WILL WANT TO CALL CHECKVICTORY HERE (WHERE TO CALL THIS?)
         if (checkVictory(turns) == userCoin) {
             gameOver = true;
-            recordWin();
+            recordWin(stats);
             // break;
         } else if (checkVictory(turns) == computerCoin) {
             gameOver = true;
-            recordLoss();
+            recordLoss(stats);
             //break;
         } else if (checkVictory(turns) == 'T') {
             gameOver = true;
-            recordTie();
+            recordTie(stats);
             // break;
 
         } 
@@ -227,7 +231,7 @@ void playGame(char difficulty) {
             cin >> wantContinue;
             if(wantContinue == "Y" || wantContinue == "y") {
                 clearBoard();
-                printMenu();
+                printMenu(stats);
             }
         }
      }
@@ -238,7 +242,7 @@ void playGame(char difficulty) {
 void computerTurn(char difficulty) {
     if (difficulty == 'E') { //call gameLogicE
         gameLogicE();
-    }else if (difficulty == 'M') { //call gameLogicM
+    } else if (difficulty == 'M') { //call gameLogicM
         gameLogicM();
     } else { //call gameLogicH
         gameLogicH();
@@ -296,16 +300,22 @@ void gameLogicH() { //THIS NEEDS TO CALL CHECKVICTORY!
     turns +=1;
 }
 
-void recordWin() {
+void recordWin(playerStats &stats) {
     cout << "Win!" << endl;
+    //update the win count
+    stats.numWins += 1;
 }
 
-void recordLoss() {
+void recordLoss(playerStats &stats) {
     cout << "Loss!" << endl;
+    //update the loss count
+    stats.numLoss += 1;
 }
 
-void recordTie() {
+void recordTie(playerStats &stats) {
     cout << "Tie!" << endl;
+    //update the ties count
+    stats.numTies += 1;
 }
 
 bool completeSequence(char seekCoin, char placeCoin) {
@@ -354,7 +364,24 @@ bool completeSequence(char seekCoin, char placeCoin) {
     return iWon;
 }
 
+void outputStats(playerStats &stats) {
+    //calculate stats
+    //playerStats stats; DO THIS IN MAIN INSTEAD
 
+    string outputFile;
+    cout << "Good Job! Please enter the name of a file to output game statistics to: " << endl;
+    cin >> outputFile;
+        
+    ofstream fout;
+    fout.open(outputFile);
+    //write statistics!
+    fout << "Player Name: " << stats.name << endl;
+    fout << "Number of player victories: " << stats.numWins << endl;
+    fout << "Number of player losses: " << stats.numLoss << endl;
+    fout << "Number of games played: " << stats.gamesPlayed << endl;
+    //close file
+    fout.close();
+}
 
 
 

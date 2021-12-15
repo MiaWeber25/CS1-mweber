@@ -288,10 +288,10 @@ void gameLogicE(int &turns, peopleCoins &coins, char gameBoard[3][3]) {
 
 //MEDIUM GAME LOGIC FUNCTION (computer just tries to win but not to block)
 void gameLogicM(int &turns, peopleCoins &coins, char gameBoard[3][3]) {
-    char userCoin = ' ';
-    char computerCoin = ' ';
-    coins.userCoin = userCoin;
-    coins.computerCoin = computerCoin;
+    char userCoin;
+    char computerCoin;
+    userCoin = coins.userCoin;
+    computerCoin = coins.computerCoin;
     if(!completeSequence(computerCoin, computerCoin, gameBoard)) {
         gameLogicE(turns, coins, gameBoard);
     }
@@ -301,10 +301,10 @@ void gameLogicM(int &turns, peopleCoins &coins, char gameBoard[3][3]) {
 //HARD GAME LOGIC FUNCTION (computer tries to block and win)
 void gameLogicH(int &turns, peopleCoins &coins, char gameBoard[3][3]) { //THIS NEEDS TO CALL CHECKVICTORY!
     //see if you can win and see if you can block
-    char userCoin = ' ';
-    char computerCoin = ' ';
-    coins.userCoin = userCoin;
-    coins.computerCoin = computerCoin;
+    char userCoin;
+    char computerCoin;
+    userCoin = coins.userCoin;
+    computerCoin = coins.computerCoin;
     if(!completeSequence(computerCoin, computerCoin, gameBoard) && !completeSequence(userCoin, computerCoin, gameBoard)) {
         gameLogicE(turns, coins, gameBoard);
     } 
@@ -382,14 +382,13 @@ void outputStats(playerStats &stats) {
     //calculate stats
     //playerStats stats; DO THIS IN MAIN INSTEAD
 
-
-        
     ofstream fout;
     fout.open(stats.outputFile);
     //write statistics!
     fout << "Player Name: " << stats.name << endl;
     fout << "Number of player victories: " << stats.numWins << endl;
     fout << "Number of player losses: " << stats.numLoss << endl;
+    fout << "Number of tie games: " << stats.numTies << endl;
     fout << "Number of games played: " << stats.gamesPlayed << endl;
     //close file
     fout.close();

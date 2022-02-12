@@ -1,4 +1,6 @@
 # CS1-mweber
+Projects and coursework for CSCI 111 Foundations of Computer Science Fall 2021
+
 | Name| Value|
 |----------------|:----------------------------------------|
 | **Course**         |CSCI 111|
